@@ -94,8 +94,8 @@ export function EventPage({ event }: { event: WeddingEvent }) {
           </>
         ) : null}
 
-        {/* Title treatment anchored near the bottom of the artwork */}
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-center p-5 pb-7 sm:pb-9">
+        {/* Title treatment anchored near the top of the artwork */}
+        <div className="absolute inset-x-0 top-0 flex items-start justify-center p-5 pt-6 sm:pt-8">
           <div
             className="rounded-sm px-6 py-5 text-center backdrop-blur-[3px] sm:px-12 sm:py-7"
             style={{
@@ -103,7 +103,7 @@ export function EventPage({ event }: { event: WeddingEvent }) {
                 "radial-gradient(ellipse at center, oklch(0.99 0.012 40 / 0.9) 35%, oklch(0.99 0.012 40 / 0.5) 65%, transparent 85%)",
             }}
           >
-            <p className="font-sans text-[0.6rem] uppercase tracking-[0.4em] text-ink/75 sm:text-[0.7rem]">
+            <p className="font-sans text-sm uppercase tracking-[0.35em] text-ink/80 sm:text-base">
               {copy.date}
             </p>
             <h2
@@ -112,11 +112,12 @@ export function EventPage({ event }: { event: WeddingEvent }) {
             >
               {copy.name}
             </h2>
-            <p className="mt-2 font-sans text-xs tracking-[0.3em] text-ink/85 sm:text-sm">
+            <p className="mt-2 font-sans text-base tracking-[0.28em] text-ink/85 sm:text-lg">
               {copy.time}
             </p>
           </div>
         </div>
+
       </div>
     </section>
   );
