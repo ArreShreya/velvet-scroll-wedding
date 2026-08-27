@@ -6,7 +6,7 @@ export const LANGS: { code: Lang; label: string; short: string }[] = [
   { code: "gu", label: "ગુજરાતી", short: "ગુ" },
 ];
 
-type EventCopy = { name: string; time: string; date: string };
+type EventCopy = { name: string; time: string; date: string; thought?: string };
 
 export type Dict = {
   landingTitle: string;
@@ -90,17 +90,16 @@ export const translations: Record<Lang, Dict> = {
     seconds: "Secs",
     photoPlaceholder: "A photograph of the couple, coming soon",
     events: {
-      mehandi: { name: "Mehandi", time: "2:00 PM", date: "11th December" },
+      mehandi: { name: "Mehandi", time: "2:00 PM", date: "11th December", thought: "Henna-dark hands, and a love just beginning." },
       "engagement-sangeet": {
         name: "Engagement & Sangeet",
         time: "6:30 PM",
-        date: "11th December",
-      },
-      masquerade: { name: "Masquerade", time: "10:30 PM", date: "11th December" },
-      haldi: { name: "Haldi", time: "10:30 AM", date: "12th December" },
-      baarat: { name: "Baarat", time: "4:00 PM", date: "12th December" },
-      varmala: { name: "Varmala", time: "5:30 PM", date: "12th December" },
-      fera: { name: "Fera", time: "11:00 PM", date: "12th December" },
+        date: "11th December", thought: "Music, laughter, and a promise set to dance." },
+      masquerade: { name: "Masquerade", time: "10:30 PM", date: "11th December", thought: "Behind every mask, the same happy hearts." },
+      haldi: { name: "Haldi", time: "10:30 AM", date: "12th December", thought: "Sunshine on her skin, laughter in the air." },
+      baarat: { name: "Baarat", time: "4:00 PM", date: "12th December", thought: "Dhol, dance, and a groom on his way." },
+      varmala: { name: "Varmala", time: "5:30 PM", date: "12th December", thought: "Two hearts, two families, one garland." },
+      fera: { name: "Fera", time: "11:00 PM", date: "12th December", thought: "Seven vows, forever — taaron ki chhaon mein." },
     },
   },
   hi: {
@@ -143,17 +142,16 @@ export const translations: Record<Lang, Dict> = {
     seconds: "सेकंड",
     photoPlaceholder: "युगल का चित्र शीघ्र ही",
     events: {
-      mehandi: { name: "मेहंदी", time: "दोपहर २:००", date: "११ दिसंबर" },
+      mehandi: { name: "मेहंदी", time: "दोपहर २:००", date: "११ दिसंबर", thought: "रचे हाथ, और एक नया-नया प्यार।" },
       "engagement-sangeet": {
         name: "सगाई एवं संगीत",
         time: "शाम ६:३०",
-        date: "११ दिसंबर",
-      },
-      masquerade: { name: "मास्करेड", time: "रात १०:३०", date: "११ दिसंबर" },
-      haldi: { name: "हल्दी", time: "सुबह १०:३०", date: "१२ दिसंबर" },
-      baarat: { name: "बारात", time: "शाम ४:००", date: "१२ दिसंबर" },
-      varmala: { name: "वरमाला", time: "शाम ५:३०", date: "१२ दिसंबर" },
-      fera: { name: "फेरे", time: "रात ११:००", date: "१२ दिसंबर" },
+        date: "११ दिसंबर", thought: "संगीत, हँसी और थिरकते हुए वादे।" },
+      masquerade: { name: "मास्करेड", time: "रात १०:३०", date: "११ दिसंबर", thought: "हर नक़ाब के पीछे वही ख़ुश दिल।" },
+      haldi: { name: "हल्दी", time: "सुबह १०:३०", date: "१२ दिसंबर", thought: "धूप-सी हल्दी, हवा में गूँजती हँसी।" },
+      baarat: { name: "बारात", time: "शाम ४:००", date: "१२ दिसंबर", thought: "ढोल, नाच और आता हुआ दूल्हा।" },
+      varmala: { name: "वरमाला", time: "शाम ५:३०", date: "१२ दिसंबर", thought: "दो दिल, दो परिवार, एक वरमाला।" },
+      fera: { name: "फेरे", time: "रात ११:००", date: "१२ दिसंबर", thought: "सात वचन, सदा के लिए — तारों की छाँव में।" },
     },
   },
   gu: {
@@ -196,17 +194,16 @@ export const translations: Record<Lang, Dict> = {
     seconds: "સેકંડ",
     photoPlaceholder: "યુગલનો ફોટો ટૂંક સમયમાં",
     events: {
-      mehandi: { name: "મહેંદી", time: "બપોરે ૨:૦૦", date: "૧૧ ડિસેમ્બર" },
+      mehandi: { name: "મહેંદી", time: "બપોરે ૨:૦૦", date: "૧૧ ડિસેમ્બર", thought: "મહેંદીભર્યા હાથ, અને નવો-નવો પ્રેમ." },
       "engagement-sangeet": {
         name: "સગાઈ અને સંગીત",
         time: "સાંજે ૬:૩૦",
-        date: "૧૧ ડિસેમ્બર",
-      },
-      masquerade: { name: "માસ્કરેડ", time: "રાત્રે ૧૦:૩૦", date: "૧૧ ડિસેમ્બર" },
-      haldi: { name: "હળદી", time: "સવારે ૧૦:૩૦", date: "૧૨ ડિસેમ્બર" },
-      baarat: { name: "જાન", time: "સાંજે ૪:૦૦", date: "૧૨ ડિસેમ્બર" },
-      varmala: { name: "વરમાળા", time: "સાંજે ૫:૩૦", date: "૧૨ ડિસેમ્બર" },
-      fera: { name: "ફેરા", time: "રાત્રે ૧૧:૦૦", date: "૧૨ ડિસેમ્બર" },
+        date: "૧૧ ડિસેમ્બર", thought: "સંગીત, હાસ્ય અને નાચતું વચન." },
+      masquerade: { name: "માસ્કરેડ", time: "રાત્રે ૧૦:૩૦", date: "૧૧ ડિસેમ્બર", thought: "દરેક મુખવટા પાછળ એ જ ખુશ હૃદય." },
+      haldi: { name: "હળદી", time: "સવારે ૧૦:૩૦", date: "૧૨ ડિસેમ્બર", thought: "હળદરનો તડકો, હવામાં હાસ્ય." },
+      baarat: { name: "જાન", time: "સાંજે ૪:૦૦", date: "૧૨ ડિસેમ્બર", thought: "ઢોલ, નાચ અને આવતો વરરાજા." },
+      varmala: { name: "વરમાળા", time: "સાંજે ૫:૩૦", date: "૧૨ ડિસેમ્બર", thought: "બે હૃદય, બે પરિવાર, એક વરમાળા." },
+      fera: { name: "ફેરા", time: "રાત્રે ૧૧:૦૦", date: "૧૨ ડિસેમ્બર", thought: "સાત વચન, સદાય — તારાઓની છાંવમાં." },
     },
   },
 };
