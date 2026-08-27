@@ -97,10 +97,10 @@ export function EventPage({ event }: { event: WeddingEvent }) {
         {/* Centered title treatment over the artwork */}
         <div className="absolute inset-0 flex items-center justify-center p-5">
           <div
-            className="rounded-sm px-6 py-5 text-center backdrop-blur-[2px] sm:px-12 sm:py-7"
+            className="rounded-sm px-6 py-5 text-center backdrop-blur-[3px] sm:px-12 sm:py-7"
             style={{
               background:
-                "radial-gradient(ellipse at center, oklch(0.98 0.015 40 / 0.72), oklch(0.98 0.015 40 / 0.18) 70%, transparent)",
+                "radial-gradient(ellipse at center, oklch(0.99 0.012 40 / 0.9) 35%, oklch(0.99 0.012 40 / 0.5) 65%, transparent 85%)",
             }}
           >
             <p className="font-sans text-[0.6rem] uppercase tracking-[0.4em] text-ink/75 sm:text-[0.7rem]">
