@@ -37,35 +37,17 @@ export function TimelinePage() {
         {t.timelineTitle}
       </h2>
 
-      {/* Mobile: vertical reflow */}
-      <ol className="mt-8 w-full max-w-sm space-y-3 sm:hidden">
-        {events.map((e) => {
-          const c = copyFor(e.id);
-          return (
-            <li key={e.id}>
-              <a
-                href={`#${e.id}`}
-                className="flex items-center gap-3 rounded-full border border-rose/50 bg-paper-tint px-3 py-2"
-              >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-rose/60 text-rose-deep">
-                  <EventIcon id={e.id} className="h-6 w-6" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate font-display text-base leading-tight text-ink">
-                    {c.name}
-                  </span>
-                  <span className="block font-sans text-[0.6rem] tracking-[0.18em] text-rose-deep/80">
-                    {c.date}
-                  </span>
-                </span>
-                <span className="shrink-0 font-sans text-[0.65rem] tracking-[0.14em] text-rose-deep">
-                  {c.time}
-                </span>
-              </a>
-            </li>
-          );
-        })}
-      </ol>
+      {/* Mobile: two facing semi-circle arcs */}
+      <div className="mt-8 w-full sm:hidden">
+        <MobileArc ids={["mehandi", "sangeet", "masquerade"]} facing="left" label={t.day1} />
+        <MobileArc
+          ids={["haldi", "baarat", "varmala", "fera"]}
+          facing="right"
+          label={t.day2}
+          className="mt-8"
+        />
+      </div>
+
 
       {/* Tablet & desktop: semi-circle arc */}
       <div className="relative mt-24 hidden w-full max-w-2xl sm:block">
