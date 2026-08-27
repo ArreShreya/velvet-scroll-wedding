@@ -19,6 +19,14 @@ export function ScrollShell({ children }: { children: ReactNode }) {
     return () => window.clearTimeout(t);
   }, [phase]);
 
+  const [shower, setShower] = useState(false);
+  useEffect(() => {
+    if (phase !== "opening") return;
+    setShower(true);
+    const t = window.setTimeout(() => setShower(false), 3600);
+    return () => window.clearTimeout(t);
+  }, [phase]);
+
   const opened = phase === "open";
 
   return (
@@ -68,6 +76,24 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             {t.tapToUnfurl}
           </p>
         </button>
+      )}
+
+      {/* Kumkum & rice shower — plays once on open */}
+      {shower && (
+        <div className="pointer-events-none fixed inset-0 z-[55] overflow-hidden">
+          {Array.from({ length: 46 }).map((_, i) => (
+            <span
+              key={i}
+              className={i % 2 === 0 ? "shower-kumkum" : "shower-rice"}
+              style={{
+                left: `${(i * 17 + 3) % 100}%`,
+                animationDelay: `${((i * 137) % 900) / 1000}s`,
+                animationDuration: `${2 + ((i * 7) % 13) / 10}s`,
+                ["--drift" as string]: `${(((i * 53) % 60) - 30) / 1}px`,
+              }}
+            />
+          ))}
+        </div>
       )}
 
       {/* Language toggle — fixed, above everything */}
