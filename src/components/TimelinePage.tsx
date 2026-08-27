@@ -115,3 +115,95 @@ export function TimelinePage() {
     </section>
   );
 }
+
+/** Mobile: a single semi-circular arc bulging left or right with events along it. */
+function MobileArc({
+  ids,
+  facing,
+  label,
+  className = "",
+}: {
+  ids: string[];
+  facing: "left" | "right";
+  label: string;
+  className?: string;
+}) {
+  const { t } = useLang();
+  const W = 300;
+  const H = 280;
+  const R = 105;
+  const cy = H / 2;
+  const cx = facing === "left" ? 232 : 68;
+
+  const at = (i: number) => {
+    const f = ids.length === 1 ? 0.5 : i / (ids.length - 1);
+    const deg = facing === "left" ? -90 - 180 * f : -90 + 180 * f;
+    const rad = (deg * Math.PI) / 180;
+    return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad) };
+  };
+
+  const start = at(0);
+  const end = at(ids.length - 1);
+
+  return (
+    <div className={`relative mx-auto w-full max-w-sm ${className}`}>
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
+        <path
+          d={`M ${start.x} ${start.y} A ${R} ${R} 0 0 ${facing === "left" ? 0 : 1} ${end.x} ${end.y}`}
+          fill="none"
+          stroke="var(--rose)"
+          strokeWidth="2"
+          strokeDasharray="1 7"
+          strokeLinecap="round"
+          opacity="0.75"
+        />
+        {ids.map((id, i) => {
+          const p = at(i);
+          return <circle key={id} cx={p.x} cy={p.y} r="5" fill="var(--rose-deep)" opacity="0.85" />;
+        })}
+        <text
+          x={cx}
+          y={cy + 4}
+          textAnchor="middle"
+          className="font-sans"
+          fontSize="11"
+          letterSpacing="3"
+          fill="var(--rose-deep)"
+          opacity="0.7"
+        >
+          {label}
+        </text>
+      </svg>
+
+      {ids.map((id, i) => {
+        const p = at(i);
+        const c = t.events[id] ?? { name: id, time: "", date: "" };
+        return (
+          <a
+            key={id}
+            href={`#${id}`}
+            className="absolute flex w-[52%] items-center gap-2"
+            style={{
+              left: `${(p.x / W) * 100}%`,
+              top: `${(p.y / H) * 100}%`,
+              transform:
+                facing === "left" ? "translate(4%, -50%)" : "translate(-104%, -50%)",
+              flexDirection: facing === "left" ? "row" : "row-reverse",
+              textAlign: facing === "left" ? "left" : "right",
+            }}
+          >
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
+              <EventIcon id={id} className="h-5 w-5" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-display text-sm leading-tight text-ink">{c.name}</span>
+              <span className="block font-sans text-[0.65rem] tracking-[0.16em] text-rose-deep/85">
+                {c.time}
+              </span>
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  );
+}
