@@ -1,82 +1,121 @@
 import mehandiBg from "@/assets/scenes/mehandi-bg.jpg";
-import mehandiFg from "@/assets/scenes/mehandi-fg.png";
 import sangeetBg from "@/assets/scenes/sangeet-bg.jpg";
-import sangeetFg from "@/assets/scenes/sangeet-fg.png";
 import masqueradeBg from "@/assets/scenes/masquerade-bg.jpg";
-import masqueradeFg from "@/assets/scenes/masquerade-fg.png";
 import haldiBg from "@/assets/scenes/haldi-bg.jpg";
-import haldiFg from "@/assets/scenes/haldi-fg.png";
 import baaratBg from "@/assets/scenes/baarat-bg.jpg";
-import baaratFg from "@/assets/scenes/baarat-fg.png";
 import varmalaBg from "@/assets/scenes/varmala-bg.jpg";
-import varmalaFg from "@/assets/scenes/varmala-fg.png";
 import feraBg from "@/assets/scenes/fera-bg.jpg";
-import feraFg from "@/assets/scenes/fera-fg.png";
 
-export type SceneLayer = {
-  bg: string;
-  fg: string;
-  fgAlt: string;
-  /** Tailwind positioning/sizing classes for the foreground layer. */
-  fgClass: string;
-  /** Animation utility class applied to the foreground layer. */
-  anim: string;
-  /** Extra opacity/blend for the foreground layer. */
-  style?: React.CSSProperties;
+/**
+ * Each event page is ONE complete illustration. Motion comes from small
+ * clipped windows cut out of that same illustration and animated in place —
+ * never from a separately generated floating graphic.
+ */
+export type Hotspot = {
+  /** Region in % of the illustration: x/y = top-left, w/h = size. */
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  /** Motion applied to the cloned slice of the base art. */
+  anim: "glow" | "sway" | "shimmer" | "flame" | "ripple";
+  /** Optional particle overlay drawn inside the region. */
+  particles?: "sparkle" | "petal";
+  /** Softness of the mask edge (0-50, % of region). */
+  feather?: number;
 };
 
-export const SCENE_LAYERS: Record<string, SceneLayer> = {
+export type Scene = {
+  bg: string;
+  hotspots: Hotspot[];
+};
+
+export const SCENES: Record<string, Scene> = {
   mehandi: {
     bg: mehandiBg,
-    fg: mehandiFg,
-    fgAlt: "Palm fronds swaying over the mehandi lawn",
-    fgClass: "left-0 top-[-6%] w-[58%]",
-    anim: "fg-sway",
-    style: { opacity: 0.9 },
+    hotspots: [
+      // palm fronds, top centre + right
+      { x: 40, y: 0, w: 32, h: 24, anim: "sway" },
+      { x: 66, y: 0, w: 34, h: 26, anim: "sway" },
+      // brass lanterns on the ground
+      { x: 4, y: 74, w: 12, h: 24, anim: "glow", feather: 45 },
+      { x: 80, y: 76, w: 14, h: 22, anim: "glow", feather: 45 },
+    ],
   },
   "engagement-sangeet": {
     bg: sangeetBg,
-    fg: sangeetFg,
-    fgAlt: "Stage lights glowing over the sangeet",
-    fgClass: "left-0 top-0 w-full",
-    anim: "fg-glow",
-    style: { mixBlendMode: "screen", opacity: 0.75 },
+    hotspots: [
+      // truss spotlights
+      { x: 40, y: 3, w: 46, h: 13, anim: "glow", feather: 40 },
+      // stage chandelier
+      { x: 64, y: 17, w: 12, h: 15, anim: "glow", feather: 45 },
+      // fairy-light canopy over the lounge
+      { x: 0, y: 14, w: 36, h: 22, anim: "glow", particles: "sparkle", feather: 45 },
+      // candle table
+      { x: 14, y: 82, w: 24, h: 18, anim: "flame", feather: 45 },
+    ],
   },
   masquerade: {
     bg: masqueradeBg,
-    fg: masqueradeFg,
-    fgAlt: "Disco ball turning above the masquerade hall",
-    fgClass: "left-1/2 top-[4%] w-[16%] -translate-x-1/2",
-    anim: "fg-spin",
+    hotspots: [
+      // main crystal chandelier — sways and catches the light
+      { x: 44, y: 3, w: 22, h: 38, anim: "sway", particles: "sparkle", feather: 35 },
+      // far chandelier down the hall
+      { x: 42, y: 40, w: 12, h: 18, anim: "glow", feather: 45 },
+      // wall sconces
+      { x: 0, y: 32, w: 10, h: 22, anim: "flame", feather: 45 },
+      { x: 92, y: 40, w: 8, h: 20, anim: "flame", feather: 45 },
+    ],
   },
   haldi: {
     bg: haldiBg,
-    fg: haldiFg,
-    fgAlt: "Marigold petals drifting over the haldi pool deck",
-    fgClass: "left-0 top-0 h-[130%] w-full",
-    anim: "fg-drift",
-    style: { opacity: 0.85 },
+    hotspots: [
+      // marigold petals tossed above the pool
+      { x: 46, y: 0, w: 46, h: 28, anim: "glow", particles: "petal", feather: 45 },
+      // pool surface ripple
+      { x: 34, y: 60, w: 48, h: 16, anim: "ripple", feather: 40 },
+      // palm fronds, right edge
+      { x: 78, y: 0, w: 22, h: 26, anim: "sway" },
+    ],
   },
   baarat: {
     bg: baaratBg,
-    fg: baaratFg,
-    fgAlt: "Dhol player striking the drum in the baarat",
-    fgClass: "left-[6%] bottom-0 h-[74%] w-auto",
-    anim: "fg-strike",
+    hotspots: [
+      // bunting and hanging tassels swinging over the procession
+      { x: 16, y: 0, w: 76, h: 18, anim: "sway", feather: 35 },
+      // sunset glow behind the palace
+      { x: 52, y: 18, w: 34, h: 22, anim: "glow", feather: 48 },
+      // dhol players on the right
+      { x: 62, y: 58, w: 34, h: 40, anim: "shimmer", feather: 45 },
+    ],
   },
   varmala: {
     bg: varmalaBg,
-    fg: varmalaFg,
-    fgAlt: "Waves rolling onto the beach",
-    fgClass: "left-[-6%] bottom-[2%] w-[112%]",
-    anim: "fg-swell",
-    style: { opacity: 0.8 },
+    hotspots: [
+      // ocean surface, left and right of the mandap
+      { x: 0, y: 58, w: 34, h: 14, anim: "ripple", feather: 40 },
+      { x: 68, y: 58, w: 32, h: 14, anim: "ripple", feather: 40 },
+      // sun on the horizon
+      { x: 76, y: 46, w: 14, h: 14, anim: "glow", feather: 48 },
+      // mandap chandelier
+      { x: 44, y: 25, w: 12, h: 14, anim: "glow", feather: 45 },
+      // lanterns along the aisle
+      { x: 60, y: 72, w: 12, h: 20, anim: "flame", feather: 45 },
+      { x: 80, y: 70, w: 14, h: 24, anim: "flame", feather: 45 },
+    ],
   },
   fera: {
     bg: feraBg,
-    fg: feraFg,
-    fgAlt: "Sacred fire flickering during the fera",
-    fgClass: "left-1/2 bottom-[12%] h-[26%] w-auto -translate-x-1/2",
-    anim: "fg-flame",
+    hotspots: [
+      // starry sky
+      { x: 0, y: 0, w: 34, h: 32, anim: "glow", particles: "sparkle", feather: 48 },
+      // the holy fire
+      { x: 52, y: 64, w: 9, h: 12, anim: "flame", feather: 40 },
+      // hanging lantern under the mandap
+      { x: 51, y: 28, w: 10, h: 14, anim: "glow", feather: 45 },
+      // candle rows in the foreground
+      { x: 20, y: 76, w: 26, h: 22, anim: "flame", feather: 45 },
+      { x: 66, y: 74, w: 30, h: 24, anim: "flame", feather: 45 },
+    ],
   },
 };
