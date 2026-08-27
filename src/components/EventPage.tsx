@@ -1,8 +1,56 @@
+import type { CSSProperties } from "react";
 import type { WeddingEvent } from "./wedding-data";
-import { SCENE_LAYERS } from "./scene-layers";
+import { SCENES, type Hotspot } from "./scene-layers";
+
+/** A window cut out of the base illustration, animated in place. */
+function Region({ src, spot, index }: { src: string; spot: Hotspot; index: number }) {
+  const feather = spot.feather ?? 30;
+  const mask = `radial-gradient(ellipse at center, #000 ${100 - feather}%, transparent 100%)`;
+
+  const inner: CSSProperties = {
+    position: "absolute",
+    width: `${(100 / spot.w) * 100}%`,
+    height: `${(100 / spot.h) * 100}%`,
+    left: `${(-spot.x / spot.w) * 100}%`,
+    top: `${(-spot.y / spot.h) * 100}%`,
+    maxWidth: "none",
+    animationDelay: `${(index % 4) * -1.7}s`,
+  };
+
+  return (
+    <div
+      className="pointer-events-none absolute overflow-hidden"
+      style={{
+        left: `${spot.x}%`,
+        top: `${spot.y}%`,
+        width: `${spot.w}%`,
+        height: `${spot.h}%`,
+        maskImage: mask,
+        WebkitMaskImage: mask,
+      }}
+    >
+      <img src={src} alt="" aria-hidden="true" style={inner} className={`region-${spot.anim}`} />
+      {spot.particles ? (
+        <div className="absolute inset-0">
+          {Array.from({ length: spot.particles === "sparkle" ? 10 : 8 }).map((_, i) => (
+            <span
+              key={i}
+              className={spot.particles === "sparkle" ? "particle-sparkle" : "particle-petal"}
+              style={{
+                left: `${(i * 37 + 11) % 92}%`,
+                top: spot.particles === "sparkle" ? `${(i * 53 + 7) % 88}%` : "-8%",
+                animationDelay: `${(i * 1.31) % 7}s`,
+              }}
+            />
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 export function EventPage({ event }: { event: WeddingEvent }) {
-  const scene = SCENE_LAYERS[event.id];
+  const scene = SCENES[event.id];
 
   return (
     <section
@@ -10,7 +58,6 @@ export function EventPage({ event }: { event: WeddingEvent }) {
       className="flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-5 py-14"
       style={{ ["--event-accent" as string]: event.accent }}
     >
-      {/* Title above the illustration */}
       <p className="font-sans text-[0.65rem] uppercase tracking-[0.45em] text-ink/60">
         {event.date}
       </p>
@@ -21,7 +68,10 @@ export function EventPage({ event }: { event: WeddingEvent }) {
 
       <div
         className="relative aspect-[16/9] w-full max-w-4xl overflow-hidden rounded-sm border border-rose/50"
-        style={{ boxShadow: "0 18px 40px -28px color-mix(in oklab, var(--event-accent) 70%, transparent)" }}
+        style={{
+          boxShadow:
+            "0 18px 40px -28px color-mix(in oklab, var(--event-accent) 70%, transparent)",
+        }}
       >
         {scene ? (
           <>
@@ -31,15 +81,9 @@ export function EventPage({ event }: { event: WeddingEvent }) {
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <img
-              src={scene.fg}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              className={`pointer-events-none absolute object-contain ${scene.fgClass} ${scene.anim}`}
-              style={scene.style}
-            />
-            {/* blush/ivory connective wash */}
+            {scene.hotspots.map((spot, i) => (
+              <Region key={i} src={scene.bg} spot={spot} index={i} />
+            ))}
             <div
               className="pointer-events-none absolute inset-0"
               style={{

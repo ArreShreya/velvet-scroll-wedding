@@ -290,42 +290,66 @@
   }
 }
 
-/* ---------- Layered watercolor scene animations ---------- */
-@keyframes fg-sway {
-  0%, 100% { transform: rotate(-1.6deg) translateY(0); }
-  50% { transform: rotate(1.6deg) translateY(4px); }
+/* ---------- In-place region motion (clipped from the base illustration) ---------- */
+@keyframes region-glow {
+  0%, 100% { filter: brightness(1) saturate(1); }
+  50% { filter: brightness(1.1) saturate(1.06); }
 }
-@keyframes fg-glow {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 0.9; }
+@keyframes region-sway {
+  0%, 100% { transform: rotate(-0.35deg) translateY(0); }
+  50% { transform: rotate(0.35deg) translateY(0.35%); }
 }
-@keyframes fg-drift {
-  0% { transform: translate3d(0, -22%, 0); opacity: 0; }
-  12% { opacity: 0.9; }
-  90% { opacity: 0.7; }
-  100% { transform: translate3d(-3%, 22%, 0); opacity: 0; }
+@keyframes region-shimmer {
+  0%, 100% { filter: brightness(1); transform: translateX(0); }
+  50% { filter: brightness(1.06); transform: translateX(0.25%); }
 }
-@keyframes fg-strike {
-  0%, 100% { transform: rotate(-1.2deg) translateY(0); }
-  50% { transform: rotate(1.2deg) translateY(-5px); }
+@keyframes region-flame {
+  0%, 100% { filter: brightness(1); }
+  35% { filter: brightness(1.13); }
+  60% { filter: brightness(0.97); }
 }
-@keyframes fg-swell {
-  0%, 100% { transform: translate3d(-1.5%, 0, 0) scaleY(1); }
-  50% { transform: translate3d(1.5%, -1.5%, 0) scaleY(1.05); }
-}
-@keyframes fg-flame {
-  0%, 100% { transform: translateX(-50%) scale(1) ; opacity: 0.92; }
-  50% { transform: translateX(-50%) scale(1.07) ; opacity: 1; }
+@keyframes region-ripple {
+  0%, 100% { filter: brightness(1); transform: translateX(0) scaleY(1); }
+  50% { filter: brightness(1.05); transform: translateX(-0.3%) scaleY(1.006); }
 }
 
-.fg-sway { animation: fg-sway 9s ease-in-out infinite; transform-origin: 50% 0%; }
-.fg-glow { animation: fg-glow 5s ease-in-out infinite; }
-.fg-drift { animation: fg-drift 14s linear infinite; }
-.fg-spin { animation: scene-spin 22s linear infinite; }
-.fg-strike { animation: fg-strike 1.6s ease-in-out infinite; transform-origin: 50% 100%; }
-.fg-swell { animation: fg-swell 11s ease-in-out infinite; transform-origin: 50% 100%; }
-.fg-flame { animation: fg-flame 2.4s ease-in-out infinite; transform-origin: 50% 100%; }
+.region-glow { animation: region-glow 7s ease-in-out infinite; }
+.region-sway { animation: region-sway 8s ease-in-out infinite; transform-origin: 50% 0%; }
+.region-shimmer { animation: region-shimmer 6s ease-in-out infinite; }
+.region-flame { animation: region-flame 2.8s ease-in-out infinite; }
+.region-ripple { animation: region-ripple 9s ease-in-out infinite; transform-origin: 50% 100%; }
+
+/* ---------- Tiny in-scene particles ---------- */
+@keyframes particle-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  50% { opacity: 0.85; transform: scale(1); }
+}
+@keyframes particle-fall {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(0deg); }
+  15% { opacity: 0.75; }
+  85% { opacity: 0.55; }
+  100% { opacity: 0; transform: translate3d(-14px, 340%, 0) rotate(180deg); }
+}
+
+.particle-sparkle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: oklch(0.98 0.04 85 / 0.9);
+  box-shadow: 0 0 4px oklch(0.95 0.06 85 / 0.7);
+  animation: particle-twinkle 4.5s ease-in-out infinite;
+}
+.particle-petal {
+  position: absolute;
+  width: 4px;
+  height: 5px;
+  border-radius: 60% 40% 55% 45%;
+  background: oklch(0.82 0.14 80 / 0.85);
+  animation: particle-fall 11s linear infinite;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .fg-sway, .fg-glow, .fg-drift, .fg-spin, .fg-strike, .fg-swell, .fg-flame { animation: none; }
+  .region-glow, .region-sway, .region-shimmer, .region-flame, .region-ripple,
+  .particle-sparkle, .particle-petal { animation: none; }
 }
