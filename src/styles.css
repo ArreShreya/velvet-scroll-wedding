@@ -289,3 +289,43 @@
     animation: none;
   }
 }
+
+/* ---------- Layered watercolor scene animations ---------- */
+@keyframes fg-sway {
+  0%, 100% { transform: rotate(-1.6deg) translateY(0); }
+  50% { transform: rotate(1.6deg) translateY(4px); }
+}
+@keyframes fg-glow {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.9; }
+}
+@keyframes fg-drift {
+  0% { transform: translate3d(0, -22%, 0); opacity: 0; }
+  12% { opacity: 0.9; }
+  90% { opacity: 0.7; }
+  100% { transform: translate3d(-3%, 22%, 0); opacity: 0; }
+}
+@keyframes fg-strike {
+  0%, 100% { transform: rotate(-1.2deg) translateY(0); }
+  50% { transform: rotate(1.2deg) translateY(-5px); }
+}
+@keyframes fg-swell {
+  0%, 100% { transform: translate3d(-1.5%, 0, 0) scaleY(1); }
+  50% { transform: translate3d(1.5%, -1.5%, 0) scaleY(1.05); }
+}
+@keyframes fg-flame {
+  0%, 100% { transform: translateX(-50%) scale(1) ; opacity: 0.92; }
+  50% { transform: translateX(-50%) scale(1.07) ; opacity: 1; }
+}
+
+.fg-sway { animation: fg-sway 9s ease-in-out infinite; transform-origin: 50% 0%; }
+.fg-glow { animation: fg-glow 5s ease-in-out infinite; }
+.fg-drift { animation: fg-drift 14s linear infinite; }
+.fg-spin { animation: scene-spin 22s linear infinite; }
+.fg-strike { animation: fg-strike 1.6s ease-in-out infinite; transform-origin: 50% 100%; }
+.fg-swell { animation: fg-swell 11s ease-in-out infinite; transform-origin: 50% 100%; }
+.fg-flame { animation: fg-flame 2.4s ease-in-out infinite; transform-origin: 50% 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fg-sway, .fg-glow, .fg-drift, .fg-spin, .fg-strike, .fg-swell, .fg-flame { animation: none; }
+}

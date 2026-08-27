@@ -1,8 +1,8 @@
 import type { WeddingEvent } from "./wedding-data";
-import { SCENES } from "./scenes";
+import { SCENE_LAYERS } from "./scene-layers";
 
 export function EventPage({ event }: { event: WeddingEvent }) {
-  const Scene = SCENES[event.id];
+  const scene = SCENE_LAYERS[event.id];
 
   return (
     <section
@@ -23,7 +23,32 @@ export function EventPage({ event }: { event: WeddingEvent }) {
         className="relative aspect-[16/9] w-full max-w-4xl overflow-hidden rounded-sm border border-rose/50"
         style={{ boxShadow: "0 18px 40px -28px color-mix(in oklab, var(--event-accent) 70%, transparent)" }}
       >
-        {Scene ? <Scene /> : null}
+        {scene ? (
+          <>
+            <img
+              src={scene.bg}
+              alt={`${event.name} — ${event.theme}, ${event.venue}`}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <img
+              src={scene.fg}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className={`pointer-events-none absolute object-contain ${scene.fgClass} ${scene.anim}`}
+              style={scene.style}
+            />
+            {/* blush/ivory connective wash */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, oklch(0.97 0.02 40 / 0.16), transparent 35%, oklch(0.95 0.03 25 / 0.2))",
+              }}
+            />
+          </>
+        ) : null}
       </div>
 
       <p className="mt-5 text-center font-sans text-[0.7rem] tracking-[0.2em] text-ink/55">
