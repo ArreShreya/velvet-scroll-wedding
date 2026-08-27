@@ -7,6 +7,8 @@ import { VenuePage } from "@/components/VenuePage";
 import { CountdownPage } from "@/components/CountdownPage";
 import ganesha from "@/assets/ganesha.png";
 import { LanguageProvider, useLang } from "@/i18n/LanguageContext";
+import { PageOrnaments, GoldDivider } from "@/components/Ornaments";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,7 +45,8 @@ function IndexContent() {
     <ScrollShell>
       <div className="snap-y snap-mandatory">
         {/* Ganesha invocation */}
-        <section className="flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
+        <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
+          <PageOrnaments />
           <img
             src={ganesha}
             alt="Illustration of Lord Ganesha"
@@ -55,14 +58,16 @@ function IndexContent() {
             {t.shloka1}<br />
             {t.shloka2}
           </p>
-          <p className="mt-4 max-w-md font-sans text-xs leading-relaxed tracking-[0.12em] text-ink/70">
+          <GoldDivider className="mt-5" />
+          <p className="mt-4 max-w-md font-sans text-sm leading-relaxed tracking-[0.12em] text-ink/70">
             {t.translitLine}
           </p>
         </section>
 
         {/* Couple names */}
-        <section className="flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
-          <p className="max-w-sm font-sans text-[0.65rem] uppercase leading-relaxed tracking-[0.35em] text-ink/60">
+        <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
+          <PageOrnaments />
+          <p className="max-w-lg font-sans text-sm uppercase leading-relaxed tracking-[0.3em] text-ink/70 sm:text-base">
             {t.invitationLine}
           </p>
           <h1 className="mt-10 font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
@@ -76,43 +81,45 @@ function IndexContent() {
           <h1 className="font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
             {t.groom}
           </h1>
-          <span className="mt-8 font-display text-2xl text-rose">❖</span>
+          <GoldDivider className="mt-8" />
           <p className="mt-6 max-w-md font-display text-lg italic leading-relaxed text-ink/75 md:text-xl">
             {t.coupleBlessing}
           </p>
-          <p className="mt-8 font-sans text-xs uppercase tracking-[0.4em] text-ink/60">
+          <p className="mt-8 font-sans text-base uppercase tracking-[0.4em] text-ink/70 sm:text-lg">
             {t.dates}
           </p>
         </section>
 
         {/* Families */}
-        <section className="flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
+        <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
+          <PageOrnaments />
           <h2 className="font-display text-4xl leading-tight text-rose-deep md:text-5xl">
             {t.familiesTitle}
           </h2>
-          <span className="mt-6 font-display text-2xl text-rose">❖</span>
+          <GoldDivider className="mt-6" />
 
           <div className="mt-10 grid w-full max-w-2xl gap-10 md:grid-cols-2">
             <div>
-              <p className="font-sans text-[0.6rem] uppercase tracking-[0.45em] text-ink/55">
+              <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
                 {t.theBride}
               </p>
               <p className="mt-3 font-display text-3xl text-rose-deep">{t.brideFull}</p>
-              <p className="mt-2 font-sans text-xs leading-relaxed tracking-[0.12em] text-ink/70">
+              <p className="mt-2 font-sans text-sm leading-relaxed tracking-[0.1em] text-ink/75 sm:text-base">
                 {t.brideParents}
               </p>
             </div>
             <div>
-              <p className="font-sans text-[0.6rem] uppercase tracking-[0.45em] text-ink/55">
+              <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
                 {t.theGroom}
               </p>
               <p className="mt-3 font-display text-3xl text-rose-deep">{t.groomFull}</p>
-              <p className="mt-2 font-sans text-xs leading-relaxed tracking-[0.12em] text-ink/70">
+              <p className="mt-2 font-sans text-sm leading-relaxed tracking-[0.1em] text-ink/75 sm:text-base">
                 {t.groomParents}
               </p>
             </div>
           </div>
         </section>
+
 
         <TimelinePage />
 
