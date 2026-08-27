@@ -26,6 +26,25 @@ export type Dict = {
   day1: string;
   day2: string;
   languageLabel: string;
+  invitationLine: string;
+  coupleBlessing: string;
+  familiesTitle: string;
+  theBride: string;
+  theGroom: string;
+  brideFull: string;
+  brideParents: string;
+  groomFull: string;
+  groomParents: string;
+  venueKicker: string;
+  venueName: string;
+  venueCta: string;
+  countdownKicker: string;
+  countdownTitle: string;
+  months: string;
+  days: string;
+  hours: string;
+  seconds: string;
+  photoPlaceholder: string;
   events: Record<string, EventCopy>;
 };
 
@@ -49,6 +68,25 @@ export const translations: Record<Lang, Dict> = {
     day1: "11 Dec",
     day2: "12 Dec",
     languageLabel: "Language",
+    invitationLine: "Request the honour of your presence at the celebrations",
+    coupleBlessing: "Two families, one thread of gold — bound by seven vows and a lifetime of light.",
+    familiesTitle: "Together With Their Families",
+    theBride: "The Bride",
+    theGroom: "The Groom",
+    brideFull: "Shreya Joshi",
+    brideParents: "daughter of Dr. Rajesh Joshi & Archana Joshi",
+    groomFull: "Prabhav Srivastava",
+    groomParents: "son of Subodh Srivastava & Garmia Srivastava",
+    venueKicker: "where we celebrate",
+    venueName: "Foxoso La Alphonso Beach Resort & Spa, Goa",
+    venueCta: "Open in Google Maps",
+    countdownKicker: "the wait begins",
+    countdownTitle: "Counting Down To The Wedding",
+    months: "Months",
+    days: "Days",
+    hours: "Hours",
+    seconds: "Secs",
+    photoPlaceholder: "A photograph of the couple, coming soon",
     events: {
       mehandi: { name: "Mehandi", time: "2:00 PM", date: "11th December" },
       "engagement-sangeet": {
@@ -82,6 +120,25 @@ export const translations: Record<Lang, Dict> = {
     day1: "११ दिस.",
     day2: "१२ दिस.",
     languageLabel: "भाषा",
+    invitationLine: "इस शुभ अवसर पर आपकी उपस्थिति प्रार्थनीय है",
+    coupleBlessing: "दो परिवार, एक स्वर्णिम बंधन — सात वचनों और जीवनभर के प्रकाश से बँधे।",
+    familiesTitle: "सपरिवार सादर आमंत्रण",
+    theBride: "वधू",
+    theGroom: "वर",
+    brideFull: "श्रेया जोशी",
+    brideParents: "सुपुत्री डॉ. राजेश जोशी एवं अर्चना जोशी",
+    groomFull: "प्रभव श्रीवास्तव",
+    groomParents: "सुपुत्र सुबोध श्रीवास्तव एवं गरिमा श्रीवास्तव",
+    venueKicker: "आयोजन स्थल",
+    venueName: "फॉक्सोसो ला अल्फांसो बीच रिज़ॉर्ट एंड स्पा, गोवा",
+    venueCta: "गूगल मैप्स में देखें",
+    countdownKicker: "प्रतीक्षा",
+    countdownTitle: "विवाह में शेष समय",
+    months: "माह",
+    days: "दिन",
+    hours: "घंटे",
+    seconds: "सेकंड",
+    photoPlaceholder: "युगल का चित्र शीघ्र ही",
     events: {
       mehandi: { name: "मेहंदी", time: "दोपहर २:००", date: "११ दिसंबर" },
       "engagement-sangeet": {
@@ -115,6 +172,25 @@ export const translations: Record<Lang, Dict> = {
     day1: "૧૧ ડિસે.",
     day2: "૧૨ ડિસે.",
     languageLabel: "ભાષા",
+    invitationLine: "આ શુભ પ્રસંગે આપની ઉપસ્થિતિ પ્રાર્થનીય છે",
+    coupleBlessing: "બે પરિવાર, એક સોનેરી તાંતણો — સાત વચનો અને જીવનભરના પ્રકાશથી બંધાયેલા.",
+    familiesTitle: "સપરિવાર સ્નેહ આમંત્રણ",
+    theBride: "કન્યા",
+    theGroom: "વર",
+    brideFull: "શ્રેયા જોશી",
+    brideParents: "સુપુત્રી ડૉ. રાજેશ જોશી અને અર્ચના જોશી",
+    groomFull: "પ્રભવ શ્રીવાસ્તવ",
+    groomParents: "સુપુત્ર સુબોધ શ્રીવાસ્તવ અને ગરિમા શ્રીવાસ્તવ",
+    venueKicker: "સ્થળ",
+    venueName: "ફોક્સોસો લા અલ્ફોન્સો બીચ રિસોર્ટ એન્ડ સ્પા, ગોવા",
+    venueCta: "ગૂગલ મેપ્સમાં જુઓ",
+    countdownKicker: "પ્રતીક્ષા",
+    countdownTitle: "લગ્નને બાકી સમય",
+    months: "માસ",
+    days: "દિવસ",
+    hours: "કલાક",
+    seconds: "સેકંડ",
+    photoPlaceholder: "યુગલનો ફોટો ટૂંક સમયમાં",
     events: {
       mehandi: { name: "મહેંદી", time: "બપોરે ૨:૦૦", date: "૧૧ ડિસેમ્બર" },
       "engagement-sangeet": {

@@ -353,3 +353,34 @@
   .region-glow, .region-sway, .region-shimmer, .region-flame, .region-ripple,
   .particle-sparkle, .particle-petal { animation: none; }
 }
+
+/* ---------- Kumkum & rice shower (one-shot on scroll open) ---------- */
+@keyframes shower-fall {
+  0% { opacity: 0; transform: translate3d(0, -10vh, 0) rotate(0deg); }
+  12% { opacity: 1; }
+  75% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate3d(var(--drift, 0px), 105vh, 0) rotate(220deg); }
+}
+.shower-kumkum,
+.shower-rice {
+  position: absolute;
+  top: 0;
+  animation: shower-fall 3s cubic-bezier(0.3, 0.1, 0.5, 1) forwards;
+}
+.shower-kumkum {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 30%, oklch(0.62 0.21 25), oklch(0.45 0.19 25));
+  box-shadow: 0 0 6px oklch(0.55 0.2 25 / 0.45);
+}
+.shower-rice {
+  width: 4px;
+  height: 9px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, oklch(0.99 0.01 90), oklch(0.93 0.02 85));
+  box-shadow: 0 0 3px oklch(0.9 0.02 85 / 0.6);
+}
+@media (prefers-reduced-motion: reduce) {
+  .shower-kumkum, .shower-rice { animation: none; opacity: 0; }
+}

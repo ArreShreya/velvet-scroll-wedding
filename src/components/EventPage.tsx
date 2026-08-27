@@ -94,8 +94,8 @@ export function EventPage({ event }: { event: WeddingEvent }) {
           </>
         ) : null}
 
-        {/* Centered title treatment over the artwork */}
-        <div className="absolute inset-0 flex items-center justify-center p-5">
+        {/* Title treatment anchored near the bottom of the artwork */}
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-center p-5 pb-7 sm:pb-9">
           <div
             className="rounded-sm px-6 py-5 text-center backdrop-blur-[3px] sm:px-12 sm:py-7"
             style={{
