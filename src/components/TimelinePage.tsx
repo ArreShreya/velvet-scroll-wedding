@@ -5,7 +5,9 @@ const CX = 300;
 const CY = 300;
 const R = 235;
 
-const POINTS = [
+type Point = { x: number; y: number; left: number; top: number };
+
+const POINTS: Point[] = [
   { x: 65.0, y: 300.0, left: 10.83, top: 88.24 },
   { x: 96.48, y: 182.5, left: 16.08, top: 53.68 },
   { x: 182.5, y: 96.48, left: 30.42, top: 28.38 },
@@ -13,7 +15,10 @@ const POINTS = [
   { x: 417.5, y: 96.48, left: 69.58, top: 28.38 },
   { x: 503.52, y: 182.5, left: 83.92, top: 53.68 },
   { x: 535.0, y: 300.0, left: 89.17, top: 88.24 },
-] as const;
+];
+
+const pointAt = (i: number): Point => POINTS[i] ?? POINTS[0]!;
+
 
 export function TimelinePage() {
 
@@ -43,8 +48,8 @@ export function TimelinePage() {
           {events.map((e, i) => (
             <circle
               key={e.id}
-              cx={POINTS[i].x}
-              cy={POINTS[i].y}
+              cx={pointAt(i).x}
+              cy={pointAt(i).y}
               r="6"
               fill="var(--rose-deep)"
               opacity="0.85"
@@ -53,7 +58,7 @@ export function TimelinePage() {
         </svg>
 
         {events.map((e, i) => {
-          const { x, left: leftPct, top: topPct } = POINTS[i];
+          const { x, left: leftPct, top: topPct } = pointAt(i);
           const side = x < CX - 20 ? "right" : x > CX + 20 ? "left" : "center";
           return (
             <a
