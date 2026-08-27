@@ -134,10 +134,10 @@ function MobileArc({
 }) {
   const { t } = useLang();
   const W = 300;
-  const H = 280;
-  const R = 105;
+  const H = 290;
+  const R = 88;
   const cy = H / 2;
-  const cx = facing === "left" ? 232 : 68;
+  const cx = facing === "left" ? 132 : 168;
 
   const at = (i: number) => {
     const f = ids.length === 1 ? 0.5 : i / (ids.length - 1);
@@ -151,6 +151,9 @@ function MobileArc({
 
   return (
     <div className={`relative mx-auto w-full max-w-sm ${className}`}>
+      <p className="mb-1 text-center font-sans text-[0.65rem] uppercase tracking-[0.35em] text-rose-deep/70">
+        {label}
+      </p>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
         <path
           d={`M ${start.x} ${start.y} A ${R} ${R} 0 0 ${facing === "left" ? 0 : 1} ${end.x} ${end.y}`}
@@ -165,18 +168,6 @@ function MobileArc({
           const p = at(i);
           return <circle key={id} cx={p.x} cy={p.y} r="5" fill="var(--rose-deep)" opacity="0.85" />;
         })}
-        <text
-          x={cx}
-          y={cy + 4}
-          textAnchor="middle"
-          className="font-sans"
-          fontSize="11"
-          letterSpacing="3"
-          fill="var(--rose-deep)"
-          opacity="0.7"
-        >
-          {label}
-        </text>
       </svg>
 
       {ids.map((id, i) => {
@@ -186,7 +177,7 @@ function MobileArc({
           <a
             key={id}
             href={`#${id}`}
-            className="absolute flex w-[52%] items-center gap-2"
+            className="absolute flex w-[54%] items-center gap-2"
             style={{
               left: `${(p.x / W) * 100}%`,
               top: `${(p.y / H) * 100}%`,
