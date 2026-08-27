@@ -48,8 +48,8 @@ export function TimelinePage() {
           {events.map((e, i) => (
             <circle
               key={e.id}
-              cx={POINTS[i].x}
-              cy={POINTS[i].y}
+              cx={pointAt(i).x}
+              cy={pointAt(i).y}
               r="6"
               fill="var(--rose-deep)"
               opacity="0.85"
