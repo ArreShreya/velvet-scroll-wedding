@@ -63,7 +63,7 @@ export function EventPage({ event }: { event: WeddingEvent }) {
   return (
     <section
       id={event.id}
-      className="snap-start py-2 first:pt-0"
+      className="-mx-2 snap-start py-2 first:pt-0 sm:-mx-3 md:-mx-6"
       style={{ ["--event-accent" as string]: event.accent }}
     >
       <div
