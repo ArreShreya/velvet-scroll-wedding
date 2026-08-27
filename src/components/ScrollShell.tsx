@@ -1,11 +1,14 @@
 import { useEffect, useState, type ReactNode } from "react";
 import goldRod from "@/assets/gold-rod.png";
+import { LanguageToggle } from "./LanguageToggle";
+import { useLang } from "@/i18n/LanguageContext";
 import beach from "@/assets/beach-watercolor.jpg";
 
 type Phase = "closed" | "opening" | "open";
 
 export function ScrollShell({ children }: { children: ReactNode }) {
   const [phase, setPhase] = useState<Phase>("closed");
+  const { t } = useLang();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -32,7 +35,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
       {phase !== "open" && (
         <button
           type="button"
-          aria-label="Open the invitation"
+          aria-label={t.openInvitation}
           onClick={() => phase === "closed" && setPhase("opening")}
           className="fixed inset-0 z-50 flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-velvet"
         >
@@ -50,8 +53,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
               phase === "opening" ? "opacity-0" : "opacity-100"
             }`}
           >
-            Shreya &amp; Prabhav&rsquo;s
-            <span className="mt-1 block italic">Wedding</span>
+            {t.landingTitle}
+            <span className="mt-1 block italic">{t.landingTitleItalic}</span>
           </h1>
 
           <div
@@ -70,10 +73,15 @@ export function ScrollShell({ children }: { children: ReactNode }) {
               phase === "opening" ? "opacity-0" : "opacity-80 animate-pulse"
             }`}
           >
-            tap to unfurl
+            {t.tapToUnfurl}
           </p>
         </button>
       )}
+
+      {/* Language toggle — fixed, above everything */}
+      <div className="pointer-events-none fixed right-3 top-2 z-[60] flex justify-end md:right-5 md:top-3">
+        <LanguageToggle />
+      </div>
 
       {/* Fixed rods */}
       <div

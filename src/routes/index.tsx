@@ -4,6 +4,7 @@ import { TimelinePage } from "@/components/TimelinePage";
 import { EventPage } from "@/components/EventPage";
 import { events } from "@/components/wedding-data";
 import ganesha from "@/assets/ganesha.png";
+import { LanguageProvider, useLang } from "@/i18n/LanguageContext";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,6 +29,15 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
+    <LanguageProvider>
+      <IndexContent />
+    </LanguageProvider>
+  );
+}
+
+function IndexContent() {
+  const { t } = useLang();
+  return (
     <ScrollShell>
       <div className="snap-y snap-mandatory">
         {/* Ganesha invocation */}
@@ -40,34 +50,32 @@ function Index() {
             className="w-56 max-w-[60vw] md:w-72"
           />
           <p className="mt-6 font-display text-xl leading-relaxed text-rose-deep md:text-2xl">
-            वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br />
-            निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+            {t.shloka1}<br />
+            {t.shloka2}
           </p>
           <p className="mt-4 max-w-md font-sans text-xs leading-relaxed tracking-[0.12em] text-ink/70">
-            Vakratunda Mahakaya Suryakoti Samaprabha
-            <br />
-            Nirvighnam Kuru Me Deva Sarvakaryeshu Sarvada
+            {t.translitLine}
           </p>
         </section>
 
         {/* Couple names */}
         <section className="flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
           <span className="font-sans text-[0.65rem] uppercase tracking-[0.5em] text-ink/60">
-            with love, together forever
+            {t.coupleKicker}
           </span>
           <h1 className="mt-8 font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
-            Shreya
+            {t.bride}
           </h1>
           <span className="my-4 flex items-center gap-4 font-display text-2xl italic text-ink/70 md:text-3xl">
             <i className="block h-px w-14 bg-rose" />
-            weds
+            {t.weds}
             <i className="block h-px w-14 bg-rose" />
           </span>
           <h1 className="font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
-            Prabhav
+            {t.groom}
           </h1>
           <p className="mt-10 font-sans text-xs uppercase tracking-[0.4em] text-ink/60">
-            11 &amp; 12 December
+            {t.dates}
           </p>
         </section>
 
