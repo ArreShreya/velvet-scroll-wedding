@@ -133,12 +133,12 @@ export function ScrollShell({ children }: { children: ReactNode }) {
 
       {/* Torn deckled paper edges, pulled in from the rod ends */}
       <div
-        className={`pointer-events-none fixed inset-y-0 left-4 z-40 w-5 bg-deckle-left transition-opacity duration-700 sm:left-8 md:left-16 md:w-8 lg:left-24 ${
+        className={`pointer-events-none fixed inset-y-0 left-4 z-[35] w-5 bg-deckle-left transition-opacity duration-700 sm:left-8 md:left-16 md:w-8 lg:left-24 ${
           opened ? "opacity-100" : "opacity-0"
         }`}
       />
       <div
-        className={`pointer-events-none fixed inset-y-0 right-4 z-40 w-5 bg-deckle-right transition-opacity duration-700 sm:right-8 md:right-16 md:w-8 lg:right-24 ${
+        className={`pointer-events-none fixed inset-y-0 right-4 z-[35] w-5 bg-deckle-right transition-opacity duration-700 sm:right-8 md:right-16 md:w-8 lg:right-24 ${
           opened ? "opacity-100" : "opacity-0"
         }`}
       />
