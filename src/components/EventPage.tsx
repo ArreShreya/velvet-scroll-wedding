@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import type { WeddingEvent } from "./wedding-data";
 import { SCENES, type Hotspot } from "./scene-layers";
+import { useLang } from "@/i18n/LanguageContext";
 
 /** A window cut out of the base illustration, animated in place. */
 function Region({ src, spot, index }: { src: string; spot: Hotspot; index: number }) {
@@ -15,6 +16,7 @@ function Region({ src, spot, index }: { src: string; spot: Hotspot; index: numbe
     top: `${(-spot.y / spot.h) * 100}%`,
     maxWidth: "none",
     animationDelay: `${(index % 4) * -1.7}s`,
+    objectFit: "cover",
   };
 
   return (
@@ -51,33 +53,31 @@ function Region({ src, spot, index }: { src: string; spot: Hotspot; index: numbe
 
 export function EventPage({ event }: { event: WeddingEvent }) {
   const scene = SCENES[event.id];
+  const { t } = useLang();
+  const copy = t.events[event.id] ?? {
+    name: event.name,
+    time: event.time,
+    date: event.date,
+  };
 
   return (
     <section
       id={event.id}
-      className="flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-5 py-14"
+      className="snap-start py-2 first:pt-0"
       style={{ ["--event-accent" as string]: event.accent }}
     >
-      <p className="font-sans text-[0.65rem] uppercase tracking-[0.45em] text-ink/60">
-        {event.date}
-      </p>
-      <h2 className="mt-2 text-center font-display text-4xl text-rose-deep md:text-5xl">
-        {event.name}
-      </h2>
-      <p className="mt-2 mb-7 font-sans text-sm tracking-[0.3em] text-ink/70">{event.time}</p>
-
       <div
-        className="relative aspect-[16/9] w-full max-w-4xl overflow-hidden rounded-sm border border-rose/50"
+        className="relative h-[calc(100svh-6.5rem)] min-h-[24rem] w-full overflow-hidden rounded-sm border border-rose/50"
         style={{
           boxShadow:
-            "0 18px 40px -28px color-mix(in oklab, var(--event-accent) 70%, transparent)",
+            "0 18px 40px -30px color-mix(in oklab, var(--event-accent) 70%, transparent)",
         }}
       >
         {scene ? (
           <>
             <img
               src={scene.bg}
-              alt={`${event.name} — ${event.theme}, ${event.venue}`}
+              alt={copy.name}
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -93,11 +93,31 @@ export function EventPage({ event }: { event: WeddingEvent }) {
             />
           </>
         ) : null}
-      </div>
 
-      <p className="mt-5 text-center font-sans text-[0.7rem] tracking-[0.2em] text-ink/55">
-        {event.theme} · {event.venue}
-      </p>
+        {/* Centered title treatment over the artwork */}
+        <div className="absolute inset-0 flex items-center justify-center p-5">
+          <div
+            className="rounded-sm px-6 py-5 text-center backdrop-blur-[2px] sm:px-12 sm:py-7"
+            style={{
+              background:
+                "radial-gradient(ellipse at center, oklch(0.98 0.015 40 / 0.72), oklch(0.98 0.015 40 / 0.18) 70%, transparent)",
+            }}
+          >
+            <p className="font-sans text-[0.6rem] uppercase tracking-[0.4em] text-ink/75 sm:text-[0.7rem]">
+              {copy.date}
+            </p>
+            <h2
+              className="mt-2 font-display text-4xl leading-tight text-rose-deep sm:text-5xl md:text-6xl"
+              style={{ textShadow: "0 2px 12px oklch(0.99 0.01 40 / 0.85)" }}
+            >
+              {copy.name}
+            </h2>
+            <p className="mt-2 font-sans text-xs tracking-[0.3em] text-ink/85 sm:text-sm">
+              {copy.time}
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
