@@ -125,6 +125,11 @@ export function EventPage({ event }: { event: WeddingEvent }) {
             <p className="mt-2 font-sans text-base tracking-[0.28em] text-ink/85 sm:text-lg">
               {copy.time}
             </p>
+            {copy.thought ? (
+              <p className="mx-auto mt-3 max-w-xs font-display text-base italic leading-snug text-ink/75 sm:max-w-sm sm:text-lg">
+                {copy.thought}
+              </p>
+            ) : null}
           </div>
         </div>
 
