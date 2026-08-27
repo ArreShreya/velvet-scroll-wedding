@@ -94,7 +94,7 @@ export function TimelinePage() {
                     ? "translate(-105%, -50%)"
                     : side === "left"
                       ? "translate(5%, -50%)"
-                      : "translate(-50%, -125%)",
+                      : "translate(-50%, -102%)",
               }}
             >
               <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep md:h-12 md:w-12">

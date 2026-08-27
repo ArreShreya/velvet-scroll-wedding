@@ -4,7 +4,13 @@ import { PageOrnaments, GoldDivider } from "./Ornaments";
 
 const TARGET = new Date("2026-12-11T00:00:00+05:30").getTime();
 
-type Parts = { months: number; days: number; hours: number; seconds: number };
+type Parts = {
+  months: number;
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
 
 function diff(now: number): Parts {
   let ms = Math.max(0, TARGET - now);
@@ -14,8 +20,10 @@ function diff(now: number): Parts {
   ms -= totalDays * 86400000;
   const hours = Math.floor(ms / 3600000);
   ms -= hours * 3600000;
+  const minutes = Math.floor(ms / 60000);
+  ms -= minutes * 60000;
   const seconds = Math.floor(ms / 1000);
-  return { months, days, hours, seconds };
+  return { months, days, hours, minutes, seconds };
 }
 
 function Dial({ value, label }: { value: number | null; label: string }) {
@@ -57,6 +65,7 @@ export function CountdownPage() {
         <Dial value={parts?.months ?? null} label={t.months} />
         <Dial value={parts?.days ?? null} label={t.days} />
         <Dial value={parts?.hours ?? null} label={t.hours} />
+        <Dial value={parts?.minutes ?? null} label={t.minutes} />
         <Dial value={parts?.seconds ?? null} label={t.seconds} />
       </div>
 
