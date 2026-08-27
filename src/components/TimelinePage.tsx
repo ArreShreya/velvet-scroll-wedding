@@ -43,7 +43,7 @@ export function TimelinePage() {
 
       {/* Mobile: two facing semi-circle arcs */}
       <div className="mt-8 w-full sm:hidden">
-        <MobileArc ids={["mehandi", "sangeet", "masquerade"]} facing="left" label={t.day1} />
+        <MobileArc ids={["mehandi", "engagement-sangeet", "masquerade"]} facing="left" label={t.day1} />
         <MobileArc
           ids={["haldi", "baarat", "varmala", "fera"]}
           facing="right"
