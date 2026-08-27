@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
+import { PageOrnaments, GoldDivider } from "./Ornaments";
 
 const TARGET = new Date("2026-12-11T00:00:00+05:30").getTime();
 
@@ -17,12 +18,12 @@ function diff(now: number): Parts {
   return { months, days, hours, seconds };
 }
 
-function Dial({ value, label }: { value: number; label: string }) {
+function Dial({ value, label }: { value: number | null; label: string }) {
   return (
     <div className="relative flex h-24 w-24 flex-col items-center justify-center rounded-full border border-rose/60 bg-[oklch(0.99_0.012_40_/_0.75)] shadow-[0_10px_28px_-20px_rgba(120,60,60,0.6)] sm:h-28 sm:w-28">
       <span className="pointer-events-none absolute -left-2 -top-1 text-lg opacity-70">❀</span>
       <span className="font-display text-3xl leading-none text-rose-deep sm:text-4xl">
-        {String(value).padStart(2, "0")}
+        {value === null ? "--" : String(value).padStart(2, "0")}
       </span>
       <span className="mt-1 font-sans text-[0.6rem] uppercase tracking-[0.25em] text-ink/60">
         {label}
@@ -33,27 +34,30 @@ function Dial({ value, label }: { value: number; label: string }) {
 
 export function CountdownPage() {
   const { t } = useLang();
-  const [parts, setParts] = useState<Parts>(() => diff(Date.now()));
+  const [parts, setParts] = useState<Parts | null>(null);
 
   useEffect(() => {
+    setParts(diff(Date.now()));
     const id = window.setInterval(() => setParts(diff(Date.now())), 1000);
     return () => window.clearInterval(id);
   }, []);
 
   return (
-    <section className="flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-5 py-16 text-center">
-      <span className="font-sans text-[0.65rem] uppercase tracking-[0.5em] text-ink/60">
+    <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-5 py-16 text-center">
+      <PageOrnaments />
+      <span className="font-sans text-[0.8rem] uppercase tracking-[0.5em] text-ink/65">
         {t.countdownKicker}
       </span>
       <h2 className="mt-4 font-display text-3xl text-rose-deep md:text-4xl">
         {t.countdownTitle}
       </h2>
+      <GoldDivider className="mt-4" />
 
       <div className="mt-9 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-        <Dial value={parts.months} label={t.months} />
-        <Dial value={parts.days} label={t.days} />
-        <Dial value={parts.hours} label={t.hours} />
-        <Dial value={parts.seconds} label={t.seconds} />
+        <Dial value={parts?.months ?? null} label={t.months} />
+        <Dial value={parts?.days ?? null} label={t.days} />
+        <Dial value={parts?.hours ?? null} label={t.hours} />
+        <Dial value={parts?.seconds ?? null} label={t.seconds} />
       </div>
 
       <div className="mt-12 w-full max-w-xs">

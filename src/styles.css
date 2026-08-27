@@ -208,8 +208,8 @@
 @utility bg-paper-veil {
   background: radial-gradient(
     circle at 50% 45%,
-    oklch(0.98 0.01 60 / 0.55),
-    oklch(0.95 0.03 30 / 0.75) 75%
+    oklch(0.98 0.01 60 / 0.22),
+    oklch(0.95 0.03 30 / 0.4) 75%
   );
 }
 

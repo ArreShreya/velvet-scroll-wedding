@@ -1,8 +1,10 @@
 import { useEffect, useState, type ReactNode } from "react";
 import goldRod from "@/assets/gold-rod.png";
+import goldTassel from "@/assets/gold-tassel.png";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLang } from "@/i18n/LanguageContext";
 import beach from "@/assets/beach-watercolor.jpg";
+import { ShlokaAudio } from "./ShlokaAudio";
 
 type Phase = "closed" | "opening" | "open";
 
@@ -44,14 +46,16 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             alt=""
             width={1536}
             height={1024}
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-55"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
           />
-          <div className="pointer-events-none absolute inset-0 bg-paper-veil" />
+          {/* Frosted glass veil — the painting stays visible underneath */}
+          <div className="pointer-events-none absolute inset-0 bg-paper-veil backdrop-blur-[3px] backdrop-saturate-125" />
 
           <h1
             className={`relative z-10 mb-12 px-6 text-center font-display text-4xl leading-tight text-rose-deep transition-opacity duration-700 md:text-6xl ${
               phase === "opening" ? "opacity-0" : "opacity-100"
             }`}
+            style={{ textShadow: "0 2px 14px oklch(0.99 0.01 60 / 0.75)" }}
           >
             {t.landingTitle}
             <span className="mt-1 block italic">{t.landingTitleItalic}</span>
@@ -64,12 +68,19 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           >
             <img src={goldRod} alt="" width={1536} height={512} className="w-full select-none" />
             <div className="pointer-events-none absolute left-[14%] right-[14%] top-1/2 h-[26%] -translate-y-1/2 rounded-[999px] bg-paper-roll shadow-[0_10px_30px_-12px_rgba(60,30,20,0.5)]" />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[34%] w-[10px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-thread" />
-            <div className="pointer-events-none absolute left-1/2 top-[64%] h-10 w-16 -translate-x-1/2 bg-tassel [clip-path:polygon(40%_0,60%_0,100%_100%,0_100%)] opacity-90" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[34%] w-[7px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-thread" />
+            <img
+              src={goldTassel}
+              alt=""
+              aria-hidden="true"
+              width={1024}
+              height={1024}
+              className="pointer-events-none absolute left-1/2 top-[42%] w-24 -translate-x-1/2 select-none drop-shadow-[0_8px_14px_rgba(90,60,10,0.35)] sm:w-28 md:w-32"
+            />
           </div>
 
           <p
-            className={`relative z-10 mt-10 font-sans text-xs uppercase tracking-[0.5em] text-rose-deep transition-opacity duration-500 ${
+            className={`relative z-10 mt-24 font-sans text-xs uppercase tracking-[0.5em] text-rose-deep transition-opacity duration-500 ${
               phase === "opening" ? "opacity-0" : "opacity-80 animate-pulse"
             }`}
           >
@@ -77,6 +88,9 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           </p>
         </button>
       )}
+
+      {/* Shloka audio — starts once the scroll is open */}
+      {opened && <ShlokaAudio />}
 
       {/* Kumkum & rice shower — plays once on open */}
       {shower && (
@@ -117,17 +131,20 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         <img src={goldRod} alt="" width={1536} height={512} className="h-9 w-full object-cover md:h-12" />
       </div>
 
-      {/* Torn deckled paper edges, left + right, persistent while scrolling */}
+      {/* Torn deckled paper edges, pulled in from the rod ends */}
       <div
-        className={`pointer-events-none fixed inset-y-0 left-0 z-40 w-5 bg-deckle-left transition-opacity duration-700 md:w-8 ${
+        className={`pointer-events-none fixed inset-y-0 left-4 z-40 w-5 bg-deckle-left transition-opacity duration-700 sm:left-8 md:left-16 md:w-8 lg:left-24 ${
           opened ? "opacity-100" : "opacity-0"
         }`}
       />
       <div
-        className={`pointer-events-none fixed inset-y-0 right-0 z-40 w-5 bg-deckle-right transition-opacity duration-700 md:w-8 ${
+        className={`pointer-events-none fixed inset-y-0 right-4 z-40 w-5 bg-deckle-right transition-opacity duration-700 sm:right-8 md:right-16 md:w-8 lg:right-24 ${
           opened ? "opacity-100" : "opacity-0"
         }`}
       />
+      {/* Velvet margin outside the paper, left and right */}
+      <div className="pointer-events-none fixed inset-y-0 left-0 z-30 w-4 bg-velvet sm:w-8 md:w-16 lg:w-24" />
+      <div className="pointer-events-none fixed inset-y-0 right-0 z-30 w-4 bg-velvet sm:w-8 md:w-16 lg:w-24" />
 
       {/* Paper surface + content */}
       <main
@@ -137,7 +154,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem" }}
       >
         <div className="pointer-events-none fixed inset-0 z-30 bg-paper-grain opacity-60" />
-        <div className="relative z-10 px-5 md:px-9">{children}</div>
+        <div className="relative z-10 px-8 sm:px-14 md:px-24 lg:px-32">{children}</div>
       </main>
     </div>
   );

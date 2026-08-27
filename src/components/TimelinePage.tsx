@@ -1,6 +1,8 @@
 import { events } from "./wedding-data";
 import { EventIcon } from "./EventIcon";
 import { useLang } from "@/i18n/LanguageContext";
+import { PageOrnaments } from "./Ornaments";
+
 
 const CX = 300;
 const CY = 300;
@@ -28,44 +30,28 @@ export function TimelinePage() {
   return (
     <section
       id="timeline"
-      className="flex min-h-[calc(100svh-5rem)] snap-start flex-col items-center justify-center px-1 py-12 sm:px-5 sm:py-16"
+      className="relative flex min-h-[calc(100svh-5rem)] snap-start flex-col items-center justify-center px-1 py-12 sm:px-5 sm:py-16"
     >
+      <PageOrnaments />
       <p className="text-center font-sans text-[0.6rem] uppercase tracking-[0.35em] text-rose-deep/70 sm:text-[0.65rem] sm:tracking-[0.45em]">
+
         {t.timelineKicker}
       </p>
       <h2 className="mt-3 text-center font-display text-3xl text-rose-deep sm:text-4xl md:text-5xl">
         {t.timelineTitle}
       </h2>
 
-      {/* Mobile: vertical reflow */}
-      <ol className="mt-8 w-full max-w-sm space-y-3 sm:hidden">
-        {events.map((e) => {
-          const c = copyFor(e.id);
-          return (
-            <li key={e.id}>
-              <a
-                href={`#${e.id}`}
-                className="flex items-center gap-3 rounded-full border border-rose/50 bg-paper-tint px-3 py-2"
-              >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-rose/60 text-rose-deep">
-                  <EventIcon id={e.id} className="h-6 w-6" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate font-display text-base leading-tight text-ink">
-                    {c.name}
-                  </span>
-                  <span className="block font-sans text-[0.6rem] tracking-[0.18em] text-rose-deep/80">
-                    {c.date}
-                  </span>
-                </span>
-                <span className="shrink-0 font-sans text-[0.65rem] tracking-[0.14em] text-rose-deep">
-                  {c.time}
-                </span>
-              </a>
-            </li>
-          );
-        })}
-      </ol>
+      {/* Mobile: two facing semi-circle arcs */}
+      <div className="mt-8 w-full sm:hidden">
+        <MobileArc ids={["mehandi", "engagement-sangeet", "masquerade"]} facing="left" label={t.day1} />
+        <MobileArc
+          ids={["haldi", "baarat", "varmala", "fera"]}
+          facing="right"
+          label={t.day2}
+          className="mt-8"
+        />
+      </div>
+
 
       {/* Tablet & desktop: semi-circle arc */}
       <div className="relative mt-24 hidden w-full max-w-2xl sm:block">
@@ -131,5 +117,90 @@ export function TimelinePage() {
         </div>
       </div>
     </section>
+  );
+}
+
+/** Mobile: a single semi-circular arc bulging left or right with events along it. */
+function MobileArc({
+  ids,
+  facing,
+  label,
+  className = "",
+}: {
+  ids: string[];
+  facing: "left" | "right";
+  label: string;
+  className?: string;
+}) {
+  const { t } = useLang();
+  const W = 300;
+  const H = 290;
+  const R = 88;
+  const cy = H / 2;
+  const cx = facing === "left" ? 132 : 168;
+
+  const at = (i: number) => {
+    const f = ids.length === 1 ? 0.5 : i / (ids.length - 1);
+    const deg = facing === "left" ? -90 - 180 * f : -90 + 180 * f;
+    const rad = (deg * Math.PI) / 180;
+    return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad) };
+  };
+
+  const start = at(0);
+  const end = at(ids.length - 1);
+
+  return (
+    <div className={`mx-auto w-full max-w-sm ${className}`}>
+      <p className="mb-1 text-center font-sans text-[0.65rem] uppercase tracking-[0.35em] text-rose-deep/70">
+        {label}
+      </p>
+      <div className="relative">
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
+        <path
+          d={`M ${start.x} ${start.y} A ${R} ${R} 0 0 ${facing === "left" ? 0 : 1} ${end.x} ${end.y}`}
+          fill="none"
+          stroke="var(--rose)"
+          strokeWidth="2"
+          strokeDasharray="1 7"
+          strokeLinecap="round"
+          opacity="0.75"
+        />
+        {ids.map((id, i) => {
+          const p = at(i);
+          return <circle key={id} cx={p.x} cy={p.y} r="5" fill="var(--rose-deep)" opacity="0.85" />;
+        })}
+      </svg>
+
+      {ids.map((id, i) => {
+        const p = at(i);
+        const c = t.events[id] ?? { name: id, time: "", date: "" };
+        return (
+          <a
+            key={id}
+            href={`#${id}`}
+            className="absolute flex w-[54%] items-center gap-2"
+            style={{
+              left: `${(p.x / W) * 100}%`,
+              top: `${(p.y / H) * 100}%`,
+              transform:
+                facing === "left" ? "translate(4%, -50%)" : "translate(-104%, -50%)",
+              flexDirection: facing === "left" ? "row" : "row-reverse",
+              textAlign: facing === "left" ? "left" : "right",
+            }}
+          >
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
+              <EventIcon id={id} className="h-5 w-5" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-display text-sm leading-tight text-ink">{c.name}</span>
+              <span className="block font-sans text-[0.65rem] tracking-[0.16em] text-rose-deep/85">
+                {c.time}
+              </span>
+            </span>
+          </a>
+        );
+      })}
+      </div>
+    </div>
   );
 }
