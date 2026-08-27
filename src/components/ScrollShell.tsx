@@ -11,19 +11,11 @@ export function ScrollShell({ children }: { children: ReactNode }) {
   const { t } = useLang();
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.sessionStorage.getItem("scroll-opened") === "1") setPhase("open");
-  }, []);
-
-  useEffect(() => {
     if (phase !== "opening") return;
     const reduce =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const t = window.setTimeout(() => {
-      setPhase("open");
-      window.sessionStorage.setItem("scroll-opened", "1");
-    }, reduce ? 0 : 1600);
+    const t = window.setTimeout(() => setPhase("open"), reduce ? 0 : 1600);
     return () => window.clearTimeout(t);
   }, [phase]);
 
