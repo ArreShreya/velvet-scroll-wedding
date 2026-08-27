@@ -43,6 +43,7 @@ export type Dict = {
   months: string;
   days: string;
   hours: string;
+  minutes: string;
   seconds: string;
   photoPlaceholder: string;
   events: Record<string, EventCopy>;
@@ -85,6 +86,7 @@ export const translations: Record<Lang, Dict> = {
     months: "Months",
     days: "Days",
     hours: "Hours",
+    minutes: "Mins",
     seconds: "Secs",
     photoPlaceholder: "A photograph of the couple, coming soon",
     events: {
@@ -137,6 +139,7 @@ export const translations: Record<Lang, Dict> = {
     months: "माह",
     days: "दिन",
     hours: "घंटे",
+    minutes: "मिनट",
     seconds: "सेकंड",
     photoPlaceholder: "युगल का चित्र शीघ्र ही",
     events: {
@@ -189,6 +192,7 @@ export const translations: Record<Lang, Dict> = {
     months: "માસ",
     days: "દિવસ",
     hours: "કલાક",
+    minutes: "મિનિટ",
     seconds: "સેકંડ",
     photoPlaceholder: "યુગલનો ફોટો ટૂંક સમયમાં",
     events: {

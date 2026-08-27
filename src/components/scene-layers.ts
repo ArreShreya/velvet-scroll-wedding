@@ -5,6 +5,13 @@ import haldiBg from "@/assets/scenes/haldi-bg.jpg";
 import baaratBg from "@/assets/scenes/baarat-bg.jpg";
 import varmalaBg from "@/assets/scenes/varmala-bg.jpg";
 import feraBg from "@/assets/scenes/fera-bg.jpg";
+import mehandiMobile from "@/assets/scenes/mehandi-bg-mobile.jpg";
+import sangeetMobile from "@/assets/scenes/sangeet-bg-mobile.jpg";
+import masqueradeMobile from "@/assets/scenes/masquerade-bg-mobile.jpg";
+import haldiMobile from "@/assets/scenes/haldi-bg-mobile.jpg";
+import baaratMobile from "@/assets/scenes/baarat-bg-mobile.jpg";
+import varmalaMobile from "@/assets/scenes/varmala-bg-mobile.jpg";
+import feraMobile from "@/assets/scenes/fera-bg-mobile.jpg";
 
 /**
  * Each event page is ONE complete illustration. Motion comes from small
@@ -27,12 +34,15 @@ export type Hotspot = {
 
 export type Scene = {
   bg: string;
+  /** Vertically recomposed artwork used on narrow screens. */
+  bgMobile: string;
   hotspots: Hotspot[];
 };
 
 export const SCENES: Record<string, Scene> = {
   mehandi: {
     bg: mehandiBg,
+    bgMobile: mehandiMobile,
     hotspots: [
       // palm fronds, top centre + right
       { x: 40, y: 0, w: 32, h: 24, anim: "sway" },
@@ -44,6 +54,7 @@ export const SCENES: Record<string, Scene> = {
   },
   "engagement-sangeet": {
     bg: sangeetBg,
+    bgMobile: sangeetMobile,
     hotspots: [
       // truss spotlights
       { x: 40, y: 3, w: 46, h: 13, anim: "glow", feather: 40 },
@@ -57,6 +68,7 @@ export const SCENES: Record<string, Scene> = {
   },
   masquerade: {
     bg: masqueradeBg,
+    bgMobile: masqueradeMobile,
     hotspots: [
       // main crystal chandelier — sways and catches the light
       { x: 44, y: 3, w: 22, h: 38, anim: "sway", particles: "sparkle", feather: 35 },
@@ -69,6 +81,7 @@ export const SCENES: Record<string, Scene> = {
   },
   haldi: {
     bg: haldiBg,
+    bgMobile: haldiMobile,
     hotspots: [
       // marigold petals tossed above the pool
       { x: 46, y: 0, w: 46, h: 28, anim: "glow", particles: "petal", feather: 45 },
@@ -80,6 +93,7 @@ export const SCENES: Record<string, Scene> = {
   },
   baarat: {
     bg: baaratBg,
+    bgMobile: baaratMobile,
     hotspots: [
       // bunting and hanging tassels swinging over the procession
       { x: 16, y: 0, w: 76, h: 18, anim: "sway", feather: 35 },
@@ -91,6 +105,7 @@ export const SCENES: Record<string, Scene> = {
   },
   varmala: {
     bg: varmalaBg,
+    bgMobile: varmalaMobile,
     hotspots: [
       // ocean surface, left and right of the mandap
       { x: 0, y: 58, w: 34, h: 14, anim: "ripple", feather: 40 },
@@ -106,6 +121,7 @@ export const SCENES: Record<string, Scene> = {
   },
   fera: {
     bg: feraBg,
+    bgMobile: feraMobile,
     hotspots: [
       // starry sky
       { x: 0, y: 0, w: 34, h: 32, anim: "glow", particles: "sparkle", feather: 48 },
