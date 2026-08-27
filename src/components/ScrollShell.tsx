@@ -67,14 +67,14 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           opened ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <img src={goldRod} alt="" width={1536} height={512} className="h-10 w-full object-fill md:h-14" />
+        <img src={goldRod} alt="" width={1536} height={512} className="h-9 w-full object-cover md:h-12" />
       </div>
       <div
         className={`fixed inset-x-0 bottom-0 z-40 transition-transform duration-[1200ms] ease-out ${
           opened ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        <img src={goldRod} alt="" width={1536} height={512} className="h-10 w-full object-fill md:h-14" />
+        <img src={goldRod} alt="" width={1536} height={512} className="h-9 w-full object-cover md:h-12" />
       </div>
 
       {/* Paper surface + content */}

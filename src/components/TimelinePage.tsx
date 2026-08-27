@@ -20,7 +20,7 @@ export function TimelinePage() {
         Wedding Weekend Timeline
       </h2>
 
-      <div className="relative mt-8 w-full max-w-2xl">
+      <div className="relative mt-24 w-full max-w-2xl">
         <svg viewBox="0 0 600 340" className="w-full overflow-visible">
           <path
             d={`M ${CX - R} ${CY} A ${R} ${R} 0 0 1 ${CX + R} ${CY}`}
@@ -33,8 +33,8 @@ export function TimelinePage() {
           />
           {events.map((e, i) => {
             const angle = Math.PI - (i / (n - 1)) * Math.PI;
-            const x = CX + R * Math.cos(angle);
-            const y = CY - R * Math.sin(angle);
+            const x = Math.round((CX + R * Math.cos(angle)) * 100) / 100;
+            const y = Math.round((CY - R * Math.sin(angle)) * 100) / 100;
             return <circle key={e.id} cx={x} cy={y} r="6" fill="var(--rose-deep)" opacity="0.85" />;
           })}
         </svg>
@@ -43,23 +43,23 @@ export function TimelinePage() {
           const angle = Math.PI - (i / (n - 1)) * Math.PI;
           const x = CX + R * Math.cos(angle);
           const y = CY - R * Math.sin(angle);
-          const left = (x / 600) * 100;
-          const top = (y / 340) * 100;
-          const side = x < CX - 20 ? "right" : x > CX + 20 ? "left" : "center";
+          const leftPct = Math.round((x / 600) * 10000) / 100;
+          const topPct = Math.round((y / 340) * 10000) / 100;
+                    const side = x < CX - 20 ? "right" : x > CX + 20 ? "left" : "center";
           return (
             <a
               key={e.id}
               href={`#${e.id}`}
               className="absolute w-32 -translate-y-1/2 text-center transition-transform duration-200 hover:scale-105"
               style={{
-                left: `${left}%`,
-                top: `${top}%`,
+                left: `${leftPct}%`,
+                top: `${topPct}%`,
                 transform:
                   side === "right"
                     ? "translate(-108%, -50%)"
                     : side === "left"
                       ? "translate(8%, -50%)"
-                      : "translate(-50%, -130%)",
+                      : "translate(-50%, -125%)",
               }}
             >
               <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
