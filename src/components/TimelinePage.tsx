@@ -5,8 +5,17 @@ const CX = 300;
 const CY = 300;
 const R = 235;
 
+const POINTS = [
+  { x: 65.0, y: 300.0, left: 10.83, top: 88.24 },
+  { x: 96.48, y: 182.5, left: 16.08, top: 53.68 },
+  { x: 182.5, y: 96.48, left: 30.42, top: 28.38 },
+  { x: 300.0, y: 65.0, left: 50.0, top: 19.12 },
+  { x: 417.5, y: 96.48, left: 69.58, top: 28.38 },
+  { x: 503.52, y: 182.5, left: 83.92, top: 53.68 },
+  { x: 535.0, y: 300.0, left: 89.17, top: 88.24 },
+] as const;
+
 export function TimelinePage() {
-  const n = events.length;
 
   return (
     <section
@@ -31,21 +40,21 @@ export function TimelinePage() {
             strokeLinecap="round"
             opacity="0.7"
           />
-          {events.map((e, i) => {
-            const angle = Math.PI - (i / (n - 1)) * Math.PI;
-            const x = Math.round((CX + R * Math.cos(angle)) * 100) / 100;
-            const y = Math.round((CY - R * Math.sin(angle)) * 100) / 100;
-            return <circle key={e.id} cx={x} cy={y} r="6" fill="var(--rose-deep)" opacity="0.85" />;
-          })}
+          {events.map((e, i) => (
+            <circle
+              key={e.id}
+              cx={POINTS[i].x}
+              cy={POINTS[i].y}
+              r="6"
+              fill="var(--rose-deep)"
+              opacity="0.85"
+            />
+          ))}
         </svg>
 
         {events.map((e, i) => {
-          const angle = Math.PI - (i / (n - 1)) * Math.PI;
-          const x = CX + R * Math.cos(angle);
-          const y = CY - R * Math.sin(angle);
-          const leftPct = Math.round((x / 600) * 10000) / 100;
-          const topPct = Math.round((y / 340) * 10000) / 100;
-                    const side = x < CX - 20 ? "right" : x > CX + 20 ? "left" : "center";
+          const { x, left: leftPct, top: topPct } = POINTS[i];
+          const side = x < CX - 20 ? "right" : x > CX + 20 ? "left" : "center";
           return (
             <a
               key={e.id}
