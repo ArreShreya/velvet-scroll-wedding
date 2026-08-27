@@ -61,8 +61,22 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: var(--ink);
+  --color-rose: var(--rose);
+  --color-rose-deep: var(--rose-deep);
+  --color-gold: var(--gold);
+}
+
 :root {
   --radius: 0.625rem;
+  --ink: oklch(0.34 0.03 25);
+  --rose: oklch(0.83 0.06 15);
+  --rose-deep: oklch(0.55 0.11 15);
+  --gold: oklch(0.75 0.1 85);
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
