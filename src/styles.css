@@ -61,8 +61,22 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: var(--ink);
+  --color-rose: var(--rose);
+  --color-rose-deep: var(--rose-deep);
+  --color-gold: var(--gold);
+}
+
 :root {
   --radius: 0.625rem;
+  --ink: oklch(0.34 0.03 25);
+  --rose: oklch(0.83 0.06 15);
+  --rose-deep: oklch(0.55 0.11 15);
+  --gold: oklch(0.75 0.1 85);
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
@@ -139,6 +153,47 @@
 
   body {
     background-color: var(--color-background);
-    color: var(--color-foreground);
+    color: var(--ink);
+    font-family: var(--font-sans);
   }
+}
+
+@utility bg-velvet {
+  background:
+    radial-gradient(circle at 50% 40%, oklch(0.94 0.03 20), oklch(0.88 0.05 18) 70%),
+    oklch(0.9 0.04 20);
+}
+
+@utility bg-paper {
+  background-color: oklch(0.97 0.015 60);
+  min-height: 100vh;
+}
+
+@utility bg-paper-tint {
+  background-color: oklch(0.98 0.012 40);
+}
+
+@utility bg-paper-roll {
+  background: linear-gradient(
+    180deg,
+    oklch(0.99 0.01 60),
+    oklch(0.94 0.02 60) 45%,
+    oklch(0.86 0.03 55)
+  );
+}
+
+@utility bg-thread {
+  background: linear-gradient(180deg, var(--gold), oklch(0.62 0.11 80));
+}
+
+@utility bg-tassel {
+  background: linear-gradient(180deg, var(--gold), oklch(0.68 0.12 80));
+}
+
+@utility bg-paper-grain {
+  background-image:
+    radial-gradient(oklch(0.72 0.04 40 / 0.09) 1px, transparent 1.2px),
+    radial-gradient(oklch(0.8 0.03 30 / 0.07) 1px, transparent 1.2px);
+  background-size: 4px 4px, 7px 7px;
+  background-position: 0 0, 2px 3px;
 }
