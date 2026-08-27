@@ -150,10 +150,11 @@ function MobileArc({
   const end = at(ids.length - 1);
 
   return (
-    <div className={`relative mx-auto w-full max-w-sm ${className}`}>
+    <div className={`mx-auto w-full max-w-sm ${className}`}>
       <p className="mb-1 text-center font-sans text-[0.65rem] uppercase tracking-[0.35em] text-rose-deep/70">
         {label}
       </p>
+      <div className="relative">
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
         <path
           d={`M ${start.x} ${start.y} A ${R} ${R} 0 0 ${facing === "left" ? 0 : 1} ${end.x} ${end.y}`}
@@ -199,6 +200,7 @@ function MobileArc({
           </a>
         );
       })}
+      </div>
     </div>
   );
 }
