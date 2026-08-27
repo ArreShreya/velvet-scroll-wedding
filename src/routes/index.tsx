@@ -3,6 +3,8 @@ import { ScrollShell } from "@/components/ScrollShell";
 import { TimelinePage } from "@/components/TimelinePage";
 import { EventPage } from "@/components/EventPage";
 import { events } from "@/components/wedding-data";
+import { VenuePage } from "@/components/VenuePage";
+import { CountdownPage } from "@/components/CountdownPage";
 import ganesha from "@/assets/ganesha.png";
 import { LanguageProvider, useLang } from "@/i18n/LanguageContext";
 
@@ -60,10 +62,10 @@ function IndexContent() {
 
         {/* Couple names */}
         <section className="flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
-          <span className="font-sans text-[0.65rem] uppercase tracking-[0.5em] text-ink/60">
-            {t.coupleKicker}
-          </span>
-          <h1 className="mt-8 font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
+          <p className="max-w-sm font-sans text-[0.65rem] uppercase leading-relaxed tracking-[0.35em] text-ink/60">
+            {t.invitationLine}
+          </p>
+          <h1 className="mt-10 font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
             {t.bride}
           </h1>
           <span className="my-4 flex items-center gap-4 font-display text-2xl italic text-ink/70 md:text-3xl">
@@ -74,9 +76,42 @@ function IndexContent() {
           <h1 className="font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
             {t.groom}
           </h1>
-          <p className="mt-10 font-sans text-xs uppercase tracking-[0.4em] text-ink/60">
+          <span className="mt-8 font-display text-2xl text-rose">❖</span>
+          <p className="mt-6 max-w-md font-display text-lg italic leading-relaxed text-ink/75 md:text-xl">
+            {t.coupleBlessing}
+          </p>
+          <p className="mt-8 font-sans text-xs uppercase tracking-[0.4em] text-ink/60">
             {t.dates}
           </p>
+        </section>
+
+        {/* Families */}
+        <section className="flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
+          <h2 className="font-display text-4xl leading-tight text-rose-deep md:text-5xl">
+            {t.familiesTitle}
+          </h2>
+          <span className="mt-6 font-display text-2xl text-rose">❖</span>
+
+          <div className="mt-10 grid w-full max-w-2xl gap-10 md:grid-cols-2">
+            <div>
+              <p className="font-sans text-[0.6rem] uppercase tracking-[0.45em] text-ink/55">
+                {t.theBride}
+              </p>
+              <p className="mt-3 font-display text-3xl text-rose-deep">{t.brideFull}</p>
+              <p className="mt-2 font-sans text-xs leading-relaxed tracking-[0.12em] text-ink/70">
+                {t.brideParents}
+              </p>
+            </div>
+            <div>
+              <p className="font-sans text-[0.6rem] uppercase tracking-[0.45em] text-ink/55">
+                {t.theGroom}
+              </p>
+              <p className="mt-3 font-display text-3xl text-rose-deep">{t.groomFull}</p>
+              <p className="mt-2 font-sans text-xs leading-relaxed tracking-[0.12em] text-ink/70">
+                {t.groomParents}
+              </p>
+            </div>
+          </div>
         </section>
 
         <TimelinePage />
@@ -84,6 +119,9 @@ function IndexContent() {
         {events.map((e) => (
           <EventPage key={e.id} event={e} />
         ))}
+
+        <VenuePage />
+        <CountdownPage />
       </div>
     </ScrollShell>
   );
