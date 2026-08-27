@@ -58,7 +58,7 @@ export function TimelinePage() {
         </svg>
 
         {events.map((e, i) => {
-          const { x, left: leftPct, top: topPct } = POINTS[i];
+          const { x, left: leftPct, top: topPct } = pointAt(i);
           const side = x < CX - 20 ? "right" : x > CX + 20 ? "left" : "center";
           return (
             <a
