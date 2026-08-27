@@ -1,6 +1,8 @@
 import { events } from "./wedding-data";
 import { EventIcon } from "./EventIcon";
 import { useLang } from "@/i18n/LanguageContext";
+import { PageOrnaments } from "./Ornaments";
+
 
 const CX = 300;
 const CY = 300;
@@ -28,9 +30,11 @@ export function TimelinePage() {
   return (
     <section
       id="timeline"
-      className="flex min-h-[calc(100svh-5rem)] snap-start flex-col items-center justify-center px-1 py-12 sm:px-5 sm:py-16"
+      className="relative flex min-h-[calc(100svh-5rem)] snap-start flex-col items-center justify-center px-1 py-12 sm:px-5 sm:py-16"
     >
+      <PageOrnaments />
       <p className="text-center font-sans text-[0.6rem] uppercase tracking-[0.35em] text-rose-deep/70 sm:text-[0.65rem] sm:tracking-[0.45em]">
+
         {t.timelineKicker}
       </p>
       <h2 className="mt-3 text-center font-display text-3xl text-rose-deep sm:text-4xl md:text-5xl">
