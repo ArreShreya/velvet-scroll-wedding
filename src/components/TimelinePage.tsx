@@ -76,8 +76,8 @@ export function TimelinePage() {
               cy={pointAt(i).y}
               r="6"
               fill="var(--rose-deep)"
-              className={`reveal ${inView ? "is-visible" : ""}`}
-              style={{ ["--reveal-delay" as string]: `${i * 150}ms` }}
+              className={`pop-circle ${inView ? "pop-in" : "pop-out"}`}
+              style={{ animationDelay: `${i * 180}ms` }}
             />
           ))}
         </svg>
@@ -90,12 +90,8 @@ export function TimelinePage() {
             <a
               key={e.id}
               href={`#${e.id}`}
-              className={`press absolute w-28 -translate-y-1/2 text-center md:w-32 ${
-                inView ? "timeline-in" : "timeline-out"
-              }`}
+              className="press absolute w-28 -translate-y-1/2 text-center md:w-32"
               style={{
-                transitionDelay: `${i * 150}ms`,
-                animationDelay: `${i * 150}ms`,
                 left: `${leftPct}%`,
                 top: `${topPct}%`,
                 transform:
@@ -106,18 +102,24 @@ export function TimelinePage() {
                       : "translate(-50%, -102%)",
               }}
             >
-              <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep md:h-12 md:w-12">
-                <EventIcon id={e.id} className="h-6 w-6 md:h-7 md:w-7" />
-              </span>
-              <span className="mt-1.5 block font-display text-sm leading-tight text-ink">
-                {c.name}
-              </span>
-              <span className="block font-sans text-[0.65rem] tracking-[0.18em] text-rose-deep/80">
-                {c.time}
+              <span
+                className={`block ${inView ? "pop-in" : "pop-out"}`}
+                style={{ animationDelay: `${i * 180}ms` }}
+              >
+                <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep md:h-12 md:w-12">
+                  <EventIcon id={e.id} className="h-6 w-6 md:h-7 md:w-7" />
+                </span>
+                <span className="mt-1.5 block font-display text-sm leading-tight text-ink">
+                  {c.name}
+                </span>
+                <span className="block font-sans text-[0.65rem] tracking-[0.18em] text-rose-deep/80">
+                  {c.time}
+                </span>
               </span>
             </a>
           );
         })}
+
 
         <div className="absolute inset-x-0 bottom-1 flex justify-center gap-10 font-sans text-[0.7rem] uppercase tracking-[0.3em] text-ink/60">
           <span>{t.day1}</span>
