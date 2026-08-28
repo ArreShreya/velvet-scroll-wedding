@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import type { WeddingEvent } from "./wedding-data";
 import { SCENES, type Hotspot } from "./scene-layers";
 import { useLang } from "@/i18n/LanguageContext";
+import { Reveal } from "./Reveal";
 
 /** A window cut out of the base illustration, animated in place. */
 function Region({ src, spot, index }: { src: string; spot: Hotspot; index: number }) {
@@ -75,24 +76,26 @@ export function EventPage({ event }: { event: WeddingEvent }) {
       >
         {scene ? (
           <>
-            {/* Desktop artwork */}
-            <img
-              src={scene.bg}
-              alt={copy.name}
-              loading="lazy"
-              className="absolute inset-0 hidden h-full w-full object-cover sm:block"
-            />
-            {/* Mobile artwork — same elements, vertically recomposed */}
-            <img
-              src={scene.bgMobile}
-              alt={copy.name}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover sm:hidden"
-            />
-            <div className="pointer-events-none absolute inset-0 hidden sm:block">
-              {scene.hotspots.map((spot, i) => (
-                <Region key={i} src={scene.bg} spot={spot} index={i} />
-              ))}
+            <div className="ken-burns absolute inset-0">
+              {/* Desktop artwork */}
+              <img
+                src={scene.bg}
+                alt={copy.name}
+                loading="lazy"
+                className="absolute inset-0 hidden h-full w-full object-cover sm:block"
+              />
+              {/* Mobile artwork — same elements, vertically recomposed */}
+              <img
+                src={scene.bgMobile}
+                alt={copy.name}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover sm:hidden"
+              />
+              <div className="pointer-events-none absolute inset-0 hidden sm:block">
+                {scene.hotspots.map((spot, i) => (
+                  <Region key={i} src={scene.bg} spot={spot} index={i} />
+                ))}
+              </div>
             </div>
             <div
               className="pointer-events-none absolute inset-0"
@@ -106,7 +109,7 @@ export function EventPage({ event }: { event: WeddingEvent }) {
 
         {/* Title treatment anchored near the top of the artwork */}
         <div className="absolute inset-x-0 top-0 flex items-start justify-center p-5 pt-6 sm:pt-8">
-          <div
+          <Reveal
             className="rounded-sm px-6 py-5 text-center backdrop-blur-[3px] sm:px-12 sm:py-7"
             style={{
               background:
@@ -130,7 +133,7 @@ export function EventPage({ event }: { event: WeddingEvent }) {
                 {copy.thought}
               </p>
             ) : null}
-          </div>
+          </Reveal>
         </div>
 
       </div>

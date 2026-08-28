@@ -8,6 +8,10 @@ import { CountdownPage } from "@/components/CountdownPage";
 import ganesha from "@/assets/ganesha.png";
 import { LanguageProvider, useLang } from "@/i18n/LanguageContext";
 import { PageOrnaments, GoldDivider } from "@/components/Ornaments";
+import { Reveal } from "@/components/Reveal";
+import { ShlokaText } from "@/components/ShlokaText";
+import { HandsUnion } from "@/components/HandsUnion";
+import { ClosingPage } from "@/components/ClosingPage";
 
 
 export const Route = createFileRoute("/")({
@@ -47,29 +51,33 @@ function IndexContent() {
         {/* Ganesha invocation */}
         <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
           <PageOrnaments />
-          <img
-            src={ganesha}
-            alt="Illustration of Lord Ganesha"
-            width={1024}
-            height={1024}
-            className="w-56 max-w-[60vw] md:w-72"
-          />
-          <p className="mt-6 font-display text-xl leading-relaxed text-rose-deep md:text-2xl">
-            {t.shloka1}<br />
-            {t.shloka2}
-          </p>
-          <GoldDivider className="mt-5" />
-          <p className="mt-4 max-w-md font-sans text-sm leading-relaxed tracking-[0.12em] text-ink/70">
-            {t.translitLine}
-          </p>
+          <Reveal as="p" className="mb-5 font-display text-2xl tracking-[0.12em] text-rose-deep md:text-3xl">
+            {t.ganeshInvocation}
+          </Reveal>
+          <Reveal delay={120}>
+            <img
+              src={ganesha}
+              alt="Illustration of Lord Ganesha"
+              width={1024}
+              height={1024}
+              className="w-56 max-w-[60vw] md:w-72"
+            />
+          </Reveal>
+          <ShlokaText lines={[t.shloka1, t.shloka2]} />
+          <Reveal delay={240}>
+            <GoldDivider className="mt-5" />
+            <p className="mt-4 max-w-md font-sans text-sm leading-relaxed tracking-[0.12em] text-ink/70">
+              {t.translitLine}
+            </p>
+          </Reveal>
         </section>
 
         {/* Couple names */}
         <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
           <PageOrnaments />
-          <p className="max-w-lg font-sans text-sm uppercase leading-relaxed tracking-[0.3em] text-ink/70 sm:text-base">
+          <Reveal as="p" className="max-w-lg font-sans text-sm uppercase leading-relaxed tracking-[0.3em] text-ink/70 sm:text-base">
             {t.invitationLine}
-          </p>
+          </Reveal>
           <h1 className="mt-10 font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
             {t.bride}
           </h1>
@@ -88,17 +96,18 @@ function IndexContent() {
           <p className="mt-8 font-sans text-base uppercase tracking-[0.4em] text-ink/70 sm:text-lg">
             {t.dates}
           </p>
+          <HandsUnion />
         </section>
 
         {/* Families */}
         <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
           <PageOrnaments />
-          <h2 className="font-display text-4xl leading-tight text-rose-deep md:text-5xl">
+          <Reveal as="h2" className="font-display text-4xl leading-tight text-rose-deep md:text-5xl">
             {t.familiesTitle}
-          </h2>
+          </Reveal>
           <GoldDivider className="mt-6" />
 
-          <div className="mt-10 grid w-full max-w-2xl gap-10 md:grid-cols-2">
+          <Reveal delay={120} className="mt-10 grid w-full max-w-2xl gap-10 md:grid-cols-2">
             <div>
               <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
                 {t.theBride}
@@ -117,7 +126,7 @@ function IndexContent() {
                 {t.groomParents}
               </p>
             </div>
-          </div>
+          </Reveal>
         </section>
 
 
@@ -129,6 +138,7 @@ function IndexContent() {
 
         <VenuePage />
         <CountdownPage />
+        <ClosingPage />
       </div>
     </ScrollShell>
   );

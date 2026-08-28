@@ -46,6 +46,10 @@ export type Dict = {
   minutes: string;
   seconds: string;
   photoPlaceholder: string;
+  ganeshInvocation: string;
+  closingBlessing: string;
+  closingWith: string;
+  closingNames: string;
   events: Record<string, EventCopy>;
 };
 
@@ -89,6 +93,10 @@ export const translations: Record<Lang, Dict> = {
     minutes: "Mins",
     seconds: "Secs",
     photoPlaceholder: "A photograph of the couple, coming soon",
+    ganeshInvocation: "श्री गणेशाय नमः",
+    closingBlessing: "May this union be blessed with light, laughter and long years.",
+    closingWith: "With love,",
+    closingNames: "Shreya & Prabhav",
     events: {
       mehandi: { name: "Mehandi", time: "2:00 PM", date: "11th December", thought: "Henna-dark hands, and a love just beginning." },
       "engagement-sangeet": {
@@ -141,6 +149,10 @@ export const translations: Record<Lang, Dict> = {
     minutes: "मिनट",
     seconds: "सेकंड",
     photoPlaceholder: "युगल का चित्र शीघ्र ही",
+    ganeshInvocation: "श्री गणेशाय नमः",
+    closingBlessing: "यह बंधन प्रकाश, हास्य और दीर्घायु से आशीषित हो।",
+    closingWith: "सप्रेम,",
+    closingNames: "श्रेया एवं प्रभव",
     events: {
       mehandi: { name: "मेहंदी", time: "दोपहर २:००", date: "११ दिसंबर", thought: "रचे हाथ, और एक नया-नया प्यार।" },
       "engagement-sangeet": {
@@ -193,6 +205,10 @@ export const translations: Record<Lang, Dict> = {
     minutes: "મિનિટ",
     seconds: "સેકંડ",
     photoPlaceholder: "યુગલનો ફોટો ટૂંક સમયમાં",
+    ganeshInvocation: "શ્રી ગણેશાય નમઃ",
+    closingBlessing: "આ બંધન પ્રકાશ, હાસ્ય અને દીર્ઘાયુથી આશીર્વાદિત રહે.",
+    closingWith: "સ્નેહ સહિત,",
+    closingNames: "શ્રેયા અને પ્રભવ",
     events: {
       mehandi: { name: "મહેંદી", time: "બપોરે ૨:૦૦", date: "૧૧ ડિસેમ્બર", thought: "મહેંદીભર્યા હાથ, અને નવો-નવો પ્રેમ." },
       "engagement-sangeet": {

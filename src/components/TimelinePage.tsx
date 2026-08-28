@@ -2,6 +2,7 @@ import { events } from "./wedding-data";
 import { EventIcon } from "./EventIcon";
 import { useLang } from "@/i18n/LanguageContext";
 import { PageOrnaments } from "./Ornaments";
+import { useInView } from "@/hooks/useInView";
 
 
 const CX = 300;
@@ -24,11 +25,13 @@ const pointAt = (i: number): Point => POINTS[i] ?? POINTS[0]!;
 
 export function TimelinePage() {
   const { t } = useLang();
+  const { ref, inView } = useInView<HTMLElement>(0.2);
   const copyFor = (id: string) =>
     t.events[id] ?? { name: id, time: "", date: "" };
 
   return (
     <section
+      ref={ref}
       id="timeline"
       className="relative flex min-h-[calc(100svh-5rem)] snap-start flex-col items-center justify-center px-1 py-12 sm:px-5 sm:py-16"
     >
@@ -49,6 +52,7 @@ export function TimelinePage() {
           facing="right"
           label={t.day2}
           className="mt-8"
+          offset={3}
         />
       </div>
 
@@ -72,7 +76,8 @@ export function TimelinePage() {
               cy={pointAt(i).y}
               r="6"
               fill="var(--rose-deep)"
-              opacity="0.85"
+              className={`reveal ${inView ? "is-visible" : ""}`}
+              style={{ ["--reveal-delay" as string]: `${i * 150}ms` }}
             />
           ))}
         </svg>
@@ -85,8 +90,12 @@ export function TimelinePage() {
             <a
               key={e.id}
               href={`#${e.id}`}
-              className="absolute w-28 -translate-y-1/2 text-center transition-transform duration-200 hover:scale-105 md:w-32"
+              className={`press absolute w-28 -translate-y-1/2 text-center md:w-32 ${
+                inView ? "timeline-in" : "timeline-out"
+              }`}
               style={{
+                transitionDelay: `${i * 150}ms`,
+                animationDelay: `${i * 150}ms`,
                 left: `${leftPct}%`,
                 top: `${topPct}%`,
                 transform:
@@ -126,13 +135,16 @@ function MobileArc({
   facing,
   label,
   className = "",
+  offset = 0,
 }: {
   ids: string[];
   facing: "left" | "right";
   label: string;
   className?: string;
+  offset?: number;
 }) {
   const { t } = useLang();
+  const { ref, inView } = useInView<HTMLDivElement>(0.2);
   const W = 300;
   const H = 290;
   const R = 88;
@@ -150,7 +162,7 @@ function MobileArc({
   const end = at(ids.length - 1);
 
   return (
-    <div className={`mx-auto w-full max-w-sm ${className}`}>
+    <div ref={ref} className={`mx-auto w-full max-w-sm ${className}`}>
       <p className="mb-1 text-center font-sans text-[0.65rem] uppercase tracking-[0.35em] text-rose-deep/70">
         {label}
       </p>
@@ -167,7 +179,17 @@ function MobileArc({
         />
         {ids.map((id, i) => {
           const p = at(i);
-          return <circle key={id} cx={p.x} cy={p.y} r="5" fill="var(--rose-deep)" opacity="0.85" />;
+          return (
+            <circle
+              key={id}
+              cx={p.x}
+              cy={p.y}
+              r="5"
+              fill="var(--rose-deep)"
+              className={`reveal ${inView ? "is-visible" : ""}`}
+              style={{ ["--reveal-delay" as string]: `${(offset + i) * 150}ms` }}
+            />
+          );
         })}
       </svg>
 
@@ -178,8 +200,11 @@ function MobileArc({
           <a
             key={id}
             href={`#${id}`}
-            className="absolute flex w-[54%] items-center gap-2"
+            className={`press absolute flex w-[54%] items-center gap-2 reveal ${
+              inView ? "is-visible" : ""
+            }`}
             style={{
+              ["--reveal-delay" as string]: `${(offset + i) * 150}ms`,
               left: `${(p.x / W) * 100}%`,
               top: `${(p.y / H) * 100}%`,
               transform:
