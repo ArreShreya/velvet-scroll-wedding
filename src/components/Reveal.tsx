@@ -1,14 +1,24 @@
 import type { CSSProperties, ElementType, ReactNode } from "react";
 import { useInView } from "@/hooks/useInView";
 
+export type RevealVariant =
+  | "rise"
+  | "scale"
+  | "left"
+  | "right"
+  | "zoom"
+  | "tick"
+  | "fade";
+
 /**
- * Shared scroll-triggered reveal: content fades in and rises gently the first
- * time it enters the viewport. Timing comes from the site-wide motion tokens.
+ * Shared scroll-triggered reveal. The `variant` picks the *type* of motion so
+ * different sections of the site feel distinct while staying equally subtle.
  */
 export function Reveal({
   children,
   as: Tag = "div",
   delay = 0,
+  variant = "rise",
   className = "",
   style,
   ...rest
@@ -16,6 +26,7 @@ export function Reveal({
   children: ReactNode;
   as?: ElementType;
   delay?: number;
+  variant?: RevealVariant;
   className?: string;
   style?: CSSProperties;
 } & Record<string, unknown>) {
@@ -24,6 +35,7 @@ export function Reveal({
   return (
     <Tag
       ref={ref}
+      data-reveal={variant}
       className={`reveal ${inView ? "is-visible" : ""} ${className}`}
       style={{ ["--reveal-delay" as string]: `${delay}ms`, ...style }}
       {...rest}
