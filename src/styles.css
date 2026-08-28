@@ -409,3 +409,79 @@
 @media (prefers-reduced-motion: reduce) {
   .shower-kumkum, .shower-rice { animation: none; opacity: 0; }
 }
+
+/* ---------- Shared motion system ---------- */
+:root {
+  --ease-elegant: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-ui: 220ms;
+  --dur-page: 900ms;
+}
+
+/* Scroll-triggered page reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--dur-page) var(--ease-elegant),
+    transform var(--dur-page) var(--ease-elegant);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hands sliding in to meet */
+.reveal-hand-left {
+  opacity: 0;
+  transform: translateX(-38%);
+  transition:
+    opacity 1200ms var(--ease-elegant),
+    transform 1200ms var(--ease-elegant);
+}
+.reveal-hand-right {
+  opacity: 0;
+  transform: translateX(38%);
+  transition:
+    opacity 1200ms var(--ease-elegant),
+    transform 1200ms var(--ease-elegant);
+}
+.is-visible .reveal-hand-left,
+.is-visible .reveal-hand-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Consistent press feedback */
+.press {
+  transition:
+    transform var(--dur-ui) var(--ease-elegant),
+    opacity var(--dur-ui) var(--ease-elegant);
+}
+.press:hover { opacity: 0.9; }
+.press:active { transform: scale(0.95); }
+
+/* Ken Burns loop for event artwork */
+@keyframes ken-burns {
+  0%   { transform: scale(1) translate3d(0, 0, 0); }
+  50%  { transform: scale(1.07) translate3d(0, -1%, 0); }
+  100% { transform: scale(1) translate3d(0, 0, 0); }
+}
+.ken-burns { animation: ken-burns 34s var(--ease-elegant) infinite; }
+
+/* Typewriter-style shloka reveal */
+@keyframes shloka-letter {
+  from { opacity: 0; filter: blur(3px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+.shloka-letter {
+  opacity: 0;
+  animation: shloka-letter 420ms var(--ease-elegant) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ken-burns { animation: none; }
+  .shloka-letter { animation: none; opacity: 1; }
+  .reveal, .reveal-hand-left, .reveal-hand-right { opacity: 1; transform: none; transition: none; }
+}
