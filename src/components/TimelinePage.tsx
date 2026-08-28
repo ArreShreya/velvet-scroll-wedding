@@ -3,6 +3,8 @@ import { EventIcon } from "./EventIcon";
 import { useLang } from "@/i18n/LanguageContext";
 import { PageOrnaments } from "./Ornaments";
 import { useInView } from "@/hooks/useInView";
+import { Reveal } from "./Reveal";
+
 
 
 const CX = 300;
