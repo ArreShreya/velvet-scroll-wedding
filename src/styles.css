@@ -161,6 +161,10 @@
 @utility bg-velvet {
   /* Cherry red + blush pink velvet, with a soft woven fabric sheen. */
   background-color: oklch(0.42 0.16 20);
+  /* Anchored to the viewport so every velvet surface (header strip, side
+     margins) samples the same continuous fabric instead of its own copy. */
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
+
   background-image:
     repeating-linear-gradient(
       98deg,
