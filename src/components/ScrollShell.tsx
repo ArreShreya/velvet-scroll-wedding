@@ -52,7 +52,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             type="button"
             aria-label={t.openInvitation}
             onClick={() => closed && setPhase("opening")}
-            className="fixed inset-0 z-20 flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-velvet"
+            className="fixed inset-0 z-40 flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-velvet"
           >
             <img
               src={beach}
@@ -64,7 +64,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             <div className="pointer-events-none absolute inset-0 bg-paper-veil backdrop-blur-[1px] backdrop-saturate-110" />
 
             <h1
-              className={`relative z-10 mb-[38vh] px-6 text-center font-display text-4xl leading-tight text-rose-deep transition-opacity duration-700 md:text-6xl ${
+              className={`relative z-10 mt-[10vh] mb-[38vh] px-6 text-center font-display text-4xl leading-tight text-rose-deep transition-opacity duration-700 md:text-6xl ${
                 closed ? "opacity-100" : "opacity-0"
               }`}
               style={{ textShadow: "0 2px 14px oklch(0.99 0.01 60 / 0.75)" }}
@@ -122,7 +122,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             alt=""
             width={1536}
             height={512}
-            className="h-[var(--rod-h)] w-full object-cover"
+            className="block h-[var(--rod-h)] w-full object-fill"
           />
         </div>
 
@@ -141,7 +141,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             alt=""
             width={1536}
             height={512}
-            className="h-[var(--rod-h)] w-full object-cover"
+            className="block h-[var(--rod-h)] w-full object-fill"
           />
         </div>
 
