@@ -188,8 +188,8 @@ function MobileArc({
               cy={p.y}
               r="5"
               fill="var(--rose-deep)"
-              className={`reveal ${inView ? "is-visible" : ""}`}
-              style={{ ["--reveal-delay" as string]: `${(offset + i) * 150}ms` }}
+              className={`pop-circle ${inView ? "pop-in" : "pop-out"}`}
+              style={{ animationDelay: `${(offset + i) * 180}ms` }}
             />
           );
         })}
@@ -202,11 +202,8 @@ function MobileArc({
           <a
             key={id}
             href={`#${id}`}
-            className={`press absolute flex w-[54%] items-center gap-2 reveal ${
-              inView ? "is-visible" : ""
-            }`}
+            className="press absolute flex w-[54%] items-center gap-2"
             style={{
-              ["--reveal-delay" as string]: `${(offset + i) * 150}ms`,
               left: `${(p.x / W) * 100}%`,
               top: `${(p.y / H) * 100}%`,
               transform:
@@ -215,18 +212,27 @@ function MobileArc({
               textAlign: facing === "left" ? "left" : "right",
             }}
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
-              <EventIcon id={id} className="h-5 w-5" />
-            </span>
-            <span className="min-w-0 flex-1">
-              <span className="block font-display text-sm leading-tight text-ink">{c.name}</span>
-              <span className="block font-sans text-[0.65rem] tracking-[0.16em] text-rose-deep/85">
-                {c.time}
+            <span
+              className={`flex w-full items-center gap-2 ${inView ? "pop-in" : "pop-out"}`}
+              style={{
+                animationDelay: `${(offset + i) * 180}ms`,
+                flexDirection: facing === "left" ? "row" : "row-reverse",
+              }}
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
+                <EventIcon id={id} className="h-5 w-5" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-display text-sm leading-tight text-ink">{c.name}</span>
+                <span className="block font-sans text-[0.65rem] tracking-[0.16em] text-rose-deep/85">
+                  {c.time}
+                </span>
               </span>
             </span>
           </a>
         );
       })}
+
       </div>
     </div>
   );
