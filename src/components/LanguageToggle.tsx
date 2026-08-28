@@ -17,7 +17,7 @@ export function LanguageToggle() {
           onClick={() => setLang(l.code)}
           aria-pressed={lang === l.code}
           title={l.label}
-          className={`rounded-full px-2.5 py-1 font-sans text-[0.6rem] tracking-[0.16em] transition-colors duration-200 md:text-[0.65rem] ${
+          className={`press rounded-full px-2.5 py-1 font-sans text-[0.6rem] tracking-[0.16em] md:text-[0.65rem] ${
             lang === l.code
               ? "bg-rose text-rose-deep"
               : "text-ink/65 hover:text-rose-deep"

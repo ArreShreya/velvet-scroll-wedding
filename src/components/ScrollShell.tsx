@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import goldRod from "@/assets/gold-rod.png";
 import goldTassel from "@/assets/gold-tassel.png";
 import { LanguageToggle } from "./LanguageToggle";
+import { Monogram } from "./Monogram";
 import { useLang } from "@/i18n/LanguageContext";
 import beach from "@/assets/beach-watercolor.jpg";
 import { ShlokaAudio } from "./ShlokaAudio";
@@ -49,7 +50,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             className="pointer-events-none absolute inset-0 h-full w-full object-cover"
           />
           {/* Frosted glass veil — the painting stays visible underneath */}
-          <div className="pointer-events-none absolute inset-0 bg-paper-veil backdrop-blur-[3px] backdrop-saturate-125" />
+          <div className="pointer-events-none absolute inset-0 bg-paper-veil backdrop-blur-[1px] backdrop-saturate-110" />
 
           <h1
             className={`relative z-10 mb-12 px-6 text-center font-display text-4xl leading-tight text-rose-deep transition-opacity duration-700 md:text-6xl ${
@@ -109,6 +110,11 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           ))}
         </div>
       )}
+
+      {/* Monogram — fixed top left, mirroring the language toggle */}
+      <div className="pointer-events-none fixed left-3 top-2 z-[60] flex justify-start md:left-5 md:top-3">
+        <Monogram />
+      </div>
 
       {/* Language toggle — fixed, above everything */}
       <div className="pointer-events-none fixed right-3 top-2 z-[60] flex justify-end md:right-5 md:top-3">

@@ -20,7 +20,7 @@ export function VenuePage() {
         href={MAP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="rounded-full border border-rose/70 bg-[oklch(0.99_0.012_40_/_0.7)] px-7 py-3 font-sans text-[0.75rem] uppercase tracking-[0.35em] text-rose-deep transition-colors hover:bg-[oklch(0.96_0.03_25_/_0.7)]"
+        className="press rounded-full border border-rose/70 bg-[oklch(0.99_0.012_40_/_0.7)] px-7 py-3 font-sans text-[0.75rem] uppercase tracking-[0.35em] text-rose-deep hover:bg-[oklch(0.96_0.03_25_/_0.7)]"
       >
         {t.venueCta}
       </a>
