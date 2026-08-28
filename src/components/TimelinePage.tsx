@@ -79,7 +79,7 @@ export function TimelinePage() {
               r="6"
               fill="var(--rose-deep)"
               className={`pop-circle ${inView ? "pop-in" : "pop-out"}`}
-              style={{ animationDelay: `${i * 180}ms` }}
+              style={{ animationDelay: `${i * 1000}ms` }}
             />
           ))}
         </svg>
@@ -106,7 +106,7 @@ export function TimelinePage() {
             >
               <span
                 className={`block ${inView ? "pop-in" : "pop-out"}`}
-                style={{ animationDelay: `${i * 180}ms` }}
+                style={{ animationDelay: `${i * 1000}ms` }}
               >
                 <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep md:h-12 md:w-12">
                   <EventIcon id={e.id} className="h-6 w-6 md:h-7 md:w-7" />
@@ -191,7 +191,7 @@ function MobileArc({
               r="5"
               fill="var(--rose-deep)"
               className={`pop-circle ${inView ? "pop-in" : "pop-out"}`}
-              style={{ animationDelay: `${(offset + i) * 180}ms` }}
+              style={{ animationDelay: `${(offset + i) * 1000}ms` }}
             />
           );
         })}
@@ -217,7 +217,7 @@ function MobileArc({
             <span
               className={`flex w-full items-center gap-2 ${inView ? "pop-in" : "pop-out"}`}
               style={{
-                animationDelay: `${(offset + i) * 180}ms`,
+                animationDelay: `${(offset + i) * 1000}ms`,
                 flexDirection: facing === "left" ? "row" : "row-reverse",
               }}
             >
