@@ -52,7 +52,10 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             type="button"
             aria-label={t.openInvitation}
             onClick={() => closed && setPhase("opening")}
-            className="fixed inset-0 z-40 flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-velvet"
+            className={`fixed inset-0 z-40 flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-velvet transition-opacity duration-[900ms] ${
+              closed ? "opacity-100" : "pointer-events-none opacity-0"
+            }`}
+
           >
             <img
               src={beach}
