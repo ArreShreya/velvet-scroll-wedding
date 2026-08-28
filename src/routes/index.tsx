@@ -77,21 +77,21 @@ function IndexContent() {
         {/* Couple names */}
         <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
           <PageOrnaments />
-          <Reveal as="p" className="max-w-lg font-sans text-sm uppercase leading-relaxed tracking-[0.3em] text-ink/70 sm:text-base">
+          <Reveal variant="scale" as="p" className="max-w-lg font-sans text-sm uppercase leading-relaxed tracking-[0.3em] text-ink/70 sm:text-base">
             {t.invitationLine}
           </Reveal>
-          <Reveal as="h1" delay={120} className="mt-10 font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
+          <Reveal variant="scale" as="h1" delay={120} className="mt-10 font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
             {t.bride}
           </Reveal>
-          <Reveal as="span" delay={220} className="my-4 flex items-center gap-4 font-display text-2xl italic text-ink/70 md:text-3xl">
+          <Reveal variant="scale" as="span" delay={220} className="my-4 flex items-center gap-4 font-display text-2xl italic text-ink/70 md:text-3xl">
             <i className="block h-px w-14 bg-rose" />
             {t.weds}
             <i className="block h-px w-14 bg-rose" />
           </Reveal>
-          <Reveal as="h1" delay={320} className="font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
+          <Reveal variant="scale" as="h1" delay={320} className="font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
             {t.groom}
           </Reveal>
-          <Reveal delay={420}>
+          <Reveal variant="scale" delay={420}>
             <GoldDivider className="mt-8" />
             <p className="mt-6 max-w-md font-display text-lg italic leading-relaxed text-ink/75 md:text-xl">
               {t.coupleBlessing}
@@ -112,8 +112,8 @@ function IndexContent() {
           </Reveal>
           <GoldDivider className="mt-6" />
 
-          <Reveal delay={120} className="mt-10 grid w-full max-w-2xl gap-10 md:grid-cols-2">
-            <div>
+          <div className="mt-10 grid w-full max-w-2xl gap-10 md:grid-cols-2">
+            <Reveal variant="left" delay={120}>
               <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
                 {t.theBride}
               </p>
@@ -121,8 +121,8 @@ function IndexContent() {
               <p className="mt-2 font-sans text-sm leading-relaxed tracking-[0.1em] text-ink/75 sm:text-base">
                 {t.brideParents}
               </p>
-            </div>
-            <div>
+            </Reveal>
+            <Reveal variant="right" delay={120}>
               <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
                 {t.theGroom}
               </p>
@@ -130,9 +130,10 @@ function IndexContent() {
               <p className="mt-2 font-sans text-sm leading-relaxed tracking-[0.1em] text-ink/75 sm:text-base">
                 {t.groomParents}
               </p>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </section>
+
 
 
         <TimelinePage />
