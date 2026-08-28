@@ -51,9 +51,11 @@ function IndexContent() {
         {/* Ganesha invocation */}
         <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
           <PageOrnaments />
-          <Reveal as="p" className="mb-5 font-display text-2xl tracking-[0.12em] text-rose-deep md:text-3xl">
-            {t.ganeshInvocation}
-          </Reveal>
+          <ShlokaText
+            lines={[t.ganeshInvocation]}
+            step={70}
+            className="mb-5 font-display text-2xl tracking-[0.12em] text-rose-deep md:text-3xl"
+          />
           <Reveal delay={120}>
             <img
               src={ganesha}
@@ -78,26 +80,29 @@ function IndexContent() {
           <Reveal as="p" className="max-w-lg font-sans text-sm uppercase leading-relaxed tracking-[0.3em] text-ink/70 sm:text-base">
             {t.invitationLine}
           </Reveal>
-          <h1 className="mt-10 font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
+          <Reveal as="h1" delay={120} className="mt-10 font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
             {t.bride}
-          </h1>
-          <span className="my-4 flex items-center gap-4 font-display text-2xl italic text-ink/70 md:text-3xl">
+          </Reveal>
+          <Reveal as="span" delay={220} className="my-4 flex items-center gap-4 font-display text-2xl italic text-ink/70 md:text-3xl">
             <i className="block h-px w-14 bg-rose" />
             {t.weds}
             <i className="block h-px w-14 bg-rose" />
-          </span>
-          <h1 className="font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
+          </Reveal>
+          <Reveal as="h1" delay={320} className="font-display text-6xl leading-[1.05] text-rose-deep md:text-8xl">
             {t.groom}
-          </h1>
-          <GoldDivider className="mt-8" />
-          <p className="mt-6 max-w-md font-display text-lg italic leading-relaxed text-ink/75 md:text-xl">
-            {t.coupleBlessing}
-          </p>
-          <p className="mt-8 font-sans text-base uppercase tracking-[0.4em] text-ink/70 sm:text-lg">
-            {t.dates}
-          </p>
+          </Reveal>
+          <Reveal delay={420}>
+            <GoldDivider className="mt-8" />
+            <p className="mt-6 max-w-md font-display text-lg italic leading-relaxed text-ink/75 md:text-xl">
+              {t.coupleBlessing}
+            </p>
+            <p className="mt-8 font-sans text-base uppercase tracking-[0.4em] text-ink/70 sm:text-lg">
+              {t.dates}
+            </p>
+          </Reveal>
           <HandsUnion />
         </section>
+
 
         {/* Families */}
         <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
