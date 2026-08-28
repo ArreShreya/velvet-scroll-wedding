@@ -3,6 +3,8 @@ import { EventIcon } from "./EventIcon";
 import { useLang } from "@/i18n/LanguageContext";
 import { PageOrnaments } from "./Ornaments";
 import { useInView } from "@/hooks/useInView";
+import { Reveal } from "./Reveal";
+
 
 
 const CX = 300;
@@ -36,13 +38,13 @@ export function TimelinePage() {
       className="relative flex min-h-[calc(100svh-5rem)] snap-start flex-col items-center justify-center px-1 py-12 sm:px-5 sm:py-16"
     >
       <PageOrnaments />
-      <p className="text-center font-sans text-[0.6rem] uppercase tracking-[0.35em] text-rose-deep/70 sm:text-[0.65rem] sm:tracking-[0.45em]">
-
+      <Reveal as="p" className="text-center font-sans text-[0.6rem] uppercase tracking-[0.35em] text-rose-deep/70 sm:text-[0.65rem] sm:tracking-[0.45em]">
         {t.timelineKicker}
-      </p>
-      <h2 className="mt-3 text-center font-display text-3xl text-rose-deep sm:text-4xl md:text-5xl">
+      </Reveal>
+      <Reveal as="h2" delay={120} className="mt-3 text-center font-display text-3xl text-rose-deep sm:text-4xl md:text-5xl">
         {t.timelineTitle}
-      </h2>
+      </Reveal>
+
 
       {/* Mobile: two facing semi-circle arcs */}
       <div className="mt-8 w-full sm:hidden">
@@ -76,8 +78,8 @@ export function TimelinePage() {
               cy={pointAt(i).y}
               r="6"
               fill="var(--rose-deep)"
-              className={`reveal ${inView ? "is-visible" : ""}`}
-              style={{ ["--reveal-delay" as string]: `${i * 150}ms` }}
+              className={`pop-circle ${inView ? "pop-in" : "pop-out"}`}
+              style={{ animationDelay: `${i * 180}ms` }}
             />
           ))}
         </svg>
@@ -90,12 +92,8 @@ export function TimelinePage() {
             <a
               key={e.id}
               href={`#${e.id}`}
-              className={`press absolute w-28 -translate-y-1/2 text-center md:w-32 ${
-                inView ? "timeline-in" : "timeline-out"
-              }`}
+              className="press absolute w-28 -translate-y-1/2 text-center md:w-32"
               style={{
-                transitionDelay: `${i * 150}ms`,
-                animationDelay: `${i * 150}ms`,
                 left: `${leftPct}%`,
                 top: `${topPct}%`,
                 transform:
@@ -106,18 +104,24 @@ export function TimelinePage() {
                       : "translate(-50%, -102%)",
               }}
             >
-              <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep md:h-12 md:w-12">
-                <EventIcon id={e.id} className="h-6 w-6 md:h-7 md:w-7" />
-              </span>
-              <span className="mt-1.5 block font-display text-sm leading-tight text-ink">
-                {c.name}
-              </span>
-              <span className="block font-sans text-[0.65rem] tracking-[0.18em] text-rose-deep/80">
-                {c.time}
+              <span
+                className={`block ${inView ? "pop-in" : "pop-out"}`}
+                style={{ animationDelay: `${i * 180}ms` }}
+              >
+                <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep md:h-12 md:w-12">
+                  <EventIcon id={e.id} className="h-6 w-6 md:h-7 md:w-7" />
+                </span>
+                <span className="mt-1.5 block font-display text-sm leading-tight text-ink">
+                  {c.name}
+                </span>
+                <span className="block font-sans text-[0.65rem] tracking-[0.18em] text-rose-deep/80">
+                  {c.time}
+                </span>
               </span>
             </a>
           );
         })}
+
 
         <div className="absolute inset-x-0 bottom-1 flex justify-center gap-10 font-sans text-[0.7rem] uppercase tracking-[0.3em] text-ink/60">
           <span>{t.day1}</span>
@@ -186,8 +190,8 @@ function MobileArc({
               cy={p.y}
               r="5"
               fill="var(--rose-deep)"
-              className={`reveal ${inView ? "is-visible" : ""}`}
-              style={{ ["--reveal-delay" as string]: `${(offset + i) * 150}ms` }}
+              className={`pop-circle ${inView ? "pop-in" : "pop-out"}`}
+              style={{ animationDelay: `${(offset + i) * 180}ms` }}
             />
           );
         })}
@@ -200,11 +204,8 @@ function MobileArc({
           <a
             key={id}
             href={`#${id}`}
-            className={`press absolute flex w-[54%] items-center gap-2 reveal ${
-              inView ? "is-visible" : ""
-            }`}
+            className="press absolute flex w-[54%] items-center gap-2"
             style={{
-              ["--reveal-delay" as string]: `${(offset + i) * 150}ms`,
               left: `${(p.x / W) * 100}%`,
               top: `${(p.y / H) * 100}%`,
               transform:
@@ -213,18 +214,27 @@ function MobileArc({
               textAlign: facing === "left" ? "left" : "right",
             }}
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
-              <EventIcon id={id} className="h-5 w-5" />
-            </span>
-            <span className="min-w-0 flex-1">
-              <span className="block font-display text-sm leading-tight text-ink">{c.name}</span>
-              <span className="block font-sans text-[0.65rem] tracking-[0.16em] text-rose-deep/85">
-                {c.time}
+            <span
+              className={`flex w-full items-center gap-2 ${inView ? "pop-in" : "pop-out"}`}
+              style={{
+                animationDelay: `${(offset + i) * 180}ms`,
+                flexDirection: facing === "left" ? "row" : "row-reverse",
+              }}
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
+                <EventIcon id={id} className="h-5 w-5" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-display text-sm leading-tight text-ink">{c.name}</span>
+                <span className="block font-sans text-[0.65rem] tracking-[0.16em] text-rose-deep/85">
+                  {c.time}
+                </span>
               </span>
             </span>
           </a>
         );
       })}
+
       </div>
     </div>
   );

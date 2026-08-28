@@ -13,7 +13,7 @@ export function Monogram() {
         alt="Prabhav and Shreya monogram"
         width={718}
         height={980}
-        className="h-9 w-auto select-none drop-shadow-[0_4px_10px_rgba(120,60,70,0.25)] md:h-11"
+        className="h-7 w-auto select-none drop-shadow-[0_4px_10px_rgba(120,60,70,0.25)] md:h-8"
       />
     </a>
   );
