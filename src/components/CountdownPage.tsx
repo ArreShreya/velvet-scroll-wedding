@@ -30,6 +30,7 @@ function diff(now: number): Parts {
 function Dial({ value, label, delay }: { value: number | null; label: string; delay: number }) {
   return (
     <Reveal
+      variant="tick"
       delay={delay}
       className="press relative flex h-24 w-24 flex-col items-center justify-center rounded-full border border-rose/60 bg-[oklch(0.99_0.012_40_/_0.75)] shadow-[0_10px_28px_-20px_rgba(120,60,60,0.6)] sm:h-28 sm:w-28">
       <span className="pointer-events-none absolute -left-2 -top-1 text-lg opacity-70">❀</span>
