@@ -217,9 +217,22 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         <div className="pointer-events-none fixed inset-y-0 left-0 z-30 w-4 bg-velvet sm:w-8 md:w-16 lg:w-24" />
         <div className="pointer-events-none fixed inset-y-0 right-0 z-30 w-4 bg-velvet sm:w-8 md:w-16 lg:w-24" />
 
-        {/* Paper surface + content — tucked behind both rods */}
+        {/* Paper surface — strictly between the two rods, never past them */}
+        <div
+          className={`pointer-events-none fixed inset-x-0 z-0 bg-paper transition-opacity duration-700 ${
+            opened ? "opacity-100" : "opacity-0"
+          }`}
+          style={{
+            top: "calc(var(--header-h) + var(--rod-h))",
+            bottom: "var(--rod-h)",
+          }}
+        >
+          <div className="absolute inset-0 bg-paper-grain opacity-60" />
+        </div>
+
+        {/* Content — tucked between both rods */}
         <main
-          className={`relative bg-paper transition-opacity duration-700 ${
+          className={`relative transition-opacity duration-700 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
           style={{
@@ -227,9 +240,9 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             paddingBottom: "var(--rod-h)",
           }}
         >
-          <div className="pointer-events-none fixed inset-0 z-30 bg-paper-grain opacity-60" />
           <div className="relative z-10 px-8 sm:px-14 md:px-24 lg:px-32">{children}</div>
         </main>
+
       </div>
     </ShellOpenContext.Provider>
   );
