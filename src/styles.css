@@ -480,26 +480,32 @@
 }
 
 
-/* Hands sliding in to meet */
+/* Hands reaching diagonally toward each other */
 .reveal-hand-left {
   opacity: 0;
-  transform: translateX(-38%);
+  transform: translate(-42%, -14%) rotate(4deg);
   transition:
     opacity 1200ms var(--ease-elegant),
     transform 1200ms var(--ease-elegant);
 }
 .reveal-hand-right {
   opacity: 0;
-  transform: translateX(38%);
+  transform: translate(42%, 18%) rotate(-4deg);
   transition:
     opacity 1200ms var(--ease-elegant),
     transform 1200ms var(--ease-elegant);
 }
-.is-visible .reveal-hand-left,
+/* Bride's hand rests slightly higher, tipped down toward the centre;
+   groom's hand sits lower, angled up to meet it. */
+.is-visible .reveal-hand-left {
+  opacity: 1;
+  transform: translate(0, -7%) rotate(6deg);
+}
 .is-visible .reveal-hand-right {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate(0, 9%) rotate(-6deg);
 }
+
 
 /* Consistent press feedback */
 .press {
