@@ -225,7 +225,9 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           style={{
             top: "calc(var(--header-h) + var(--rod-h))",
             bottom: "var(--rod-h)",
+            minHeight: 0,
           }}
+
         >
           <div className="absolute inset-0 bg-paper-grain opacity-60" />
         </div>
