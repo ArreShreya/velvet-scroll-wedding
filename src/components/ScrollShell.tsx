@@ -63,7 +63,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
               alt=""
               width={1536}
               height={1024}
-              className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+              className="pointer-events-none absolute inset-0 h-full w-full object-fill"
             />
             <div className="pointer-events-none absolute inset-0 bg-paper-veil backdrop-blur-[1px] backdrop-saturate-110" />
 
@@ -129,8 +129,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             src={goldRod}
             alt=""
             width={1536}
-            height={512}
-            className="block h-[var(--rod-h)] w-full object-cover"
+            height={171}
+            className="block h-[var(--rod-h)] w-full object-fill"
           />
         </div>
 
@@ -148,8 +148,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             src={goldRod}
             alt=""
             width={1536}
-            height={512}
-            className="block h-[var(--rod-h)] w-full object-cover"
+            height={171}
+            className="block h-[var(--rod-h)] w-full object-fill"
           />
         </div>
 
