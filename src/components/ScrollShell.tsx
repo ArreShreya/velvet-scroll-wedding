@@ -195,7 +195,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
 
         {/* Torn deckled paper edges — below the rods */}
         <div
-          className={`pointer-events-none fixed bottom-0 left-4 z-[35] w-5 bg-deckle-left transition-opacity duration-700 sm:left-8 md:left-16 md:w-8 lg:left-24 ${
+          className={`pointer-events-none fixed left-4 z-[35] w-5 bg-deckle-left transition-opacity duration-700 sm:left-8 md:left-16 md:w-8 lg:left-24 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
           style={{
