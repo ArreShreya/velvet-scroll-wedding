@@ -43,7 +43,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         className="min-h-screen overflow-x-hidden bg-velvet"
         style={{
           ["--header-h" as string]: "2.75rem",
-          ["--rod-h" as string]: "3.25rem",
+          ["--rod-h" as string]: "clamp(3.5rem, 8vw, 6rem)",
+
         }}
       >
         {/* ---------- Landing backdrop (beach) ---------- */}
