@@ -217,6 +217,17 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         <div className="pointer-events-none fixed inset-y-0 left-0 z-30 w-4 bg-velvet sm:w-8 md:w-16 lg:w-24" />
         <div className="pointer-events-none fixed inset-y-0 right-0 z-30 w-4 bg-velvet sm:w-8 md:w-16 lg:w-24" />
 
+        {/* Velvet bands behind each rod so content never shows through */}
+        <div
+          className="pointer-events-none fixed inset-x-0 z-[44] bg-velvet"
+          style={{ top: "var(--header-h)", height: "var(--rod-h)" }}
+        />
+        <div
+          className="pointer-events-none fixed inset-x-0 bottom-0 z-[44] bg-velvet"
+          style={{ height: "var(--rod-h)" }}
+        />
+
+
         {/* Paper surface — strictly between the two rods, never past them */}
         <div
           className={`pointer-events-none fixed inset-x-0 z-0 bg-paper transition-opacity duration-700 ${
