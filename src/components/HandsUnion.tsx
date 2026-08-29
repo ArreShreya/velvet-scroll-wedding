@@ -1,8 +1,8 @@
-import handLeft from "@/assets/hand-left.png.asset.json";
-import handRight from "@/assets/hand-right-natural.png";
+import handLeft from "@/assets/hand-left-v2.png";
+import handRight from "@/assets/hand-right-v2.png";
 import { useInView } from "@/hooks/useInView";
 
-/** Two hands meeting in the centre with rings — they glide in from each side. */
+/** Two hands reaching diagonally toward each other, ring in the groom's hand. */
 export function HandsUnion() {
   const { ref, inView } = useInView<HTMLDivElement>(0.25);
 
@@ -15,20 +15,20 @@ export function HandsUnion() {
       }`}
     >
       <img
-        src={handLeft.url}
+        src={handLeft}
         alt=""
         loading="lazy"
-        width={896}
-        height={484}
+        width={1024}
+        height={640}
         className="reveal-hand-left w-1/2 max-w-[16rem] select-none sm:max-w-xs"
       />
       <img
         src={handRight}
         alt=""
         loading="lazy"
-        width={885}
-        height={513}
-        className="reveal-hand-right -ml-4 w-1/2 max-w-[16rem] select-none sm:max-w-xs"
+        width={1024}
+        height={640}
+        className="reveal-hand-right -ml-6 w-1/2 max-w-[16rem] select-none sm:max-w-xs"
       />
     </div>
   );
