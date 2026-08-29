@@ -130,7 +130,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             alt=""
             width={1536}
             height={512}
-            className="block h-[var(--rod-h)] w-full object-fill"
+            className="block h-[var(--rod-h)] w-full object-cover"
           />
         </div>
 
@@ -149,7 +149,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             alt=""
             width={1536}
             height={512}
-            className="block h-[var(--rod-h)] w-full object-fill"
+            className="block h-[var(--rod-h)] w-full object-cover"
           />
         </div>
 
