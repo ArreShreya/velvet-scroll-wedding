@@ -63,7 +63,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
               alt=""
               width={1536}
               height={1024}
-              className="pointer-events-none absolute inset-0 h-full w-full object-fill"
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover"
             />
             <div className="pointer-events-none absolute inset-0 bg-paper-veil backdrop-blur-[1px] backdrop-saturate-110" />
 
