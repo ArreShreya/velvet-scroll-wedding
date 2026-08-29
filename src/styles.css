@@ -202,7 +202,6 @@
 
 @utility bg-paper {
   background-color: oklch(0.97 0.015 60);
-  min-height: 100vh;
 }
 
 @utility bg-paper-tint {
