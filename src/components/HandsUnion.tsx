@@ -28,7 +28,7 @@ export function HandsUnion() {
         loading="lazy"
         width={1024}
         height={640}
-        className="reveal-hand-right -ml-6 w-1/2 max-w-[16rem] select-none sm:max-w-xs"
+        className="reveal-hand-right -ml-14 w-1/2 max-w-[16rem] select-none sm:max-w-xs"
       />
     </div>
   );
