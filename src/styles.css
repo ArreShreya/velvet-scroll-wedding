@@ -62,8 +62,8 @@
 }
 
 @theme {
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Noto Serif Devanagari", "Noto Sans Devanagari", Georgia, serif;
+  --font-sans: "Karla", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
   --color-ink: var(--ink);
   --color-rose: var(--rose);
   --color-rose-deep: var(--rose-deep);
