@@ -1,5 +1,5 @@
 import handLeft from "@/assets/hand-left.png.asset.json";
-import handRight from "@/assets/hand-right.png.asset.json";
+import handRight from "@/assets/hand-right-natural.png";
 import { useInView } from "@/hooks/useInView";
 
 /** Two hands meeting in the centre with rings — they glide in from each side. */
@@ -23,7 +23,7 @@ export function HandsUnion() {
         className="reveal-hand-left w-1/2 max-w-[16rem] select-none sm:max-w-xs"
       />
       <img
-        src={handRight.url}
+        src={handRight}
         alt=""
         loading="lazy"
         width={885}
