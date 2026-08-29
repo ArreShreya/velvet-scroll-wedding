@@ -40,10 +40,10 @@ export function ScrollShell({ children }: { children: ReactNode }) {
   return (
     <ShellOpenContext.Provider value={opened}>
       <div
-        className="min-h-screen bg-velvet"
+        className="min-h-screen overflow-x-hidden bg-velvet"
         style={{
           ["--header-h" as string]: "2.75rem",
-          ["--rod-h" as string]: "2.25rem",
+          ["--rod-h" as string]: "3.25rem",
         }}
       >
         {/* ---------- Landing backdrop (beach) ---------- */}
@@ -102,7 +102,11 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         )}
 
         {/* ---------- Header strip: monogram + language toggle ---------- */}
-        <header className="fixed inset-x-0 top-0 z-[70] flex h-[var(--header-h)] items-center justify-between bg-velvet px-3 md:px-5">
+        <header
+          className={`fixed inset-x-0 top-0 z-[70] flex h-[var(--header-h)] items-center justify-between px-3 transition-colors duration-700 md:px-5 ${
+            closed ? "bg-transparent" : "bg-velvet"
+          }`}
+        >
           <div className="pointer-events-auto rounded-full border border-rose/50 bg-paper-tint px-2 py-0.5 shadow-[0_6px_18px_-12px_rgba(90,50,40,0.6)] backdrop-blur-sm">
             <Monogram />
           </div>
@@ -191,16 +195,22 @@ export function ScrollShell({ children }: { children: ReactNode }) {
 
         {/* Torn deckled paper edges — below the rods */}
         <div
-          className={`pointer-events-none fixed bottom-0 left-4 z-[35] w-5 bg-deckle-left transition-opacity duration-700 sm:left-8 md:left-16 md:w-8 lg:left-24 ${
+          className={`pointer-events-none fixed left-4 z-[35] w-5 bg-deckle-left transition-opacity duration-700 sm:left-8 md:left-16 md:w-8 lg:left-24 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
-          style={{ top: "var(--header-h)" }}
+          style={{
+            top: "calc(var(--header-h) + var(--rod-h))",
+            bottom: "var(--rod-h)",
+          }}
         />
         <div
-          className={`pointer-events-none fixed bottom-0 right-4 z-[35] w-5 bg-deckle-right transition-opacity duration-700 sm:right-8 md:right-16 md:w-8 lg:right-24 ${
+          className={`pointer-events-none fixed right-4 z-[35] w-5 bg-deckle-right transition-opacity duration-700 sm:right-8 md:right-16 md:w-8 lg:right-24 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
-          style={{ top: "var(--header-h)" }}
+          style={{
+            top: "calc(var(--header-h) + var(--rod-h))",
+            bottom: "var(--rod-h)",
+          }}
         />
         {/* Velvet margin outside the paper, left and right */}
         <div className="pointer-events-none fixed inset-y-0 left-0 z-30 w-4 bg-velvet sm:w-8 md:w-16 lg:w-24" />
@@ -212,8 +222,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             opened ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            paddingTop: "calc(var(--header-h) + var(--rod-h) + 0.5rem)",
-            paddingBottom: "calc(var(--rod-h) + 0.5rem)",
+            paddingTop: "calc(var(--header-h) + var(--rod-h))",
+            paddingBottom: "var(--rod-h)",
           }}
         >
           <div className="pointer-events-none fixed inset-0 z-30 bg-paper-grain opacity-60" />
