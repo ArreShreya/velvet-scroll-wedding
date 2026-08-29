@@ -57,16 +57,16 @@ export function ShlokaText({
   return (
     <p ref={ref} className={className}>
       {lines.map((line, li) => (
-        <span key={li} className="block">
+        <span key={li} className="block [overflow-wrap:anywhere]">
           {clusters(line).map((ch, ci) => {
             const delay = startDelay + index++ * step;
             return (
               <span
                 key={ci}
-                className={inView ? "shloka-letter" : undefined}
+                className={inView ? "shloka-letter whitespace-pre-wrap" : "whitespace-pre-wrap"}
                 style={inView ? { animationDelay: `${delay}ms` } : { opacity: 0 }}
               >
-                {ch === " " ? "\u00A0" : ch}
+                {ch}
               </span>
             );
           })}
