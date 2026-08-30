@@ -23,15 +23,20 @@ function ClockHand({
   cx,
   cy,
   r,
+  startDeg,
   dir,
   sec,
 }: {
   cx: number;
   cy: number;
   r: number;
+  startDeg: number;
   dir: 1 | -1;
   sec: number;
 }) {
+  const rad = (startDeg * Math.PI) / 180;
+  const tx = cx + r * 0.94 * Math.cos(rad);
+  const ty = cy + r * 0.94 * Math.sin(rad);
   return (
     <g
       className="clock-hand"
@@ -40,20 +45,18 @@ function ClockHand({
       <line
         x1={cx}
         y1={cy}
-        x2={cx + dir * -r * 0.94}
-        y2={cy}
+        x2={tx}
+        y2={ty}
         stroke="var(--rose-deep)"
-        strokeWidth="1.25"
+        strokeWidth="1.1"
         strokeLinecap="round"
-        opacity="0.5"
+        opacity="0.45"
       />
-      <circle cx={cx} cy={cy} r="2.6" fill="var(--rose-deep)" opacity="0.65" />
-      <circle cx={cx + dir * -r * 0.94} cy={cy} r="3" fill="var(--gold, var(--rose-deep))" opacity="0.85" />
+      <circle cx={cx} cy={cy} r="2.4" fill="var(--rose-deep)" opacity="0.6" />
+      <circle cx={tx} cy={ty} r="2.8" fill="var(--rose-deep)" opacity="0.8" />
     </g>
   );
 }
-
-
 
 const CX = 300;
 const CY = 300;
@@ -131,7 +134,7 @@ export function TimelinePage() {
               style={{ animationDelay: `${i * 1000}ms` }}
             />
           ))}
-          <ClockHand cx={CX} cy={CY} r={R} dir={1} sec={sec} />
+          <ClockHand cx={CX} cy={CY} r={R} startDeg={180} dir={1} sec={sec} />
         </svg>
 
         {events.map((e, i) => {
@@ -246,7 +249,7 @@ function MobileArc({
             />
           );
         })}
-        <ClockHand cx={cx} cy={cy} r={R} dir={facing === "left" ? -1 : 1} sec={sec} />
+        <ClockHand cx={cx} cy={cy} r={R} startDeg={270} dir={facing === "left" ? -1 : 1} sec={sec} />
       </svg>
 
       {ids.map((id, i) => {
