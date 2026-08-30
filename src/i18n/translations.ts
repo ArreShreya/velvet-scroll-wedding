@@ -12,6 +12,7 @@ export type Dict = {
   landingTitle: string;
   landingTitleItalic: string;
   tapToUnfurl: string;
+  tapTheSeal: string;
   openInvitation: string;
   shloka1: string;
   shloka2: string;
@@ -58,11 +59,12 @@ export const translations: Record<Lang, Dict> = {
     landingTitle: "Shreya & Prabhav’s",
     landingTitleItalic: "Wedding",
     tapToUnfurl: "tap to unfurl",
+    tapTheSeal: "tap the seal to open",
     openInvitation: "Open the invitation",
-    shloka1: "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।",
-    shloka2: "निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥",
+    shloka1: "Vakratunda Mahakaya Suryakoti Samaprabha,",
+    shloka2: "Nirvighnam Kuru Me Deva Sarvakaryeshu Sarvada.",
     translitLine:
-      "Vakratunda Mahakaya Suryakoti Samaprabha · Nirvighnam Kuru Me Deva Sarvakaryeshu Sarvada",
+      "O Lord with the curved trunk and mighty form, radiant as a million suns — may all our endeavours be free of obstacles, always.",
     coupleKicker: "with love, together forever",
     bride: "Shreya",
     groom: "Prabhav",
@@ -93,7 +95,7 @@ export const translations: Record<Lang, Dict> = {
     minutes: "Mins",
     seconds: "Secs",
     photoPlaceholder: "A photograph of the couple, coming soon",
-    ganeshInvocation: "श्री गणेशाय नमः",
+    ganeshInvocation: "Shri Ganeshay Namah",
     closingBlessing: "May this union be blessed with light, laughter and long years.",
     closingWith: "With love,",
     closingNames: "Shreya & Prabhav",
@@ -114,6 +116,7 @@ export const translations: Record<Lang, Dict> = {
     landingTitle: "श्रेया और प्रभव का",
     landingTitleItalic: "विवाह",
     tapToUnfurl: "खोलने के लिए स्पर्श करें",
+    tapTheSeal: "खोलने के लिए मुहर स्पर्श करें",
     openInvitation: "निमंत्रण खोलें",
     shloka1: "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।",
     shloka2: "निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥",
@@ -170,6 +173,7 @@ export const translations: Record<Lang, Dict> = {
     landingTitle: "શ્રેયા અને પ્રભવનાં",
     landingTitleItalic: "લગ્ન",
     tapToUnfurl: "ખોલવા માટે સ્પર્શ કરો",
+    tapTheSeal: "ખોલવા માટે મહોર સ્પર્શ કરો",
     openInvitation: "આમંત્રણ ખોલો",
     shloka1: "વક્રતુણ્ડ મહાકાય સૂર્યકોટિ સમપ્રભ ।",
     shloka2: "નિર્વિઘ્નં કુરુ મે દેવ સર્વકાર્યેષુ સર્વદા ॥",
