@@ -44,7 +44,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         style={{
           ["--header-h" as string]: "2.75rem",
           ["--rod-h" as string]: "clamp(3.5rem, 8vw, 6rem)",
-          ["--paper-inset" as string]: "clamp(1rem, 6vw, 6rem)",
+          ["--paper-inset" as string]: "clamp(2.5rem, 22vw, 16rem)",
         }}
       >
         {/* ---------- Landing backdrop (beach) ---------- */}
@@ -128,8 +128,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           <img
             src={wrappedPaperRod.url}
             alt=""
-            width={1536}
-            height={171}
+            width={1920}
+            height={339}
             className="block h-[var(--rod-h)] w-full object-fill"
           />
         </div>
@@ -147,8 +147,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           <img
             src={wrappedPaperRod.url}
             alt=""
-            width={1536}
-            height={171}
+            width={1920}
+            height={339}
             className="block h-[var(--rod-h)] w-full rotate-180 object-fill"
           />
         </div>
