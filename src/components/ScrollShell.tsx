@@ -104,8 +104,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
 
         {/* ---------- Header strip: monogram + language toggle ---------- */}
         <header
-          className={`fixed inset-x-0 top-0 z-[70] flex h-[var(--header-h)] items-center justify-between px-3 transition-colors duration-700 md:px-5 ${
-            closed ? "bg-transparent" : "bg-velvet"
+          className={`fixed inset-x-0 top-0 z-[70] flex h-[var(--header-h)] items-center justify-between px-3 transition-[color,background-color,opacity] duration-700 md:px-5 ${
+            closed ? "pointer-events-none bg-transparent opacity-0" : "bg-velvet opacity-100"
           }`}
         >
           <div className="pointer-events-auto rounded-full border border-rose/50 bg-paper-tint px-2 py-0.5 shadow-[0_6px_18px_-12px_rgba(90,50,40,0.6)] backdrop-blur-sm">
@@ -214,16 +214,28 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           }}
         />
         {/* Velvet margin outside the paper, left and right */}
-        <div className="pointer-events-none fixed inset-y-0 left-0 z-30 w-4 bg-velvet sm:w-8 md:w-16 lg:w-24" />
-        <div className="pointer-events-none fixed inset-y-0 right-0 z-30 w-4 bg-velvet sm:w-8 md:w-16 lg:w-24" />
+        <div
+          className={`pointer-events-none fixed inset-y-0 left-0 z-30 w-4 bg-velvet transition-opacity duration-700 sm:w-8 md:w-16 lg:w-24 ${
+            opened ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        <div
+          className={`pointer-events-none fixed inset-y-0 right-0 z-30 w-4 bg-velvet transition-opacity duration-700 sm:w-8 md:w-16 lg:w-24 ${
+            opened ? "opacity-100" : "opacity-0"
+          }`}
+        />
 
         {/* Velvet bands behind each rod so content never shows through */}
         <div
-          className="pointer-events-none fixed inset-x-0 z-[44] bg-velvet"
+          className={`pointer-events-none fixed inset-x-0 z-[44] bg-velvet transition-opacity duration-700 ${
+            opened ? "opacity-100" : "opacity-0"
+          }`}
           style={{ top: "var(--header-h)", height: "var(--rod-h)" }}
         />
         <div
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-[44] bg-velvet"
+          className={`pointer-events-none fixed inset-x-0 bottom-0 z-[44] bg-velvet transition-opacity duration-700 ${
+            opened ? "opacity-100" : "opacity-0"
+          }`}
           style={{ height: "var(--rod-h)" }}
         />
 
