@@ -248,6 +248,177 @@
   );
 }
 
+/* ---------- Sealed envelope opening ---------- */
+.invitation-header {
+  background: color-mix(in oklab, oklch(0.98 0.012 40) 88%, transparent);
+  box-shadow: 0 8px 24px -22px oklch(0.34 0.03 25 / 0.65);
+  backdrop-filter: blur(12px);
+}
+
+.envelope-intro {
+  perspective: 1200px;
+}
+
+.envelope-stage {
+  perspective: 1400px;
+  filter: drop-shadow(0 24px 26px oklch(0.34 0.06 20 / 0.28));
+}
+
+.envelope-shell {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.55 / 1;
+  transform-style: preserve-3d;
+  transition: transform 1100ms var(--ease-elegant), opacity 450ms ease 1250ms;
+}
+
+.envelope-back,
+.envelope-front,
+.envelope-flap,
+.envelope-letter {
+  position: absolute;
+  inset: 0;
+}
+
+.envelope-back {
+  border: 1px solid oklch(0.75 0.08 75 / 0.65);
+  border-radius: 0.35rem;
+  background:
+    radial-gradient(circle at 28% 18%, oklch(1 0.01 55 / 0.75), transparent 40%),
+    linear-gradient(145deg, oklch(0.96 0.025 40), oklch(0.9 0.045 25));
+  box-shadow: inset 0 0 34px oklch(0.68 0.07 30 / 0.14);
+}
+
+.envelope-letter {
+  inset: 7% 5% 5%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid oklch(0.75 0.08 75 / 0.5);
+  border-radius: 0.2rem;
+  padding-top: 8%;
+  background-color: oklch(0.975 0.014 60);
+  background-image:
+    radial-gradient(oklch(0.72 0.04 40 / 0.08) 1px, transparent 1.2px),
+    radial-gradient(oklch(0.8 0.03 30 / 0.06) 1px, transparent 1.2px);
+  background-size: 4px 4px, 7px 7px;
+  transition: transform 900ms var(--ease-elegant) 380ms;
+}
+
+.envelope-front {
+  z-index: 4;
+  clip-path: polygon(0 0, 50% 48%, 100% 0, 100% 100%, 0 100%);
+  border: 1px solid oklch(0.75 0.08 75 / 0.65);
+  border-radius: 0.35rem;
+  background:
+    linear-gradient(32deg, transparent 49.5%, oklch(0.77 0.06 55 / 0.28) 50%, transparent 50.5%),
+    linear-gradient(-32deg, transparent 49.5%, oklch(0.77 0.06 55 / 0.28) 50%, transparent 50.5%),
+    linear-gradient(145deg, oklch(0.95 0.03 35), oklch(0.88 0.055 20));
+  box-shadow: inset 0 -16px 30px oklch(0.65 0.06 25 / 0.12);
+}
+
+.envelope-flap {
+  z-index: 5;
+  height: 58%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-radius: 0.35rem 0.35rem 0 0;
+  background:
+    radial-gradient(circle at 50% 10%, oklch(0.99 0.012 50 / 0.75), transparent 55%),
+    linear-gradient(160deg, oklch(0.96 0.025 38), oklch(0.88 0.055 20));
+  transform-origin: 50% 0;
+  transition: transform 850ms cubic-bezier(0.4, 0, 0.2, 1), filter 850ms ease;
+  backface-visibility: visible;
+  filter: drop-shadow(0 8px 7px oklch(0.45 0.08 25 / 0.2));
+}
+
+.envelope-seal {
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  z-index: 7;
+  display: grid;
+  width: clamp(3.6rem, 14vw, 5.5rem);
+  aspect-ratio: 1;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 2px solid oklch(0.82 0.1 80 / 0.9);
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 28%, oklch(0.75 0.11 18), oklch(0.48 0.14 18) 72%);
+  box-shadow:
+    0 7px 12px oklch(0.35 0.08 20 / 0.3),
+    inset 0 0 0 3px oklch(0.94 0.07 75 / 0.2);
+  transition: transform 520ms var(--ease-elegant), opacity 380ms ease;
+}
+
+.envelope-seal img {
+  height: 70%;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1) sepia(0.25);
+  opacity: 0.9;
+}
+
+.envelope-intro.is-opening .envelope-flap {
+  transform: rotateX(178deg);
+  filter: drop-shadow(0 -7px 8px oklch(0.45 0.08 25 / 0.14));
+}
+
+.envelope-intro.is-opening .envelope-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.72);
+}
+
+.envelope-intro.is-opening .envelope-letter {
+  transform: translateY(-48%) scale(1.025);
+}
+
+.envelope-intro.is-opening .envelope-shell {
+  opacity: 0;
+  transform: translateY(14vh) scale(1.08);
+}
+
+.envelope-title,
+.envelope-cue {
+  transition: opacity 450ms ease, transform 700ms var(--ease-elegant);
+}
+
+.envelope-intro.is-opening .envelope-title {
+  opacity: 0;
+  transform: translateY(-1rem);
+}
+
+.envelope-intro.is-opening .envelope-cue {
+  opacity: 0;
+}
+
+.envelope-intro.is-opening {
+  animation: envelope-backdrop-away 550ms ease 1250ms forwards;
+}
+
+@keyframes envelope-backdrop-away {
+  to { opacity: 0; }
+}
+
+@media (max-height: 650px) {
+  .envelope-title { top: 3svh; }
+  .envelope-stage { top: 56%; width: min(76vw, 34rem); }
+  .envelope-cue { bottom: 3svh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope-shell,
+  .envelope-flap,
+  .envelope-letter,
+  .envelope-seal,
+  .envelope-title,
+  .envelope-cue {
+    transition: none;
+  }
+  .envelope-intro.is-opening { animation: none; opacity: 0; }
+}
+
 /* ---------- Torn / deckled handmade paper edges ---------- */
 @utility bg-deckle-left {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='200' preserveAspectRatio='none' viewBox='0 0 32 200'%3E%3Cpath d='M0 0 H15 C21 12 9 26 17 40 C23 54 11 66 16 82 C22 96 10 110 18 124 C24 138 12 150 15 166 C19 180 10 190 14 200 H0 Z' fill='%23ecd6cf'/%3E%3Cpath d='M15 0 C21 12 9 26 17 40 C23 54 11 66 16 82 C22 96 10 110 18 124 C24 138 12 150 15 166 C19 180 10 190 14 200' fill='none' stroke='%23d8bcae' stroke-width='1.2' opacity='0.7'/%3E%3C/svg%3E");
