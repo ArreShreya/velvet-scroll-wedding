@@ -28,6 +28,20 @@ export function SealGate({ onDone }: { onDone: () => void }) {
       <div className="seal-gate-flap seal-gate-flap-bottom" />
       <div className="seal-gate-flap seal-gate-flap-top" />
 
+      <svg
+        className="pointer-events-none absolute inset-0 z-[4] h-full w-full"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <g stroke="var(--rose)" strokeWidth="0.22" opacity="0.55" vectorEffect="non-scaling-stroke">
+          <line x1="0" y1="0" x2="50" y2="50" />
+          <line x1="100" y1="0" x2="50" y2="50" />
+          <line x1="0" y1="100" x2="50" y2="50" />
+          <line x1="100" y1="100" x2="50" y2="50" />
+        </g>
+      </svg>
+
       <button
         type="button"
         aria-label={t.openInvitation}

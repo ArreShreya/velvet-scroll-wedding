@@ -773,21 +773,21 @@
 
 .seal-gate-flap-left {
   clip-path: polygon(0 0, 50% 50%, 0 100%);
-  filter: drop-shadow(2px 0 3px oklch(0.5 0.08 25 / 0.16)) brightness(0.985);
+  filter: drop-shadow(2px 0 4px oklch(0.5 0.08 25 / 0.2)) brightness(0.955);
 }
 .seal-gate-flap-right {
   clip-path: polygon(100% 0, 50% 50%, 100% 100%);
-  filter: drop-shadow(-2px 0 3px oklch(0.5 0.08 25 / 0.16)) brightness(0.985);
+  filter: drop-shadow(-2px 0 4px oklch(0.5 0.08 25 / 0.2)) brightness(0.975);
 }
 .seal-gate-flap-bottom {
   clip-path: polygon(0 100%, 50% 50%, 100% 100%);
-  filter: drop-shadow(0 -3px 4px oklch(0.5 0.08 25 / 0.18)) brightness(1.01);
+  filter: drop-shadow(0 -3px 5px oklch(0.5 0.08 25 / 0.22)) brightness(1.02);
   z-index: 2;
 }
 
 .seal-gate-flap-top {
   clip-path: polygon(0 0, 100% 0, 50% 50%);
-  filter: drop-shadow(0 4px 6px oklch(0.5 0.08 25 / 0.2)) brightness(1.02);
+  filter: drop-shadow(0 4px 7px oklch(0.5 0.08 25 / 0.24)) brightness(1.045);
   transform-origin: 50% 0;
   transform-style: preserve-3d;
   transition: transform 1100ms cubic-bezier(0.4, 0, 0.2, 1);
