@@ -6,7 +6,6 @@ import { Reveal } from "./Reveal";
 const TARGET = new Date("2026-12-11T00:00:00+05:30").getTime();
 
 type Parts = {
-  months: number;
   days: number;
   hours: number;
   minutes: number;
@@ -15,16 +14,14 @@ type Parts = {
 
 function diff(now: number): Parts {
   let ms = Math.max(0, TARGET - now);
-  const totalDays = Math.floor(ms / 86400000);
-  const months = Math.floor(totalDays / 30);
-  const days = totalDays - months * 30;
-  ms -= totalDays * 86400000;
+  const days = Math.floor(ms / 86400000);
+  ms -= days * 86400000;
   const hours = Math.floor(ms / 3600000);
   ms -= hours * 3600000;
   const minutes = Math.floor(ms / 60000);
   ms -= minutes * 60000;
   const seconds = Math.floor(ms / 1000);
-  return { months, days, hours, minutes, seconds };
+  return { days, hours, minutes, seconds };
 }
 
 function Dial({ value, label, delay }: { value: number | null; label: string; delay: number }) {
@@ -66,11 +63,10 @@ export function CountdownPage() {
       <GoldDivider className="mt-4" />
 
       <div className="mt-9 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-        <Dial value={parts?.months ?? null} label={t.months} delay={0} />
-        <Dial value={parts?.days ?? null} label={t.days} delay={120} />
-        <Dial value={parts?.hours ?? null} label={t.hours} delay={240} />
-        <Dial value={parts?.minutes ?? null} label={t.minutes} delay={360} />
-        <Dial value={parts?.seconds ?? null} label={t.seconds} delay={480} />
+        <Dial value={parts?.days ?? null} label={t.days} delay={0} />
+        <Dial value={parts?.hours ?? null} label={t.hours} delay={120} />
+        <Dial value={parts?.minutes ?? null} label={t.minutes} delay={240} />
+        <Dial value={parts?.seconds ?? null} label={t.seconds} delay={360} />
       </div>
 
       <Reveal delay={200} className="mt-12 w-full max-w-xs">
