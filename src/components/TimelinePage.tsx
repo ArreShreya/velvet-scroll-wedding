@@ -4,6 +4,54 @@ import { useLang } from "@/i18n/LanguageContext";
 import { PageOrnaments } from "./Ornaments";
 import { useInView } from "@/hooks/useInView";
 import { Reveal } from "./Reveal";
+import { useEffect, useState } from "react";
+
+/** Seconds hand tick — 0..59, updated once per second. */
+function useTick() {
+  const [sec, setSec] = useState(0);
+  useEffect(() => {
+    const set = () => setSec(new Date().getSeconds());
+    set();
+    const id = window.setInterval(set, 1000);
+    return () => window.clearInterval(id);
+  }, []);
+  return sec;
+}
+
+/** Thin gold hand sweeping a semi-circular arc, one tick per second. */
+function ClockHand({
+  cx,
+  cy,
+  r,
+  dir,
+  sec,
+}: {
+  cx: number;
+  cy: number;
+  r: number;
+  dir: 1 | -1;
+  sec: number;
+}) {
+  return (
+    <g
+      className="clock-hand"
+      style={{ transform: `rotate(${dir * 3 * sec}deg)`, transformOrigin: `${cx}px ${cy}px` }}
+    >
+      <line
+        x1={cx}
+        y1={cy}
+        x2={cx + dir * -r * 0.94}
+        y2={cy}
+        stroke="var(--rose-deep)"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        opacity="0.5"
+      />
+      <circle cx={cx} cy={cy} r="2.6" fill="var(--rose-deep)" opacity="0.65" />
+      <circle cx={cx + dir * -r * 0.94} cy={cy} r="3" fill="var(--gold, var(--rose-deep))" opacity="0.85" />
+    </g>
+  );
+}
 
 
 
@@ -28,6 +76,7 @@ const pointAt = (i: number): Point => POINTS[i] ?? POINTS[0]!;
 export function TimelinePage() {
   const { t } = useLang();
   const { ref, inView } = useInView<HTMLElement>(0.2);
+  const sec = useTick();
   const copyFor = (id: string) =>
     t.events[id] ?? { name: id, time: "", date: "" };
 
@@ -82,6 +131,7 @@ export function TimelinePage() {
               style={{ animationDelay: `${i * 1000}ms` }}
             />
           ))}
+          <ClockHand cx={CX} cy={CY} r={R} dir={1} sec={sec} />
         </svg>
 
         {events.map((e, i) => {
@@ -149,6 +199,7 @@ function MobileArc({
 }) {
   const { t } = useLang();
   const { ref, inView } = useInView<HTMLDivElement>(0.2);
+  const sec = useTick();
   const W = 300;
   const H = 290;
   const R = 88;
@@ -195,6 +246,7 @@ function MobileArc({
             />
           );
         })}
+        <ClockHand cx={cx} cy={cy} r={R} dir={facing === "left" ? -1 : 1} sec={sec} />
       </svg>
 
       {ids.map((id, i) => {
