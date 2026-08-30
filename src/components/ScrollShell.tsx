@@ -1,6 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import wrappedPaperRod from "@/assets/wrapped-paper-golden-rod.png.asset.json";
-import goldTassel from "@/assets/gold-tassel.png";
+import monogram from "@/assets/monogram-ps.png.asset.json";
 import { LanguageToggle } from "./LanguageToggle";
 import { Monogram } from "./Monogram";
 import { useLang } from "@/i18n/LanguageContext";
@@ -10,7 +9,7 @@ import { ShellOpenContext } from "./ShellOpen";
 
 type Phase = "closed" | "opening" | "open";
 
-const UNFURL_MS = 2000;
+const OPEN_MS = 1800;
 
 export function ScrollShell({ children }: { children: ReactNode }) {
   const [phase, setPhase] = useState<Phase>("closed");
@@ -21,42 +20,43 @@ export function ScrollShell({ children }: { children: ReactNode }) {
     const reduce =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const id = window.setTimeout(() => setPhase("open"), reduce ? 0 : UNFURL_MS);
+    const id = window.setTimeout(() => setPhase("open"), reduce ? 0 : OPEN_MS);
     return () => window.clearTimeout(id);
   }, [phase]);
 
   const [shower, setShower] = useState(false);
   useEffect(() => {
     if (phase !== "opening") return;
-    setShower(true);
-    const id = window.setTimeout(() => setShower(false), 3600);
-    return () => window.clearTimeout(id);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const startId = window.setTimeout(() => setShower(true), 900);
+    const endId = window.setTimeout(() => setShower(false), 4500);
+    return () => {
+      window.clearTimeout(startId);
+      window.clearTimeout(endId);
+    };
   }, [phase]);
 
   const closed = phase === "closed";
   const opened = phase === "open";
-  const unrolling = !closed; // rods travel to their pinned positions
 
   return (
     <ShellOpenContext.Provider value={opened}>
       <div
-        className="h-screen overflow-hidden bg-velvet"
+        className="h-screen overflow-hidden bg-paper"
         style={{
-          ["--header-h" as string]: "2.75rem",
-          ["--rod-h" as string]: "clamp(3.5rem, 8vw, 6rem)",
-          ["--paper-inset" as string]: "clamp(2.5rem, 22vw, 16rem)",
+          ["--header-h" as string]: "3.25rem",
         }}
       >
-        {/* ---------- Landing backdrop (beach) ---------- */}
+        {/* ---------- Sealed envelope landing ---------- */}
         {!opened && (
           <button
             type="button"
             aria-label={t.openInvitation}
             onClick={() => closed && setPhase("opening")}
-            className={`fixed inset-0 z-40 flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-velvet transition-opacity duration-[900ms] ${
-              closed ? "opacity-100" : "pointer-events-none opacity-0"
+            className={`envelope-intro fixed inset-0 z-40 cursor-pointer overflow-hidden bg-velvet focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-rose ${
+              phase === "opening" ? "is-opening pointer-events-none" : ""
             }`}
-
           >
             <img
               src={beach}
@@ -68,44 +68,44 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             <div className="pointer-events-none absolute inset-0 bg-paper-veil backdrop-blur-[1px] backdrop-saturate-110" />
 
             <h1
-              className={`relative z-10 mt-[10vh] mb-[38vh] px-6 text-center font-display text-4xl leading-tight text-rose-deep transition-opacity duration-700 md:text-6xl ${
-                closed ? "opacity-100" : "opacity-0"
-              }`}
+              className="envelope-title absolute inset-x-0 top-[8svh] z-10 px-6 text-center font-display text-4xl leading-tight text-rose-deep md:top-[7svh] md:text-6xl"
               style={{ textShadow: "0 2px 14px oklch(0.99 0.01 60 / 0.75)" }}
             >
               {t.landingTitle}
               <span className="mt-1 block italic">{t.landingTitleItalic}</span>
             </h1>
 
+            <div className="envelope-stage absolute left-1/2 top-[54%] w-[88vw] max-w-[42rem] -translate-x-1/2 -translate-y-1/2" aria-hidden="true">
+              <div className="envelope-shell">
+                <div className="envelope-back" />
+                <div className="envelope-letter">
+                  <span className="font-display text-sm uppercase tracking-[0.28em] text-rose-deep/80 sm:text-base">
+                    Shreya <i className="normal-case">&amp;</i> Prabhav
+                  </span>
+                  <span className="mt-1 font-sans text-[0.55rem] uppercase tracking-[0.3em] text-ink/55 sm:text-[0.65rem]">
+                    11 · 12 December
+                  </span>
+                </div>
+                <div className="envelope-flap" />
+                <div className="envelope-front" />
+                <div className="envelope-seal">
+                  <img src={monogram.url} alt="" width={718} height={980} />
+                </div>
+              </div>
+            </div>
+
             <p
-              className={`relative z-10 mt-[34vh] font-sans text-xs uppercase tracking-[0.5em] text-rose-deep transition-opacity duration-500 ${
-                closed ? "animate-pulse opacity-80" : "opacity-0"
-              }`}
+              className="envelope-cue absolute inset-x-0 bottom-[8svh] z-10 animate-pulse px-4 font-sans text-xs uppercase tracking-[0.42em] text-rose-deep/80"
             >
               {t.tapToUnfurl}
             </p>
           </button>
         )}
 
-        {/* ---------- The paper, uncoiling from the centre outward ---------- */}
-        {!opened && (
-          <div
-            className="pointer-events-none fixed inset-0 z-[25] bg-paper transition-[clip-path] ease-[cubic-bezier(0.33,0,0.2,1)]"
-            style={{
-              clipPath: unrolling
-                ? "inset(var(--header-h) 0px 0px 0px)"
-                : "inset(50% 0px calc(50% - var(--rod-h)) 0px)",
-              transitionDuration: `${UNFURL_MS}ms`,
-            }}
-          >
-            <div className="absolute inset-0 bg-paper-grain opacity-60" />
-          </div>
-        )}
-
         {/* ---------- Header strip: monogram + language toggle ---------- */}
         <header
-          className={`fixed inset-x-0 top-0 z-[70] flex h-[var(--header-h)] items-center justify-between px-3 transition-[color,background-color,opacity] duration-700 md:px-5 ${
-            closed ? "pointer-events-none bg-transparent opacity-0" : "bg-velvet opacity-100"
+          className={`invitation-header fixed inset-x-0 top-0 z-[70] flex h-[var(--header-h)] items-center justify-between border-b border-rose/30 px-3 transition-opacity duration-700 md:px-5 ${
+            opened ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
         >
           <div className="pointer-events-auto rounded-full border border-rose/50 bg-paper-tint px-2 py-0.5 shadow-[0_6px_18px_-12px_rgba(90,50,40,0.6)] backdrop-blur-sm">
@@ -113,65 +113,6 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           </div>
           <LanguageToggle />
         </header>
-
-        {/* ---------- The two golden rods: present from the start ---------- */}
-        {/* Top rod — starts at the centre, rolls up to just under the header */}
-        <div
-          className="pointer-events-none fixed inset-x-0 top-[var(--header-h)] z-[45] ease-[cubic-bezier(0.33,0,0.2,1)]"
-          style={{
-            transform: closed
-              ? "translateY(calc(50vh - var(--header-h) - var(--rod-h)))"
-              : "translateY(0)",
-            transition: `transform ${UNFURL_MS}ms cubic-bezier(0.33,0,0.2,1)`,
-          }}
-        >
-          <img
-            src={wrappedPaperRod.url}
-            alt=""
-            width={1920}
-            height={339}
-            className="block h-[var(--rod-h)] w-full object-fill"
-          />
-        </div>
-
-        {/* Bottom rod — starts at the centre, rolls down to the bottom edge */}
-        <div
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-[45]"
-          style={{
-            transform: closed
-              ? "translateY(calc(var(--rod-h) - 50vh))"
-              : "translateY(0)",
-            transition: `transform ${UNFURL_MS}ms cubic-bezier(0.33,0,0.2,1)`,
-          }}
-        >
-          <img
-            src={wrappedPaperRod.url}
-            alt=""
-            width={1920}
-            height={339}
-            className="block h-[var(--rod-h)] w-full rotate-180 object-fill"
-          />
-        </div>
-
-        {/* Gold thread + tassel on the closed bundle — falls away on tap */}
-        {!opened && (
-          <div
-            className="pointer-events-none fixed inset-x-0 top-1/2 z-[46] flex -translate-y-1/2 justify-center transition-opacity duration-500"
-            style={{ opacity: closed ? 1 : 0 }}
-          >
-            <div className="relative w-[86vw] max-w-3xl">
-              <div className="absolute left-1/2 top-1/2 h-[3.5rem] w-[7px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-thread" />
-              <img
-                src={goldTassel}
-                alt=""
-                aria-hidden="true"
-                width={1024}
-                height={1024}
-                className="absolute left-1/2 top-1/2 w-20 -translate-x-1/2 select-none drop-shadow-[0_8px_14px_rgba(90,60,10,0.35)] sm:w-24"
-              />
-            </div>
-          </div>
-        )}
 
         {/* Shloka audio — starts once the scroll is open */}
         {opened && <ShlokaAudio />}
@@ -194,63 +135,26 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           </div>
         )}
 
-        {/* Torn deckled paper edges — continue beneath both rods */}
+        {/* Full-viewport handmade paper surface */}
         <div
-          className={`pointer-events-none fixed left-[var(--paper-inset)] z-[35] w-5 bg-deckle-left transition-opacity duration-700 md:w-8 ${
+          className={`pointer-events-none fixed inset-0 z-0 bg-paper transition-opacity duration-700 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
-          style={{
-            top: "var(--header-h)",
-            bottom: 0,
-          }}
-        />
-        <div
-          className={`pointer-events-none fixed right-[var(--paper-inset)] z-[35] w-5 bg-deckle-right transition-opacity duration-700 md:w-8 ${
-            opened ? "opacity-100" : "opacity-0"
-          }`}
-          style={{
-            top: "var(--header-h)",
-            bottom: 0,
-          }}
-        />
-        {/* Velvet margin outside the paper, left and right */}
-        <div
-          className={`pointer-events-none fixed inset-y-0 left-0 z-30 w-[var(--paper-inset)] bg-velvet transition-opacity duration-700 ${
-            opened ? "opacity-100" : "opacity-0"
-          }`}
-        />
-        <div
-          className={`pointer-events-none fixed inset-y-0 right-0 z-30 w-[var(--paper-inset)] bg-velvet transition-opacity duration-700 ${
-            opened ? "opacity-100" : "opacity-0"
-          }`}
-        />
-
-        {/* Paper surface — extends beneath the rods so it reads as wrapped */}
-        <div
-          className={`pointer-events-none fixed inset-x-[var(--paper-inset)] z-0 bg-paper transition-opacity duration-700 ${
-            opened ? "opacity-100" : "opacity-0"
-          }`}
-          style={{
-            top: "var(--header-h)",
-            bottom: 0,
-            minHeight: 0,
-          }}
-
         >
           <div className="absolute inset-0 bg-paper-grain opacity-60" />
         </div>
 
-        {/* Content viewport — clipped precisely between both rods */}
+        {/* Full-screen invitation content */}
         <main
           className={`fixed inset-x-0 z-10 overflow-x-hidden overflow-y-auto overscroll-contain transition-opacity duration-700 ${
-            opened ? "opacity-100" : "opacity-0"
+            opened ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
           style={{
-            top: "calc(var(--header-h) + var(--rod-h))",
-            bottom: "var(--rod-h)",
+            top: "var(--header-h)",
+            bottom: 0,
           }}
         >
-          <div className="relative z-10 px-[calc(var(--paper-inset)+1rem)] sm:px-[calc(var(--paper-inset)+1.5rem)]">
+          <div className="relative z-10 px-2 sm:px-4 lg:px-8">
             {children}
           </div>
         </main>
