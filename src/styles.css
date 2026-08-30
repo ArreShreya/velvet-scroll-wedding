@@ -745,6 +745,7 @@
 
 /* ---------- Outer wax-seal envelope gate ---------- */
 .seal-gate {
+  perspective: 1600px;
   transition: opacity 700ms ease, filter 700ms ease;
 }
 

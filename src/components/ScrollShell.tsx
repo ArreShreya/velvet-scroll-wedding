@@ -6,6 +6,7 @@ import { useLang } from "@/i18n/LanguageContext";
 import beach from "@/assets/beach-watercolor.jpg";
 import { ShlokaAudio } from "./ShlokaAudio";
 import { ShellOpenContext } from "./ShellOpen";
+import { SealGate } from "./SealGate";
 
 type Phase = "closed" | "opening" | "open";
 
@@ -13,6 +14,7 @@ const OPEN_MS = 1800;
 
 export function ScrollShell({ children }: { children: ReactNode }) {
   const [phase, setPhase] = useState<Phase>("closed");
+  const [gateDone, setGateDone] = useState(false);
   const { t } = useLang();
 
   useEffect(() => {
@@ -48,6 +50,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           ["--header-h" as string]: "3.25rem",
         }}
       >
+        {!gateDone && <SealGate onDone={() => setGateDone(true)} />}
+
         {/* ---------- Sealed envelope landing ---------- */}
         {!opened && (
           <button
