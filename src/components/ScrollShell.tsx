@@ -147,7 +147,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         {/* Full-screen invitation content */}
         <main
           className={`fixed inset-x-0 z-10 overflow-x-hidden overflow-y-auto overscroll-contain transition-opacity duration-700 ${
-            opened ? "opacity-100" : "opacity-0"
+            opened ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
           style={{
             top: "var(--header-h)",
