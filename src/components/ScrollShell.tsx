@@ -83,11 +83,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             bottom: 0,
           }}
         >
-          <div className="relative z-10 px-2 sm:px-4 lg:px-8">
-            {children}
-          </div>
+          <div className="relative z-10 px-2 sm:px-4 lg:px-8">{children}</div>
         </main>
-
       </div>
     </ShellOpenContext.Provider>
   );
