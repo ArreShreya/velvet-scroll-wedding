@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import goldRod from "@/assets/gold-rod.png";
+import wrappedPaperRod from "@/assets/wrapped-paper-golden-rod.png.asset.json";
 import goldTassel from "@/assets/gold-tassel.png";
 import { LanguageToggle } from "./LanguageToggle";
 import { Monogram } from "./Monogram";
@@ -44,7 +44,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         style={{
           ["--header-h" as string]: "2.75rem",
           ["--rod-h" as string]: "clamp(3.5rem, 8vw, 6rem)",
-
+          ["--paper-inset" as string]: "clamp(1rem, 6vw, 6rem)",
         }}
       >
         {/* ---------- Landing backdrop (beach) ---------- */}
@@ -126,7 +126,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           }}
         >
           <img
-            src={goldRod}
+            src={wrappedPaperRod.url}
             alt=""
             width={1536}
             height={171}
@@ -145,11 +145,11 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           }}
         >
           <img
-            src={goldRod}
+            src={wrappedPaperRod.url}
             alt=""
             width={1536}
             height={171}
-            className="block h-[var(--rod-h)] w-full object-fill"
+            className="block h-[var(--rod-h)] w-full rotate-180 object-fill"
           />
         </div>
 
@@ -196,7 +196,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
 
         {/* Torn deckled paper edges — continue beneath both rods */}
         <div
-          className={`pointer-events-none fixed left-4 z-[35] w-5 bg-deckle-left transition-opacity duration-700 sm:left-8 md:left-16 md:w-8 lg:left-24 ${
+          className={`pointer-events-none fixed left-[var(--paper-inset)] z-[35] w-5 bg-deckle-left transition-opacity duration-700 md:w-8 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
           style={{
@@ -205,7 +205,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           }}
         />
         <div
-          className={`pointer-events-none fixed right-4 z-[35] w-5 bg-deckle-right transition-opacity duration-700 sm:right-8 md:right-16 md:w-8 lg:right-24 ${
+          className={`pointer-events-none fixed right-[var(--paper-inset)] z-[35] w-5 bg-deckle-right transition-opacity duration-700 md:w-8 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
           style={{
@@ -215,19 +215,19 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         />
         {/* Velvet margin outside the paper, left and right */}
         <div
-          className={`pointer-events-none fixed inset-y-0 left-0 z-30 w-4 bg-velvet transition-opacity duration-700 sm:w-8 md:w-16 lg:w-24 ${
+          className={`pointer-events-none fixed inset-y-0 left-0 z-30 w-[var(--paper-inset)] bg-velvet transition-opacity duration-700 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
         />
         <div
-          className={`pointer-events-none fixed inset-y-0 right-0 z-30 w-4 bg-velvet transition-opacity duration-700 sm:w-8 md:w-16 lg:w-24 ${
+          className={`pointer-events-none fixed inset-y-0 right-0 z-30 w-[var(--paper-inset)] bg-velvet transition-opacity duration-700 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
         />
 
         {/* Paper surface — extends beneath the rods so it reads as wrapped */}
         <div
-          className={`pointer-events-none fixed inset-x-0 z-0 bg-paper transition-opacity duration-700 ${
+          className={`pointer-events-none fixed inset-x-[var(--paper-inset)] z-0 bg-paper transition-opacity duration-700 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
           style={{
@@ -250,7 +250,9 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             bottom: "var(--rod-h)",
           }}
         >
-          <div className="relative z-10 px-8 sm:px-14 md:px-24 lg:px-32">{children}</div>
+          <div className="relative z-10 px-[calc(var(--paper-inset)+1rem)] sm:px-[calc(var(--paper-inset)+1.5rem)]">
+            {children}
+          </div>
         </main>
 
       </div>
