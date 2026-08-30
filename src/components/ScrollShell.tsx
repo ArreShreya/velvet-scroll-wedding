@@ -40,7 +40,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
   return (
     <ShellOpenContext.Provider value={opened}>
       <div
-        className="min-h-screen overflow-x-hidden bg-velvet"
+        className="h-screen overflow-hidden bg-velvet"
         style={{
           ["--header-h" as string]: "2.75rem",
           ["--rod-h" as string]: "clamp(3.5rem, 8vw, 6rem)",
@@ -194,14 +194,14 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           </div>
         )}
 
-        {/* Torn deckled paper edges — below the rods */}
+        {/* Torn deckled paper edges — continue beneath both rods */}
         <div
           className={`pointer-events-none fixed left-4 z-[35] w-5 bg-deckle-left transition-opacity duration-700 sm:left-8 md:left-16 md:w-8 lg:left-24 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            top: "calc(var(--header-h) + var(--rod-h))",
-            bottom: "var(--rod-h)",
+            top: "var(--header-h)",
+            bottom: 0,
           }}
         />
         <div
@@ -209,8 +209,8 @@ export function ScrollShell({ children }: { children: ReactNode }) {
             opened ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            top: "calc(var(--header-h) + var(--rod-h))",
-            bottom: "var(--rod-h)",
+            top: "var(--header-h)",
+            bottom: 0,
           }}
         />
         {/* Velvet margin outside the paper, left and right */}
@@ -225,29 +225,14 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           }`}
         />
 
-        {/* Velvet bands behind each rod so content never shows through */}
-        <div
-          className={`pointer-events-none fixed inset-x-0 z-[44] bg-velvet transition-opacity duration-700 ${
-            opened ? "opacity-100" : "opacity-0"
-          }`}
-          style={{ top: "var(--header-h)", height: "var(--rod-h)" }}
-        />
-        <div
-          className={`pointer-events-none fixed inset-x-0 bottom-0 z-[44] bg-velvet transition-opacity duration-700 ${
-            opened ? "opacity-100" : "opacity-0"
-          }`}
-          style={{ height: "var(--rod-h)" }}
-        />
-
-
-        {/* Paper surface — strictly between the two rods, never past them */}
+        {/* Paper surface — extends beneath the rods so it reads as wrapped */}
         <div
           className={`pointer-events-none fixed inset-x-0 z-0 bg-paper transition-opacity duration-700 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            top: "calc(var(--header-h) + var(--rod-h))",
-            bottom: "var(--rod-h)",
+            top: "var(--header-h)",
+            bottom: 0,
             minHeight: 0,
           }}
 
@@ -255,14 +240,14 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           <div className="absolute inset-0 bg-paper-grain opacity-60" />
         </div>
 
-        {/* Content — tucked between both rods */}
+        {/* Content viewport — clipped precisely between both rods */}
         <main
-          className={`relative transition-opacity duration-700 ${
+          className={`fixed inset-x-0 z-10 overflow-x-hidden overflow-y-auto overscroll-contain transition-opacity duration-700 ${
             opened ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            paddingTop: "calc(var(--header-h) + var(--rod-h))",
-            paddingBottom: "var(--rod-h)",
+            top: "calc(var(--header-h) + var(--rod-h))",
+            bottom: "var(--rod-h)",
           }}
         >
           <div className="relative z-10 px-8 sm:px-14 md:px-24 lg:px-32">{children}</div>
