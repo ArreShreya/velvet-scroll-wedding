@@ -8,6 +8,26 @@ export const LANGS: { code: Lang; label: string; short: string }[] = [
 
 type EventCopy = { name: string; time: string; date: string; thought?: string };
 
+export type FormalInvitation = {
+  invocation: string;
+  salutation: string;
+  prelude: string[];
+  groomLead: string;
+  groomName: string;
+  groomGrandparents: string;
+  groomParents: string;
+  conjunction: string;
+  brideName: string;
+  brideParents: string;
+  announcement?: string;
+  invitation: string;
+  blessing: string;
+  awaitingLabel: string;
+  awaitingNames: string[];
+  complimentsLabel: string;
+  complimentsNames: string;
+};
+
 export type Dict = {
   landingTitle: string;
   landingTitleItalic: string;
@@ -51,6 +71,7 @@ export type Dict = {
   closingBlessing: string;
   closingWith: string;
   closingNames: string;
+  formalInvitation: FormalInvitation;
   events: Record<string, EventCopy>;
 };
 
@@ -99,6 +120,30 @@ export const translations: Record<Lang, Dict> = {
     closingBlessing: "May this union be blessed with light, laughter and long years.",
     closingWith: "With love,",
     closingNames: "Shreya & Prabhav",
+    formalInvitation: {
+      invocation: "॥ Shree Ganeshay Namah ॥",
+      salutation: "Dear Family and Friends,",
+      prelude: [
+        "By the grace of the Almighty and the auspicious blessings of our respected elders,",
+        "we are delighted to announce the wedding ceremony of our beloved son,",
+      ],
+      groomLead: "",
+      groomName: "Chi. Prabhav",
+      groomGrandparents: "(Grandson of Late Smt. Kamala & Late Shri Krishna Kumar Srivastava)",
+      groomParents: "(Son of Smt. Garima & Shri Subodh Srivastava)",
+      conjunction: "with",
+      brideName: "Ayu. Shreya",
+      brideParents: "(Daughter of Smt. Archana & Shri Rajesh Joshi)",
+      invitation: "On this auspicious occasion, we cordially invite you and your family to grace the ceremony with your esteemed presence and shower the newlywed couple with your love, blessings, and good wishes.",
+      blessing: "Your affectionate presence and blessings are the most precious gifts for us.",
+      awaitingLabel: "Eagerly Awaiting Your Presence:",
+      awaitingNames: [
+        "Smt. Seema & Shri Sandeep Srivastava",
+        "Smt. Noori & Shri Saurabh Srivastava",
+      ],
+      complimentsLabel: "Best Compliments From:",
+      complimentsNames: "Smt. Garima Srivastava & Shri Subodh Srivastava",
+    },
     events: {
       mehandi: { name: "Mehandi", time: "2:00 PM", date: "11th December", thought: "Henna-dark hands, and a love just beginning." },
       "engagement-sangeet": {
@@ -156,6 +201,31 @@ export const translations: Record<Lang, Dict> = {
     closingBlessing: "यह बंधन प्रकाश, हास्य और दीर्घायु से आशीषित हो।",
     closingWith: "सप्रेम,",
     closingNames: "श्रेया एवं प्रभव",
+    formalInvitation: {
+      invocation: "॥ श्री गणेशाय नमः ॥",
+      salutation: "स्नेही स्वजन,",
+      prelude: [
+        "परमपिता परमात्मा की असीम अनुकम्पा एवं",
+        "पूज्य बुज़ुर्गों के मंगलमय आशीर्वाद से",
+      ],
+      groomLead: "हमारे प्रिय सुपुत्र",
+      groomName: "चि. प्रभव",
+      groomGrandparents: "(सुपौत्र – स्व. श्रीमती कमला एवं स्व. श्री कृष्ण कुमार श्रीवास्तव)",
+      groomParents: "(सुपुत्र – श्रीमती गरिमा एवं श्री सुबोध श्रीवास्तव)",
+      conjunction: "एवं",
+      brideName: "आयु. श्रेया",
+      brideParents: "(सुपुत्री – श्रीमती अर्चना एवं श्री राजेश जोशी)",
+      announcement: "का शुभ परिणय संस्कार संपन्न होने जा रहा है।",
+      invitation: "इस शुभ एवं मंगलमय अवसर पर आप सपरिवार पधारकर नवयुगल को अपने स्नेह, आशीर्वाद एवं शुभकामनाओं से अभिसिंचित करें तथा अपनी गरिमामयी उपस्थिति से इस मांगलिक अवसर की शोभा बढ़ाएँ।",
+      blessing: "आपका स्नेहिल आशीर्वाद ही हमारे लिए सबसे अमूल्य उपहार है।",
+      awaitingLabel: "दर्शनाकांक्षी",
+      awaitingNames: [
+        "श्रीमती सीमा एवं श्री संदीप श्रीवास्तव",
+        "श्रीमती नूरी एवं श्री सौरभ श्रीवास्तव",
+      ],
+      complimentsLabel: "विनीत",
+      complimentsNames: "श्रीमती गरिमा श्रीवास्तव एवं श्री सुबोध श्रीवास्तव",
+    },
     events: {
       mehandi: { name: "मेहंदी", time: "दोपहर २:००", date: "११ दिसंबर", thought: "रचे हाथ, और एक नया-नया प्यार।" },
       "engagement-sangeet": {
@@ -213,6 +283,31 @@ export const translations: Record<Lang, Dict> = {
     closingBlessing: "આ બંધન પ્રકાશ, હાસ્ય અને દીર્ઘાયુથી આશીર્વાદિત રહે.",
     closingWith: "સ્નેહ સહિત,",
     closingNames: "શ્રેયા અને પ્રભવ",
+    formalInvitation: {
+      invocation: "॥ શ્રી ગણેશાય નમઃ ॥",
+      salutation: "સ્નેહી સ્વજન,",
+      prelude: [
+        "પરમકૃપાળુ પરમાત્માની અસીમ કૃપા અને",
+        "પૂજ્ય વડીલોના મંગળમય આશીર્વાદથી",
+      ],
+      groomLead: "અમારા પ્રિય સુપુત્ર",
+      groomName: "ચિ. પ્રભવ",
+      groomGrandparents: "(સુપૌત્ર – સ્વ. શ્રીમતી કમલા અને સ્વ. શ્રી કૃષ્ણ કુમાર શ્રીવાસ્તવ)",
+      groomParents: "(સુપુત્ર – શ્રીમતી ગરિમા અને શ્રી સુબોધ શ્રીવાસ્તવ)",
+      conjunction: "અને",
+      brideName: "આયુ. શ્રેયા",
+      brideParents: "(સુપુત્રી – શ્રીમતી અર્ચના અને શ્રી રાજેશ જોષી)",
+      announcement: "નો શુભ લગ્ન પ્રસંગ (પરિણય સંસ્કાર) નિર્ધાર્યો છે.",
+      invitation: "આ શુભ અને મંગળમય અવસર પર આપ સહપરિવાર પધારીને નવદંપતીને આપના સ્નેહ, આશીર્વાદ અને શુભકામનાઓથી અભિસિંચિત કરો તથા આપની ગરિમામયી ઉપસ્થિતિથી આ માંગલિક અવસરની શોભા વધારો.",
+      blessing: "આપના સ્નેહસભર આશીર્વાદ જ અમારા માટે સૌથી અમૂલ્ય ભેટ છે.",
+      awaitingLabel: "દર્શનાભિલાષી",
+      awaitingNames: [
+        "શ્રીમતી સીમા અને શ્રી સંદીપ શ્રીવાસ્તવ",
+        "શ્રીમતી નૂરી અને શ્રી સૌરભ શ્રીવાસ્તવ",
+      ],
+      complimentsLabel: "વિનીત",
+      complimentsNames: "શ્રીમતી ગરિમા શ્રીવાસ્તવ અને શ્રી સુબોધ શ્રીવાસ્તવ",
+    },
     events: {
       mehandi: { name: "મહેંદી", time: "બપોરે ૨:૦૦", date: "૧૧ ડિસેમ્બર", thought: "મહેંદીભર્યા હાથ, અને નવો-નવો પ્રેમ." },
       "engagement-sangeet": {

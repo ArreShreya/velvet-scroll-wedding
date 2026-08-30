@@ -62,8 +62,8 @@
 }
 
 @theme {
-  --font-display: "Cormorant Garamond", "Noto Serif Devanagari", "Noto Sans Devanagari", Georgia, serif;
-  --font-sans: "Karla", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Noto Serif Devanagari", "Noto Serif Gujarati", "Noto Sans Devanagari", "Noto Sans Gujarati", Georgia, serif;
+  --font-sans: "Karla", "Noto Sans Devanagari", "Noto Sans Gujarati", ui-sans-serif, system-ui, sans-serif;
   --color-ink: var(--ink);
   --color-rose: var(--rose);
   --color-rose-deep: var(--rose-deep);
@@ -246,6 +246,22 @@
     oklch(0.98 0.01 60 / 0.06),
     oklch(0.95 0.03 30 / 0.16) 75%
   );
+}
+
+.formal-invitation {
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: pretty;
+}
+
+.formal-invitation:lang(hi),
+.formal-invitation:lang(gu) {
+  font-family: "Noto Sans Devanagari", "Noto Sans Gujarati", sans-serif;
+}
+
+.formal-invitation:lang(hi) .font-display,
+.formal-invitation:lang(gu) .font-display {
+  font-family: "Noto Serif Devanagari", "Noto Serif Gujarati", serif;
 }
 
 /* ---------- Sealed envelope opening ---------- */
