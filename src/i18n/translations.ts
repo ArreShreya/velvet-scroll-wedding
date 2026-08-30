@@ -117,7 +117,7 @@ export const translations: Record<Lang, Dict> = {
     minutes: "Mins",
     seconds: "Secs",
     photoPlaceholder: "A photograph of the couple, coming soon",
-    ganeshInvocation: "Shri Ganeshay Namah",
+    ganeshInvocation: "॥ Shree Ganeshay Namah ॥",
     closingBlessing: "May this union be blessed with light, laughter and long years.",
     closingWith: "With love,",
     closingNames: "Shreya & Prabhav",

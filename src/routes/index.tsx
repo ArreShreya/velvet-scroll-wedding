@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ScrollShell } from "@/components/ScrollShell";
 import { TimelinePage } from "@/components/TimelinePage";
@@ -11,6 +12,8 @@ import { PageOrnaments, GoldDivider } from "@/components/Ornaments";
 import { Reveal } from "@/components/Reveal";
 import { ShlokaText } from "@/components/ShlokaText";
 import { ClosingPage } from "@/components/ClosingPage";
+import { TwoStatesUnion } from "@/components/TwoStatesUnion";
+import { VenueOrbitReveal } from "@/components/VenueOrbitReveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,6 +47,17 @@ function Index() {
 function IndexContent() {
   const { lang, t } = useLang();
   const invitation = t.formalInvitation;
+
+  const [isRevealed, setIsRevealed] = useState(false);
+
+  const handleReveal = () => {
+    setIsRevealed(true);
+    // Add a tiny delay to allow the DOM to render the new section, then scroll smoothly to it
+    setTimeout(() => {
+      document.getElementById("venue-reveal")?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
   return (
     <ScrollShell>
       <div className="snap-y snap-mandatory">
@@ -79,13 +93,13 @@ function IndexContent() {
           className="formal-invitation relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-5 py-14 text-center sm:px-8 sm:py-20"
         >
           <PageOrnaments />
-          <Reveal
+          {/* <Reveal
             variant="scale"
             as="p"
             className="font-display text-2xl font-semibold leading-relaxed text-rose-deep sm:text-3xl"
           >
             {invitation.invocation}
-          </Reveal>
+          </Reveal> */}
           <GoldDivider className="mt-5" />
 
           <Reveal
@@ -172,36 +186,16 @@ function IndexContent() {
           >
             {invitation.invitation}
           </Reveal>
-          <Reveal
-            as="p"
-            delay={480}
-            className="mt-5 max-w-2xl font-display text-xl italic leading-relaxed text-rose-deep sm:text-2xl"
-          >
-            {invitation.blessing}
-          </Reveal>
-
-          <Reveal variant="left" as="div" delay={520} className="mt-9 max-w-3xl">
-            <p className="font-display text-xl font-semibold text-rose-deep sm:text-2xl">
-              {invitation.awaitingLabel}
-            </p>
-            <div className="mt-2 space-y-1 font-sans text-base leading-relaxed text-ink/80 sm:text-lg">
-              {invitation.awaitingNames.map((name) => (
-                <p key={name}>{name}</p>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal variant="right" as="div" delay={560} className="mt-7 max-w-3xl">
-            <p className="font-display text-xl font-semibold text-rose-deep sm:text-2xl">
-              {invitation.complimentsLabel}
-            </p>
-            <p className="mt-2 font-sans text-base leading-relaxed text-ink/80 sm:text-lg">
-              {invitation.complimentsNames}
-            </p>
-          </Reveal>
         </section>
 
-        {/* Families */}
+        {/* NEW TWO STATES PAGE */}
+        <TwoStatesUnion onReveal={handleReveal} />
+
+        {isRevealed && (
+       <>
+         <VenueOrbitReveal />
+
+         {/* Families */}
         <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
           <PageOrnaments />
           <Reveal
@@ -243,6 +237,10 @@ function IndexContent() {
         <VenuePage />
         <CountdownPage />
         <ClosingPage />
+       </>
+     )}
+
+        
       </div>
     </ScrollShell>
   );

@@ -422,6 +422,14 @@
   animation: envelope-backdrop-away 550ms ease 1250ms forwards;
 }
 
+@keyframes gentle-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.animate-gentle-pulse {
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
 @keyframes envelope-backdrop-away {
   to {
     opacity: 0;
@@ -812,6 +820,16 @@
 }
 
 /* Scroll-triggered page reveal */
+
+/* Dotted path scroll reveal */
+@keyframes reveal-path-down {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+.animate-path-down.is-visible {
+  animation: reveal-path-down 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -827,6 +845,19 @@
 }
 
 /* ---- Distinct entrance flavours, one per section ---- */
+
+/* Soft blur and zoom-out settle for large event artwork */
+.reveal[data-reveal="settle"] {
+  transform: scale(1.12) translateY(24px);
+  filter: blur(6px);
+  transition-duration: 1600ms;
+  transition-timing-function: var(--ease-elegant);
+}
+.reveal[data-reveal="settle"].is-visible {
+  transform: scale(1) translateY(0);
+  filter: blur(0);
+}
+
 .reveal[data-reveal="scale"] {
   transform: scale(0.94);
 }

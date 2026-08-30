@@ -76,27 +76,35 @@ export function EventPage({ event }: { event: WeddingEvent }) {
       >
         {scene ? (
           <>
-            <div className="ken-burns absolute inset-0">
-              {/* Desktop artwork */}
-              <img
-                src={scene.bg}
-                alt={copy.name}
-                loading="lazy"
-                className="absolute inset-0 hidden h-full w-full object-cover sm:block"
-              />
-              {/* Mobile artwork — same elements, vertically recomposed */}
-              <img
-                src={scene.bgMobile}
-                alt={copy.name}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover sm:hidden"
-              />
-              <div className="pointer-events-none absolute inset-0 hidden sm:block">
-                {scene.hotspots.map((spot, i) => (
-                  <Region key={i} src={scene.bg} spot={spot} index={i} />
-                ))}
+            {/* 
+              The Canvas Reveal: 
+              We wrap the entire scene container so the background, mobile layout, 
+              and all hotspots "settle" into place together when scrolled into view.
+            */}
+            <Reveal variant="settle" className="absolute inset-0 h-full w-full">
+              <div className="ken-burns absolute inset-0">
+                {/* Desktop artwork */}
+                <img
+                  src={scene.bg}
+                  alt={copy.name}
+                  loading="lazy"
+                  className="absolute inset-0 hidden h-full w-full object-cover sm:block"
+                />
+                {/* Mobile artwork — same elements, vertically recomposed */}
+                <img
+                  src={scene.bgMobile}
+                  alt={copy.name}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover sm:hidden"
+                />
+                <div className="pointer-events-none absolute inset-0 hidden sm:block">
+                  {scene.hotspots.map((spot, i) => (
+                    <Region key={i} src={scene.bg} spot={spot} index={i} />
+                  ))}
+                </div>
               </div>
-            </div>
+            </Reveal>
+
             <div
               className="pointer-events-none absolute inset-0"
               style={{
