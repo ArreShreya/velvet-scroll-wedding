@@ -2,7 +2,8 @@ import type { CSSProperties } from "react";
 import type { WeddingEvent } from "./wedding-data";
 import { SCENES, type Hotspot } from "./scene-layers";
 import { useLang } from "@/i18n/LanguageContext";
-import { Reveal } from "./Reveal";
+import { useInView } from "@/hooks/useInView";
+import { EventIntro } from "./EventIntro";
 
 /** A window cut out of the base illustration, animated in place. */
 function Region({ src, spot, index }: { src: string; spot: Hotspot; index: number }) {
@@ -55,6 +56,7 @@ function Region({ src, spot, index }: { src: string; spot: Hotspot; index: numbe
 export function EventPage({ event }: { event: WeddingEvent }) {
   const scene = SCENES[event.id];
   const { t } = useLang();
+  const { ref, inView } = useInView<HTMLElement>(0.2);
   const copy = t.events[event.id] ?? {
     name: event.name,
     time: event.time,
@@ -63,8 +65,9 @@ export function EventPage({ event }: { event: WeddingEvent }) {
 
   return (
     <section
+      ref={ref}
       id={event.id}
-      className="-mx-2 snap-start py-2 first:pt-0 sm:-mx-3 md:-mx-6"
+      className={`event-page event-page-${event.id} ${inView ? "is-intro-active" : ""} -mx-2 snap-start py-2 first:pt-0 sm:-mx-3 md:-mx-6`}
       style={{ ["--event-accent" as string]: event.accent }}
     >
       <div
@@ -76,12 +79,7 @@ export function EventPage({ event }: { event: WeddingEvent }) {
       >
         {scene ? (
           <>
-            {/* 
-              The Canvas Reveal: 
-              We wrap the entire scene container so the background, mobile layout, 
-              and all hotspots "settle" into place together when scrolled into view.
-            */}
-            <Reveal variant="settle" className="absolute inset-0 h-full w-full">
+            <div className="event-scene absolute inset-0 h-full w-full">
               <div className="ken-burns absolute inset-0">
                 {/* Desktop artwork */}
                 <img
@@ -103,7 +101,7 @@ export function EventPage({ event }: { event: WeddingEvent }) {
                   ))}
                 </div>
               </div>
-            </Reveal>
+            </div>
 
             <div
               className="pointer-events-none absolute inset-0"
@@ -115,10 +113,12 @@ export function EventPage({ event }: { event: WeddingEvent }) {
           </>
         ) : null}
 
+        <EventIntro eventId={event.id} active={inView} />
+
         {/* Title treatment anchored near the top of the artwork */}
         <div className="absolute inset-x-0 top-0 flex items-start justify-center p-5 pt-6 sm:pt-8">
-          <Reveal
-            className="rounded-sm px-6 py-5 text-center backdrop-blur-[3px] sm:px-12 sm:py-7"
+          <div
+            className="event-copy rounded-sm px-6 py-5 text-center backdrop-blur-[3px] sm:px-12 sm:py-7"
             style={{
               background:
                 "radial-gradient(ellipse at center, oklch(0.99 0.012 40 / 0.9) 35%, oklch(0.99 0.012 40 / 0.5) 65%, transparent 85%)",
@@ -141,7 +141,7 @@ export function EventPage({ event }: { event: WeddingEvent }) {
                 {copy.thought}
               </p>
             ) : null}
-          </Reveal>
+          </div>
         </div>
 
       </div>

@@ -8,7 +8,8 @@ export type RevealVariant =
   | "right"
   | "zoom"
   | "tick"
-  | "fade";
+  | "fade"
+  | "settle";
 
 /**
  * Shared scroll-triggered reveal. The `variant` picks the *type* of motion so
