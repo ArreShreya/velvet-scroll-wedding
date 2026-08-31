@@ -948,6 +948,135 @@
   animation: ken-burns 34s var(--ease-elegant) infinite;
 }
 
+/* ---------- One-shot event illustration intros ---------- */
+.event-scene {
+  opacity: 0;
+  filter: blur(0);
+  transform: scale(1.025);
+  will-change: opacity, filter, transform;
+}
+.event-page-mehandi .event-scene {
+  filter: blur(18px);
+}
+.event-page.is-intro-active .event-scene {
+  animation: event-scene-reveal 2.1s var(--ease-elegant) forwards;
+}
+.event-page-mehandi.is-intro-active .event-scene {
+  animation-name: event-scene-reveal-blur;
+}
+.event-page .ken-burns,
+.event-page .region-glow,
+.event-page .region-sway,
+.event-page .region-shimmer,
+.event-page .region-flame,
+.event-page .region-ripple,
+.event-page .particle-sparkle,
+.event-page .particle-petal {
+  animation-play-state: paused;
+}
+.event-page.is-intro-active .ken-burns,
+.event-page.is-intro-active .region-glow,
+.event-page.is-intro-active .region-sway,
+.event-page.is-intro-active .region-shimmer,
+.event-page.is-intro-active .region-flame,
+.event-page.is-intro-active .region-ripple,
+.event-page.is-intro-active .particle-sparkle,
+.event-page.is-intro-active .particle-petal {
+  animation-play-state: running;
+  animation-delay: 2.1s;
+}
+.event-copy {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.event-page.is-intro-active .event-copy {
+  animation: event-copy-arrive 700ms var(--ease-elegant) 1.75s forwards;
+}
+.event-intro {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  opacity: 0;
+}
+.event-intro.is-active {
+  opacity: 1;
+  animation: event-intro-away 300ms ease 1.8s forwards;
+}
+.event-intro svg {
+  overflow: visible;
+  fill: color-mix(in oklab, var(--event-accent) 23%, oklch(0.97 0.015 60));
+  stroke: color-mix(in oklab, var(--event-accent) 72%, var(--gold));
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.28));
+}
+@keyframes event-scene-reveal {
+  0%, 18% { opacity: 0; transform: scale(1.025); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes event-scene-reveal-blur {
+  0%, 16% { opacity: .22; filter: blur(18px); transform: scale(1.035); }
+  100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+@keyframes event-copy-arrive { to { opacity: 1; transform: translateY(0); } }
+@keyframes event-intro-away { to { opacity: 0; visibility: hidden; } }
+
+/* Mehandi: paired clapping hands */
+.event-intro-hands { display: flex; align-items: center; justify-content: center; width: min(64vw, 24rem); }
+.event-intro-hand { width: 48%; transform-origin: 50% 78%; }
+.event-intro-hand-right { transform: scaleX(-1); }
+.event-intro-mehandi.is-active .event-intro-hand-left { animation: intro-clap-left 380ms ease-in-out 4; }
+.event-intro-mehandi.is-active .event-intro-hand-right { animation: intro-clap-right 380ms ease-in-out 4; }
+@keyframes intro-clap-left { 50% { transform: translateX(22%) rotate(12deg) scale(.95); } }
+@keyframes intro-clap-right { 0%, 100% { transform: scaleX(-1); } 50% { transform: translateX(-22%) rotate(-12deg) scaleX(-1) scale(.95); } }
+
+/* Sangeet: room-filling ring contracts to a point */
+.event-intro-ring { width: min(90vw, 90vh); }
+.event-intro-engagement-sangeet.is-active .event-intro-ring { animation: intro-ring 1.8s cubic-bezier(.45, 0, .8, 1) forwards; }
+@keyframes intro-ring { 0% { opacity: 1; transform: scale(1); } 82% { opacity: 1; } 100% { opacity: 0; transform: scale(.035); } }
+
+/* Masquerade: poised arrival, hold, dissolve */
+.event-intro-mask { width: min(64vw, 28rem); }
+.event-intro-masquerade.is-active .event-intro-mask { animation: intro-mask 2s var(--ease-elegant) forwards; }
+@keyframes intro-mask { 0% { opacity: 0; transform: scale(.9); } 45%, 70% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1); } }
+
+/* Haldi: individually staggered marigold petals */
+.event-intro-petals { position: absolute; inset: 0; }
+.event-intro-petals span { position: absolute; top: -8%; left: calc(8% + var(--petal-index) * 12%); width: clamp(13px, 4vw, 25px); aspect-ratio: .7; border-radius: 70% 30% 65% 35%; background: color-mix(in oklab, var(--gold) 66%, oklch(0.72 0.17 55)); box-shadow: 0 5px 12px oklch(0.45 0.1 55 / .24); }
+.event-intro-haldi.is-active .event-intro-petals span { animation: intro-petal-fall calc(1.35s + var(--petal-index) * 70ms) ease-in calc(var(--petal-index) * 90ms) forwards; }
+@keyframes intro-petal-fall { 0% { opacity: 0; transform: translate3d(0, -8vh, 0) rotate(0); } 12% { opacity: 1; } 82% { opacity: .8; } 100% { opacity: 0; transform: translate3d(calc((var(--petal-index) - 4) * 9px), 105vh, 0) rotate(330deg); } }
+
+/* Baarat: four rhythmic drum beats */
+.event-intro-dhol { width: min(48vw, 18rem); }
+.event-intro-baarat.is-active .event-intro-dhol { animation: intro-dhol 375ms ease-in-out 4; }
+@keyframes intro-dhol { 50% { transform: scale(1.1); filter: drop-shadow(0 16px 24px oklch(0.28 0.04 25 / .32)) brightness(1.08); } }
+
+/* Varmala: a garland suspended like a pendulum */
+.event-intro-garland { width: min(70vw, 30rem); transform-origin: 50% 5%; }
+.event-intro-varmala.is-active .event-intro-garland { animation: intro-garland 1.8s ease-in-out forwards; }
+.event-intro-garland g { fill: color-mix(in oklab, var(--rose) 72%, oklch(0.98 0.02 60)); }
+@keyframes intro-garland { 0% { transform: rotate(-7deg); } 25% { transform: rotate(6deg); } 50% { transform: rotate(-4deg); } 75% { opacity: 1; transform: rotate(2deg); } 100% { opacity: 0; transform: rotate(0); } }
+
+/* Fera: diya brightens until its glow opens the scene */
+.event-intro-diya { width: min(32vw, 11rem); opacity: .28; border-radius: 9999px; }
+.event-intro-diya svg { width: 100%; }
+.event-intro-fera.is-active .event-intro-diya { animation: intro-diya 1.9s ease-out forwards; }
+.event-intro-fera.is-active .event-intro-flame { animation: intro-flame 280ms ease-in-out 5 alternate; }
+@keyframes intro-diya { 0% { opacity: .22; transform: scale(.82); box-shadow: 0 0 0 oklch(0.8 0.17 65 / 0); } 78% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 90px 55px oklch(0.84 0.15 70 / .55); } 100% { opacity: 0; transform: scale(1.12); box-shadow: 0 0 140px 95px oklch(0.9 0.12 75 / 0); } }
+@keyframes intro-flame { to { transform: scaleY(1.12) scaleX(.94); transform-origin: 50% 100%; filter: brightness(1.28); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .event-scene, .event-page-mehandi .event-scene, .event-copy { opacity: 1; filter: none; transform: none; }
+  .event-page.is-intro-active .event-scene, .event-page-mehandi.is-intro-active .event-scene, .event-page.is-intro-active .event-copy { animation: none; }
+  .event-intro { display: none; }
+  .event-page .ken-burns, .event-page .region-glow, .event-page .region-sway, .event-page .region-shimmer, .event-page .region-flame, .event-page .region-ripple, .event-page .particle-sparkle, .event-page .particle-petal { animation-play-state: paused; }
+}
+
 /* Typewriter-style shloka reveal */
 @keyframes shloka-letter {
   from {
