@@ -11,12 +11,12 @@
 /** Blush / ivory palette (three.js needs raw hex, not Tailwind tokens). */
 export const ENTRY_PALETTE = {
   fog: "#f6e7e2",
-  curtain: "#eccdc6",
-  lantern: "#d9a441",
-  arch: "#f0d8cf",
-  chandelier: "#f6e8d5",
-  pom: "#e5aeb2",
-  aisle: "#fbf1ea",
+  curtain: "#e3b4ac",
+  lantern: "#cf9a34",
+  arch: "#eec7b4",
+  chandelier: "#f7e4bd",
+  pom: "#dd93a0",
+  aisle: "#fdf6f0",
   gold: "#d9a441",
   paper: "#fbf4ea",
 } as const;
