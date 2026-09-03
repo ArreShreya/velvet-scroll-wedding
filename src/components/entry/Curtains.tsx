@@ -31,12 +31,12 @@ function CurtainPanel({
 }) {
   return (
     <mesh geometry={geometry} position={[side * 5.5, 0, 0]} castShadow receiveShadow>
-      <meshStandardMaterial
+      {/* Velvet-ish sheen; swap in a fabric texture map later. */}
+      <meshPhysicalMaterial
         color={color}
         roughness={0.95}
         metalness={0.04}
         side={THREE.DoubleSide}
-        // Velvet-ish sheen: soft normals + low spec, swap for a texture map later.
         sheen={1}
         sheenColor={"#ffd9c9"}
         sheenRoughness={0.6}
