@@ -33,7 +33,8 @@ export function Reveal({
 } & Record<string, unknown>) {
   const { ref, inView } = useInView<HTMLDivElement>(0.15);
   // Cast keeps prop typing sane: R3F augments JSX.IntrinsicElements globally.
-  const Tag = TagProp as ElementType<Record<string, unknown>>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Tag = TagProp as any;
 
   return (
     <Tag
