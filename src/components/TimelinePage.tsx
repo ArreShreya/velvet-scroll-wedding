@@ -90,13 +90,14 @@ export function TimelinePage() {
       className="relative flex min-h-[calc(100svh-5rem)] snap-start flex-col items-center justify-center px-1 py-12 sm:px-5 sm:py-16"
     >
       <PageOrnaments />
-      <Reveal as="p" className="text-center font-sans text-[0.6rem] uppercase tracking-[0.35em] text-rose-deep/70 sm:text-[0.65rem] sm:tracking-[0.45em]">
+      
+      {/* Kicker & Title */}
+      <Reveal as="p" className="text-center font-sans text-xs uppercase tracking-[0.35em] text-rose-deep/70 sm:text-sm sm:tracking-[0.45em]">
         {t.timelineKicker}
       </Reveal>
-      <Reveal as="h2" delay={120} className="mt-3 text-center font-display text-3xl text-rose-deep sm:text-4xl md:text-5xl">
+      <Reveal as="h2" delay={120} className="mt-3 text-center font-display text-4xl text-rose-deep sm:text-5xl md:text-6xl">
         {t.timelineTitle}
       </Reveal>
-
 
       {/* Mobile: two facing semi-circle arcs */}
       <div className="mt-8 w-full sm:hidden">
@@ -105,14 +106,13 @@ export function TimelinePage() {
           ids={["haldi", "baarat", "varmala", "fera"]}
           facing="right"
           label={t.day2}
-          className="mt-8"
+          className="mt-10"
           offset={3}
         />
       </div>
 
-
       {/* Tablet & desktop: semi-circle arc */}
-      <div className="relative mt-24 hidden w-full max-w-2xl sm:block">
+      <div className="relative mt-24 hidden w-full max-w-3xl sm:block">
         <svg viewBox="0 0 600 340" className="w-full overflow-visible">
           <path
             d={`M ${CX - R} ${CY} A ${R} ${R} 0 0 1 ${CX + R} ${CY}`}
@@ -145,7 +145,7 @@ export function TimelinePage() {
             <a
               key={e.id}
               href={`#${e.id}`}
-              className="press absolute w-28 -translate-y-1/2 text-center md:w-32"
+              className="press absolute w-32 -translate-y-1/2 text-center md:w-40"
               style={{
                 left: `${leftPct}%`,
                 top: `${topPct}%`,
@@ -161,13 +161,15 @@ export function TimelinePage() {
                 className={`block ${inView ? "pop-in" : "pop-out"}`}
                 style={{ animationDelay: `${i * 1000}ms` }}
               >
-                <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep md:h-12 md:w-12">
-                  <EventIcon id={e.id} className="h-6 w-6 md:h-7 md:w-7" />
+                <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep md:h-14 md:w-14">
+                  <EventIcon id={e.id} className="h-6 w-6 md:h-8 md:w-8" />
                 </span>
-                <span className="mt-1.5 block font-display text-sm leading-tight text-ink">
+                {/* Desktop Event Name (Increased to text-lg) */}
+                <span className="mt-2 block font-display text-lg leading-tight text-ink md:text-xl">
                   {c.name}
                 </span>
-                <span className="block font-sans text-[0.65rem] tracking-[0.18em] text-rose-deep/80">
+                {/* Desktop Event Time (Increased to text-xs) */}
+                <span className="mt-0.5 block font-sans text-xs tracking-[0.18em] text-rose-deep/80 md:text-sm">
                   {c.time}
                 </span>
               </span>
@@ -175,8 +177,8 @@ export function TimelinePage() {
           );
         })}
 
-
-        <div className="absolute inset-x-0 bottom-1 flex justify-center gap-10 font-sans text-[0.7rem] uppercase tracking-[0.3em] text-ink/60">
+        {/* Desktop Day 1 / Day 2 labels (Increased to text-sm) */}
+        <div className="absolute inset-x-0 bottom-1 flex justify-center gap-10 font-sans text-sm uppercase tracking-[0.3em] text-ink/70 md:text-base">
           <span>{t.day1}</span>
           <span className="text-rose-deep">·</span>
           <span>{t.day2}</span>
@@ -207,7 +209,8 @@ function MobileArc({
   const H = 290;
   const R = 88;
   const cy = H / 2;
-  const cx = facing === "left" ? 132 : 168;
+  
+  const cx = facing === "left" ? 240 : 60;
 
   const at = (i: number) => {
     const f = ids.length === 1 ? 0.5 : i / (ids.length - 1);
@@ -221,7 +224,8 @@ function MobileArc({
 
   return (
     <div ref={ref} className={`mx-auto w-full max-w-sm ${className}`}>
-      <p className="mb-1 text-center font-sans text-[0.65rem] uppercase tracking-[0.35em] text-rose-deep/70">
+      {/* Mobile Day Label (Increased to text-xs) */}
+      <p className="mb-2 text-center font-sans text-xs font-medium uppercase tracking-[0.35em] text-rose-deep/80">
         {label}
       </p>
       <div className="relative">
@@ -259,29 +263,33 @@ function MobileArc({
           <a
             key={id}
             href={`#${id}`}
-            className="press absolute flex w-[54%] items-center gap-2"
+            className="press absolute flex w-[48%] items-center gap-3"
             style={{
               left: `${(p.x / W) * 100}%`,
               top: `${(p.y / H) * 100}%`,
               transform:
-                facing === "left" ? "translate(4%, -50%)" : "translate(-104%, -50%)",
-              flexDirection: facing === "left" ? "row" : "row-reverse",
-              textAlign: facing === "left" ? "left" : "right",
+                facing === "left" ? "translate(-104%, -50%)" : "translate(4%, -50%)",
+              flexDirection: facing === "left" ? "row-reverse" : "row",
+              textAlign: facing === "left" ? "right" : "left",
             }}
           >
             <span
-              className={`flex w-full items-center gap-2 ${inView ? "pop-in" : "pop-out"}`}
+              className={`flex w-full items-center gap-3 ${inView ? "pop-in" : "pop-out"}`}
               style={{
                 animationDelay: `${(offset + i) * 1000}ms`,
-                flexDirection: facing === "left" ? "row" : "row-reverse",
+                flexDirection: facing === "left" ? "row-reverse" : "row",
               }}
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
                 <EventIcon id={id} className="h-5 w-5" />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block font-display text-sm leading-tight text-ink">{c.name}</span>
-                <span className="block font-sans text-[0.65rem] tracking-[0.16em] text-rose-deep/85">
+                {/* Mobile Event Name (Increased to text-base) */}
+                <span className="block font-display text-base font-semibold leading-tight text-ink">
+                  {c.name}
+                </span>
+                {/* Mobile Event Time (Increased to text-xs) */}
+                <span className="mt-0.5 block font-sans text-xs tracking-[0.16em] text-rose-deep/85">
                   {c.time}
                 </span>
               </span>

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Heart } from "lucide-react";
+import { Heart, ChevronDown } from "lucide-react";
 import { clsx } from "clsx";
 import { PageOrnaments } from "@/components/Ornaments";
 import { Reveal } from "@/components/Reveal";
@@ -7,7 +7,6 @@ import { Reveal } from "@/components/Reveal";
 import gujaratImg from "../assets/gujaratImg.png"; 
 import upImg from "../assets/upImg.png";
 
-// ADDED: Pass an onReveal prop to trigger the unlocking of the page
 export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -56,7 +55,7 @@ export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
           Two States, One Union
         </h2>
 
-        <div className="relative mt-36 md:mt-44 flex h-[75vh] w-full max-w-3xl flex-col">
+        <div className="relative mt-36 flex h-[80vh] w-full max-w-3xl flex-col">
           
           <Reveal variant="left" className="absolute left-[2%] top-0 z-10 flex w-[55%] flex-col items-center md:w-[45%]">
             <p className="mb-2 font-display text-2xl text-rose-deep md:text-3xl">Gujarat</p>
@@ -81,7 +80,16 @@ export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
             </g>
           </svg>
 
-          {/* ADDED: Interactive Button Gate */}
+          {/* INTUITIVE CUE: Shows only while the user is actively scrolling the lines */}
+          <div className={clsx(
+            "absolute left-1/2 bottom-[5%] z-10 flex -translate-x-1/2 flex-col items-center text-rose-deep/60 transition-opacity duration-500",
+            showHeart ? "opacity-0" : "opacity-100 animate-pulse"
+          )}>
+            <span className="mb-1 font-sans text-[0.75rem] uppercase tracking-[0.2em]">Keep Scrolling</span>
+            <ChevronDown className="h-5 w-5" />
+          </div>
+
+          {/* BIGGER HEART BUTTON */}
           <button 
             onClick={onReveal}
             className={clsx(
@@ -89,10 +97,12 @@ export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
               showHeart ? "scale-100 opacity-100" : "scale-0 opacity-0 pointer-events-none"
             )}
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-paper shadow-md animate-gentle-pulse hover:bg-paper-tint transition-colors cursor-pointer">
-              <Heart className="h-6 w-6 fill-rose-deep text-rose-deep" />
+            {/* Increased dimensions from h-12/w-12 to h-16/w-16 */}
+            <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/40 bg-paper shadow-md animate-gentle-pulse hover:bg-paper-tint transition-colors cursor-pointer">
+              {/* Increased icon from h-6/w-6 to h-8/w-8 */}
+              <Heart className="h-8 w-8 fill-rose-deep text-rose-deep" />
             </div>
-            <span className="mt-3 font-sans text-xs tracking-[0.2em] uppercase text-rose-deep/80 animate-pulse">
+            <span className="mt-4 font-sans text-xs font-semibold tracking-[0.2em] uppercase text-rose-deep animate-pulse">
               Tap to reveal
             </span>
           </button>

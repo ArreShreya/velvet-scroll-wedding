@@ -53,7 +53,7 @@ export function SealGate({ onDone }: { onDone: () => void }) {
         <img src={monogram.url} alt="" width={718} height={980} />
       </button>
 
-      <p className="seal-gate-cue absolute inset-x-0 bottom-[9svh] z-20 animate-pulse px-4 text-center font-sans text-[0.65rem] uppercase tracking-[0.42em] text-rose-deep/75">
+      <p className="seal-gate-cue absolute inset-x-0 bottom-[9svh] z-20 animate-pulse px-4 text-center font-sans text-[0.75rem] uppercase tracking-[0.42em] text-rose-deep/75">
         {t.tapTheSeal}
       </p>
     </div>

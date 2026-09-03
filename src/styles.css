@@ -424,7 +424,7 @@
 
 @keyframes gentle-pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.25); } /* Increased from 1.1 to 1.25 */
 }
 .animate-gentle-pulse {
   animation: gentle-pulse 2s ease-in-out infinite;
