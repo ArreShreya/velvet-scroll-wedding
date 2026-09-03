@@ -57,15 +57,39 @@ export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
 
         <div className="relative mt-36 flex h-[80vh] w-full max-w-3xl flex-col">
           
-          <Reveal variant="left" className="absolute left-[2%] top-0 z-10 flex w-[55%] flex-col items-center md:w-[45%]">
-            <p className="mb-2 font-display text-2xl text-rose-deep md:text-3xl">Gujarat</p>
-            <img src={gujaratImg} alt="Gujarat" className="w-full object-contain drop-shadow-md mix-blend-multiply" />
-          </Reveal>
+          {/* GUJARAT */}
+          <div className="absolute left-[2%] top-0 z-10 flex w-[55%] flex-col items-center md:w-[45%]">
+            {/* The text slides in from the left */}
+            <Reveal variant="left">
+              <p className="mb-2 font-display text-2xl text-rose-deep md:text-3xl">Gujarat</p>
+            </Reveal>
+            
+            {/* The image waits a split second, then triggers our vertical fade up */}
+            <Reveal delay={150} className="w-full">
+              <img 
+                src={gujaratImg} 
+                alt="Gujarat" 
+                className="w-full object-contain drop-shadow-md mix-blend-multiply animate-slow-fade-up" 
+              />
+            </Reveal>
+          </div>
 
-          <Reveal variant="right" className="absolute right-[2%] top-[35%] z-10 flex w-[55%] flex-col items-center md:w-[45%]">
-            <p className="mb-2 font-display text-2xl text-rose-deep md:text-3xl">Uttar Pradesh</p>
-            <img src={upImg} alt="Uttar Pradesh" className="w-full object-contain drop-shadow-md mix-blend-multiply" />
-          </Reveal>
+          {/* UTTAR PRADESH */}
+          <div className="absolute right-[2%] top-[35%] z-10 flex w-[55%] flex-col items-center md:w-[45%]">
+            {/* The text slides in from the right */}
+            <Reveal variant="right">
+              <p className="mb-2 font-display text-2xl text-rose-deep md:text-3xl">Uttar Pradesh</p>
+            </Reveal>
+            
+            {/* The image waits a split second, then triggers our vertical fade up */}
+            <Reveal delay={150} className="w-full">
+              <img 
+                src={upImg} 
+                alt="Uttar Pradesh" 
+                className="w-full object-contain drop-shadow-md mix-blend-multiply animate-slow-fade-up" 
+              />
+            </Reveal>
+          </div>
 
           <svg className="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
@@ -82,7 +106,8 @@ export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
 
           {/* INTUITIVE CUE: Shows only while the user is actively scrolling the lines */}
           <div className={clsx(
-            "absolute left-1/2 bottom-[5%] z-10 flex -translate-x-1/2 flex-col items-center text-rose-deep/60 transition-opacity duration-500",
+            /* CHANGED: bottom-[5%] is now bottom-[15%] on mobile and bottom-[20%] on desktop */
+            "absolute left-1/2 bottom-[15%] md:bottom-[20%] z-10 flex -translate-x-1/2 flex-col items-center text-rose-deep/60 transition-opacity duration-500",
             showHeart ? "opacity-0" : "opacity-100 animate-pulse"
           )}>
             <span className="mb-1 font-sans text-[0.75rem] uppercase tracking-[0.2em]">Keep Scrolling</span>

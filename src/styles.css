@@ -436,6 +436,48 @@
   }
 }
 
+@keyframes float-left-corner {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  /* Increased from 6px to 14px, and 3deg to 5deg */
+  50% { transform: translate(14px, -6px) rotate(5deg); } 
+}
+
+@keyframes float-right-corner {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  /* Increased from -6px to -14px, and -3deg to -5deg */
+  50% { transform: translate(-14px, -6px) rotate(-5deg); }
+}
+
+.animate-float-left {
+  /* Decreased time from 8s to 4.5s for faster movement */
+  animation: float-left-corner 4.5s ease-in-out infinite; 
+}
+
+.animate-float-right {
+  /* Decreased time from 8s to 4.5s for faster movement */
+  animation: float-right-corner 4.5s ease-in-out infinite;
+}
+
+@keyframes slow-fade-up {
+  0% { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.animate-slow-fade-up {
+  /* 2.5 seconds, silky smooth easing, and 'forwards' keeps it visible at the end */
+  animation: slow-fade-up 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  /* A tiny delay so the text appears just a split-second before the image starts appearing */
+  animation-delay: 0.3s;
+  /* Starts at 0 so it doesn't flash before the animation begins */
+  opacity: 0; 
+}
+
 @media (max-height: 650px) {
   .envelope-title {
     top: 3svh;
