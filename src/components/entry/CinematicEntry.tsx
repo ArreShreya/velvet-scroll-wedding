@@ -8,10 +8,10 @@ import { useLang } from "@/i18n/LanguageContext";
 import { Curtains } from "./Curtains";
 import { Decor } from "./Decor";
 import {
-  CAMERA_END_Z,
   CAMERA_START_Z,
   ENTRY_PALETTE,
   FLY_DURATION,
+  INVITE_SIZE,
   INVITE_Z,
   clamp01,
   easeInOutCubic,
@@ -29,7 +29,7 @@ function CameraRig({
   progressRef: React.RefObject<number>;
   onArrive: () => void;
 }) {
-  const { camera } = useThree();
+  const { camera, size } = useThree();
   const elapsed = useRef(0);
   const done = useRef(false);
 
@@ -39,13 +39,21 @@ function CameraRig({
     const p = clamp01(elapsed.current / FLY_DURATION);
     progressRef.current = p;
 
+    // Stop exactly where the invitation card fills the screen.
+    const cam = camera as THREE.PerspectiveCamera;
+    const halfFov = (cam.fov * Math.PI) / 360;
+    const aspect = size.width / size.height;
+    const [w, h] = INVITE_SIZE;
+    const fitDistance = Math.max(h / 2 / Math.tan(halfFov), w / 2 / (Math.tan(halfFov) * aspect));
+    const endZ = INVITE_Z + fitDistance;
+
     const eased = easeInOutCubic(p);
-    camera.position.z = THREE.MathUtils.lerp(CAMERA_START_Z, CAMERA_END_Z, eased);
+    cam.position.z = THREE.MathUtils.lerp(CAMERA_START_Z, endZ, eased);
     // gentle idle drift before launch, settling to dead-centre on arrival
     const idle = (1 - eased) * 0.35;
-    camera.position.x = Math.sin(elapsed.current * 0.4) * idle;
-    camera.position.y = Math.cos(elapsed.current * 0.3) * idle;
-    camera.lookAt(0, 0, INVITE_Z);
+    cam.position.x = Math.sin(elapsed.current * 0.4) * idle;
+    cam.position.y = Math.cos(elapsed.current * 0.3) * idle;
+    cam.lookAt(0, 0, INVITE_Z);
 
     if (p >= 1 && !done.current) {
       done.current = true;
@@ -58,16 +66,18 @@ function CameraRig({
 
 /** The invitation card sitting behind the last curtain. */
 function InviteCard() {
+  const [w, h] = INVITE_SIZE;
   return (
     <group position={[0, 0, INVITE_Z]}>
       <mesh>
-        <planeGeometry args={[7.2, 10.4]} />
+        <planeGeometry args={[w, h]} />
         <meshStandardMaterial color={ENTRY_PALETTE.paper} roughness={0.9} />
       </mesh>
       <mesh position={[0, 0, -0.05]}>
-        <planeGeometry args={[7.7, 10.9]} />
+        <planeGeometry args={[w + 0.5, h + 0.5]} />
         <meshStandardMaterial color={ENTRY_PALETTE.gold} roughness={0.45} metalness={0.5} />
       </mesh>
+
     </group>
   );
 }
