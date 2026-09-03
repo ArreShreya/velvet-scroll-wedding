@@ -36,7 +36,12 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           ["--header-h" as string]: "3.25rem",
         }}
       >
-        {!opened && <SealGate onDone={() => setOpened(true)} />}
+        {!opened && mounted && (
+          <Suspense fallback={<div className="fixed inset-0 z-[90] bg-paper" />}>
+            <CinematicEntry onDone={() => setOpened(true)} />
+          </Suspense>
+        )}
+        {!opened && !mounted && <div className="fixed inset-0 z-[90] bg-paper" />}
 
         {/* ---------- Header strip: monogram + language toggle ---------- */}
         <header
