@@ -17,7 +17,7 @@ export type RevealVariant =
  */
 export function Reveal({
   children,
-  as: Tag = "div",
+  as: TagProp = "div",
   delay = 0,
   variant = "rise",
   className = "",
@@ -32,9 +32,12 @@ export function Reveal({
   style?: CSSProperties;
 } & Record<string, unknown>) {
   const { ref, inView } = useInView<HTMLDivElement>(0.15);
+  // Cast keeps prop typing sane: R3F augments JSX.IntrinsicElements globally.
+  const Tag = TagProp as ElementType<Record<string, unknown>>;
 
   return (
     <Tag
+
       ref={ref}
       data-reveal={variant}
       className={`reveal ${inView ? "is-visible" : ""} ${className}`}
