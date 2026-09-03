@@ -33,8 +33,9 @@ export const CURTAIN_LAYERS = [
 
 /** Camera travels from in front of curtain 1 to just before the invite card. */
 export const CAMERA_START_Z = 12;
-export const CAMERA_END_Z = -26;
-export const INVITE_Z = -30;
+export const INVITE_Z = -34;
+/** Invitation card size in world units (w, h). */
+export const INVITE_SIZE: readonly [number, number] = [7.2, 10.4];
 /** Fly-through duration in seconds. */
 export const FLY_DURATION = 5.2;
 
