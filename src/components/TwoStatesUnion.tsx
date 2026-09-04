@@ -61,7 +61,7 @@ export function TwoStatesUnion() {
           <div className="absolute left-0 top-0 z-10 flex w-[55%] flex-col items-center md:w-[45%]">
             {/* The text slides in from the left */}
             <Reveal variant="left">
-              <p className="mb-2 font-heading text-2xl text-text-heading md:text-3xl">Gujarat</p>
+              <p className="mb-2 font-heading text-2xl text-text-body md:text-3xl">Gujarat</p>
             </Reveal>
             
             {/* The image waits a split second, then triggers our vertical fade up */}
@@ -78,7 +78,7 @@ export function TwoStatesUnion() {
           <div className="absolute bottom-0 right-0 z-10 flex w-[55%] flex-col items-center md:w-[45%]">
             {/* The text slides in from the right */}
             <Reveal variant="right">
-              <p className="mb-2 font-heading text-2xl text-text-heading md:text-3xl">Uttar Pradesh</p>
+              <p className="mb-2 font-heading text-2xl text-text-body md:text-3xl">Uttar Pradesh</p>
             </Reveal>
             
             {/* The image waits a split second, then triggers our vertical fade up */}
@@ -122,7 +122,7 @@ export function TwoStatesUnion() {
             )}
           >
             <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/40 bg-paper shadow-md animate-gentle-pulse">
-              <Heart className="h-8 w-8 fill-gold text-gold" />
+              <Heart className="h-8 w-8 fill-[oklch(0.55_0.12_15)] text-[oklch(0.55_0.11_15)]" />
             </div>
           </div>
 

@@ -74,15 +74,34 @@ export function CountdownPage() {
         <Dial value={parts?.seconds ?? null} label={t.seconds} delay={360} />
       </div>
 
-      <Reveal delay={200} className="mt-12 w-full max-w-xs">
-        <div className="relative flex aspect-[3/4] items-center justify-center rounded-t-[999px] border border-rose/60 bg-[oklch(0.98_0.015_40_/_0.6)] p-6">
-          <span className="pointer-events-none absolute -left-3 bottom-2 text-2xl opacity-60">❀</span>
-          <span className="pointer-events-none absolute -right-3 top-6 text-2xl opacity-50">❀</span>
-          <p className="font-accent text-base leading-relaxed text-text-secondary">
-            {t.photoPlaceholder}
-          </p>
+      {/* --- UPDATED PHOTO FRAME SECTION --- */}
+      <Reveal delay={200} className="mt-12 w-full max-w-sm">
+        <div className="relative flex items-center justify-center">
+          
+          {/* 1. The Photo / Placeholder (Sits BEHIND the frame) */}
+          {/* The inset percentages shape it to the frame's oval opening. The bottom is larger to account for the bow. */}
+          <div className="absolute top-[12%] bottom-[32%] left-[15%] right-[15%] bg-[oklch(0.98_0.015_40_/_0.8)] rounded-[50%] flex items-center justify-center overflow-hidden shadow-inner z-0">
+            {/* When ready, replace the <p> below with: <img src={couplePhoto} className="h-full w-full object-cover" /> */}
+            <p className="font-accent text-sm leading-relaxed text-text-secondary px-4 text-center opacity-70">
+              {t.photoPlaceholder}
+            </p>
+          </div>
+
+          {/* 2. The Ornate Gold Frame (Sits ON TOP) */}
+          <img 
+            src="/src/assets/frame2.png" 
+            alt="Ornate Gold Frame" 
+            className="relative z-10 w-full h-auto drop-shadow-xl pointer-events-none"
+            style={{ 
+              // CSS filter to color-match the frame with your existing GoldDivider/Ornaments
+              filter: 'sepia(0.3) saturate(1.2) hue-rotate(-10deg) brightness(1.05)' 
+            }} 
+          />
+
         </div>
       </Reveal>
+      {/* ----------------------------------- */}
+
     </section>
   );
 }
