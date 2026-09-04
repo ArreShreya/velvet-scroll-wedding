@@ -16,6 +16,8 @@ import { ClosingPage } from "@/components/ClosingPage";
 import { TwoStatesUnion } from "@/components/TwoStatesUnion";
 import { VenueOrbitReveal } from "@/components/VenueOrbitReveal";
 import { clsx } from "clsx";
+import coupleDanceVideo from "../assets/couple_dancing.mp4";
+import danceFrame4 from "../assets/dance_frame4.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -359,7 +361,7 @@ function IndexContent() {
                   {/* 1. The Video Layer (Placed in the background) */}
                   <video
                     ref={videoRef}
-                    src="/src/assets/couple_dancing.mp4" 
+                    src={coupleDanceVideo} 
                     autoPlay
                     loop
                     muted
@@ -379,7 +381,7 @@ function IndexContent() {
 
                   {/* 2. The Transparent PNG Frame (Overlays on top of the video) */}
                   <img 
-                     src="/src/assets/dance_frame4.png"  
+                     src={danceFrame4}
                     alt="Ornamental Oval Frame" 
                     style={{
                       position: 'absolute',

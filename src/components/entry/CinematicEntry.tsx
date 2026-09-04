@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import monogram from "@/assets/monogram-ps.png.asset.json";
 import { useLang } from "@/i18n/LanguageContext";
 import { STAGE } from "./entryConfig";
+import entryRevealVideo from "../../assets/cinematic-video1.mp4"
 
 type Stage = "sealed" | "flap" | "flying" | "open";
 
@@ -59,7 +60,7 @@ export function CinematicEntry({ onDone }: { onDone: () => void }) {
         <video
           ref={videoRef}
           // IMPORTANT: Place your video file in the public/assets/ folder!
-          src="/src/assets/cinematic-video1.mp4" 
+          src={entryRevealVideo}
           playsInline
           // We can leave 'muted' off if your video has music, because the user 
           // already interacted with the page by tapping the wax seal!
