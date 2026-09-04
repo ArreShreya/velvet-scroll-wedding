@@ -55,6 +55,9 @@ function IndexContent() {
   
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Reference to the video element so we can command it to play
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   // Detect the very first tap/click (which opens the envelope)
   useEffect(() => {
     const handleInteraction = () => setHasOpenedEnvelope(true);
@@ -68,6 +71,15 @@ function IndexContent() {
       document.removeEventListener("touchstart", handleInteraction);
       document.removeEventListener("keydown", handleInteraction);
     };
+  }, []);
+
+  useEffect(() => {
+    // Optional safeguard to ensure playback starts on mount
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.log("Autoplay prevented:", error);
+      });
+    }
   }, []);
 
   // Handle the Scroll Hint and Auto-Scroll timer
@@ -296,20 +308,90 @@ function IndexContent() {
                   {t.theBride}
                 </p>
                 <p className="mt-3 font-emotional text-3xl text-text-heading">{t.brideFull}</p>
-                <p className="mt-2 font-body text-sm leading-relaxed text-text-body sm:text-base">
+                {/* <p className="mt-2 font-body text-sm leading-relaxed text-text-body sm:text-base">
                   {t.brideParents}
-                </p>
+                </p> */}
               </Reveal>
               <Reveal variant="right" delay={120}>
                 <p className="font-body text-sm uppercase text-text-secondary sm:text-base">
                   {t.theGroom}
                 </p>
                 <p className="mt-3 font-emotional text-3xl text-text-heading">{t.groomFull}</p>
-                <p className="mt-2 font-body text-sm leading-relaxed text-text-body sm:text-base">
+                {/* <p className="mt-2 font-body text-sm leading-relaxed text-text-body sm:text-base">
                   {t.groomParents}
-                </p>
+                </p> */}
               </Reveal>
             </div>
+
+              {/* <div className="absolute inset-0 z-0 bg-black"> */}
+                {/* <video
+                  ref={videoRef}
+                  // IMPORTANT: Place your video file in the public/assets/ folder!
+                  src="/src/assets/cinematic-video1.mp4" 
+                  playsInline
+                  // We can leave 'muted' off if your video has music, because the user 
+                  // already interacted with the page by tapping the wax seal!
+                  className="h-full w-full object-cover"
+                /> */}
+
+               
+              {/* </div> */}
+
+          </section>
+
+          <section>
+             {/* <video
+                  ref={videoRef}
+                  src="/src/assets/couple_dancing.mp4" 
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{ width: '100%', height: 'auto' }}
+                /> */}
+
+                <div style={{
+                  position: 'relative',
+                  width: '400px',        // Set this to your frame's optimal dimensions
+                  height: '600px',       // Matches the frame height
+                  margin: '0 auto'
+                }}>
+                  {/* 1. The Video Layer (Placed in the background) */}
+                  <video
+                    ref={videoRef}
+                    src="/src/assets/couple_dancing.mp4" 
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    style={{
+                      position: 'absolute',
+                      top: '12%',        // Adjust positioning to line up with the center cutout
+                      left: '12%',
+                      width: '76%',      // Shrinks the video bounds to roughly fit inside the inner oval
+                      height: '76%',
+                      objectFit: 'cover',
+                      // Mask the video into an ellipse so its corners do not bleed past the frame
+                      clipPath: 'ellipse(42% 45% at 50% 50%)', 
+                      zIndex: 1
+                    }}
+                  />
+
+                  {/* 2. The Transparent PNG Frame (Overlays on top of the video) */}
+                  <img 
+                     src="/src/assets/dance_frame4.png"  
+                    alt="Ornamental Oval Frame" 
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      pointerEvents: 'none', // Allows users to right-click or click through to the video controls if needed
+                      zIndex: 2
+                    }}
+                  />
+              </div>
           </section>
 
           <TimelinePage />
