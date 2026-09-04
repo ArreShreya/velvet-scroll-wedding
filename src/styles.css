@@ -1080,25 +1080,19 @@
    loop and masked-region animations always hand off at the same instant,
    however different the per-event motif animation itself is. */
 :root {
-  --intro-dur: 3.4s;
+  --intro-dur: 5s;
 }
+/* Every event page starts behind the same frosted-glass veil (barely-there,
+   heavily blurred) while its motif animation (hands, ring, petals, etc.)
+   plays in front, then sharpens into the full illustration. */
 .event-scene {
-  opacity: 0;
-  filter: blur(0);
+  opacity: .16;
+  filter: blur(30px);
   transform: scale(1.025);
   will-change: opacity, filter, transform;
 }
-.event-page-mehandi .event-scene {
-  filter: blur(30px);
-}
 .event-page.is-intro-active .event-scene {
   animation: event-scene-reveal var(--intro-dur) var(--ease-elegant) forwards;
-}
-.event-page-mehandi.is-intro-active .event-scene {
-  animation-name: event-scene-reveal-blur;
-}
-.event-page-baarat.is-intro-active .event-scene {
-  animation-name: event-scene-reveal-slide;
 }
 .event-page .ken-burns,
 .event-page .region-glow,
@@ -1126,7 +1120,7 @@
   transform: translateY(12px);
 }
 .event-page.is-intro-active .event-copy {
-  animation: event-copy-arrive 700ms var(--ease-elegant) 2.75s forwards;
+  animation: event-copy-arrive 700ms var(--ease-elegant) calc(var(--intro-dur) - .65s) forwards;
 }
 .event-intro {
   pointer-events: none;
@@ -1153,19 +1147,10 @@
   filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.28));
 }
 @keyframes event-scene-reveal {
-  0%, 55% { opacity: 0; transform: scale(1.025); }
-  100% { opacity: 1; transform: scale(1); }
-}
-@keyframes event-scene-reveal-blur {
-  /* Stays almost fully blurred through the clapping, then sharpens once the
-     hands are on their way out (60% ≈ 2.0s in, hands fade 70–100%). */
-  0%, 60% { opacity: .16; filter: blur(30px); transform: scale(1.045); }
+  /* Stays behind the frosted-glass veil through the motif animation, then
+     sharpens into focus once it's on its way out (60% hold, sharpens 60–100%). */
+  0%, 60% { opacity: .16; filter: blur(30px); transform: scale(1.025); }
   100% { opacity: 1; filter: blur(0); transform: scale(1); }
-}
-@keyframes event-scene-reveal-slide {
-  /* Baarat: illustration arrives from the side, matching the procession. */
-  0%, 55% { opacity: 0; transform: translate3d(14%, 0, 0) scale(1.03); }
-  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
 }
 @keyframes event-copy-arrive { to { opacity: 1; transform: translateY(0); } }
 @keyframes event-intro-away { to { opacity: 0; visibility: hidden; } }
@@ -1224,11 +1209,11 @@
 /* Haldi: marigold petals drift down, gradually increasing in number. */
 .event-intro-petals { position: absolute; inset: 0; }
 .event-intro-petals span { position: absolute; top: -8%; left: calc(6% + var(--petal-col) * 13%); width: clamp(13px, 4vw, 25px); aspect-ratio: .7; border-radius: 70% 30% 65% 35%; background: color-mix(in oklab, var(--gold) 66%, oklch(0.72 0.17 55)); box-shadow: 0 5px 12px oklch(0.45 0.1 55 / .24); }
-.event-intro-haldi.is-active .event-intro-petals span { animation: intro-petal-fall calc(1.4s + var(--petal-index) * 60ms) ease-in calc(var(--petal-index) * 100ms) forwards; }
+.event-intro-haldi.is-active .event-intro-petals span { animation: intro-petal-fall calc(2.9s + var(--petal-index) * 60ms) ease-in calc(var(--petal-index) * 100ms) forwards; }
 @keyframes intro-petal-fall { 0% { opacity: 0; transform: translate3d(0, -8vh, 0) rotate(0); } 12% { opacity: 1; } 82% { opacity: .8; } 100% { opacity: 0; transform: translate3d(calc((var(--petal-col) - 3) * 9px), 105vh, 0) rotate(330deg); } }
 
 /* Baarat: small dhol pulses with a rhythmic beat, then fades as the scene
-   (see event-scene-reveal-slide above) slides in from the side. */
+   fades/sharpens up in place, same as every other event page. */
 .event-intro-dhol { width: min(52vw, 23rem); }
 .event-intro-baarat.is-active .event-intro-dhol { animation: intro-dhol-beat var(--intro-dur) var(--ease-elegant) forwards; }
 @keyframes intro-dhol-beat {
@@ -1301,8 +1286,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .event-scene, .event-page-mehandi .event-scene, .event-copy { opacity: 1; filter: none; transform: none; }
-  .event-page.is-intro-active .event-scene, .event-page-mehandi.is-intro-active .event-scene, .event-page.is-intro-active .event-copy { animation: none; }
+  .event-scene, .event-copy { opacity: 1; filter: none; transform: none; }
+  .event-page.is-intro-active .event-scene, .event-page.is-intro-active .event-copy { animation: none; }
   .event-intro { display: none; }
   .event-page .ken-burns, .event-page .region-glow, .event-page .region-sway, .event-page .region-shimmer, .event-page .region-flame, .event-page .region-ripple, .event-page .particle-sparkle, .event-page .particle-petal { animation-play-state: paused; }
 }
