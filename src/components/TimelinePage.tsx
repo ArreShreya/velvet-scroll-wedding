@@ -161,7 +161,7 @@ export function TimelinePage() {
                 className={`block ${inView ? "pop-in" : "pop-out"}`}
                 style={{ animationDelay: `${i * 1000}ms` }}
               >
-                <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep md:h-14 md:w-14">
+                <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-gold/60 bg-paper-tint text-text-heading md:h-14 md:w-14">
                   <EventIcon id={e.id} className="h-6 w-6 md:h-8 md:w-8" />
                 </span>
                 {/* Desktop Event Name (Increased to text-lg) */}
@@ -280,7 +280,7 @@ function MobileArc({
                 flexDirection: facing === "left" ? "row-reverse" : "row",
               }}
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/60 bg-paper-tint text-text-heading">
                 <EventIcon id={id} className="h-5 w-5" />
               </span>
               <span className="min-w-0 flex-1">

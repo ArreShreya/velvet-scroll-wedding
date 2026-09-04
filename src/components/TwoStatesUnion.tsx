@@ -122,7 +122,7 @@ export function TwoStatesUnion() {
             )}
           >
             <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/40 bg-paper shadow-md animate-gentle-pulse">
-              <Heart className="h-8 w-8 fill-rose-deep text-rose-deep" />
+              <Heart className="h-8 w-8 fill-gold text-gold" />
             </div>
           </div>
 
