@@ -294,7 +294,7 @@ function IndexContent() {
           <VenueOrbitReveal />
 
           {/* Families */}
-          <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
+          <section className="relative flex snap-start flex-col items-center justify-center px-6 py-16 text-center">
             <PageOrnaments />
             <Reveal
               as="h2"
