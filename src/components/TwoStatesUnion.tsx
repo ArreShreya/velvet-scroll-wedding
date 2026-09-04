@@ -7,7 +7,7 @@ import { Reveal } from "@/components/Reveal";
 import gujaratImg from "../assets/gujaratImg.png"; 
 import upImg from "../assets/upImg.png";
 
-export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
+export function TwoStatesUnion() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -29,9 +29,9 @@ export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
 
     const handleScroll = () => {
       const { top, height } = container.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+      const viewportHeight = scrollParent instanceof HTMLElement ? scrollParent.clientHeight : window.innerHeight;
       
-      const scrollDistance = height - windowHeight;
+      const scrollDistance = height - viewportHeight;
       let progress = -top / scrollDistance;
       
       progress = Math.max(0, Math.min(1, progress));
@@ -58,7 +58,7 @@ export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
         <div className="relative mt-36 flex h-[80vh] w-full max-w-3xl flex-col">
           
           {/* GUJARAT */}
-          <div className="absolute left-[2%] top-0 z-10 flex w-[55%] flex-col items-center md:w-[45%]">
+          <div className="absolute left-0 top-0 z-10 flex w-[55%] flex-col items-center md:w-[45%]">
             {/* The text slides in from the left */}
             <Reveal variant="left">
               <p className="mb-2 font-display text-2xl text-rose-deep md:text-3xl">Gujarat</p>
@@ -75,7 +75,7 @@ export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
           </div>
 
           {/* UTTAR PRADESH */}
-          <div className="absolute right-[2%] top-[35%] z-10 flex w-[55%] flex-col items-center md:w-[45%]">
+          <div className="absolute bottom-0 right-0 z-10 flex w-[55%] flex-col items-center md:w-[45%]">
             {/* The text slides in from the right */}
             <Reveal variant="right">
               <p className="mb-2 font-display text-2xl text-rose-deep md:text-3xl">Uttar Pradesh</p>
@@ -94,13 +94,13 @@ export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
           <svg className="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <mask id="path-mask">
-                <path d="M 28 35 C 28 115, 38 85, 50 85" fill="transparent" stroke="white" strokeWidth="4" pathLength="100" strokeDasharray="100" strokeDashoffset={100 - (scrollProgress * 100)} />
-                <path d="M 72 70 C 72 115, 62 85, 50 85" fill="transparent" stroke="white" strokeWidth="4" pathLength="100" strokeDasharray="100" strokeDashoffset={100 - (scrollProgress * 100)} />
+                <path d="M 28 15 C 4 25, 4 78, 50 50" fill="transparent" stroke="white" strokeWidth="4" pathLength="100" strokeDasharray="100" strokeDashoffset={100 - (scrollProgress * 100)} />
+                <path d="M 72 85 C 96 75, 96 22, 50 50" fill="transparent" stroke="white" strokeWidth="4" pathLength="100" strokeDasharray="100" strokeDashoffset={100 - (scrollProgress * 100)} />
               </mask>
             </defs>
             <g mask="url(#path-mask)" fill="transparent" stroke="var(--gold)" strokeWidth="0.8" strokeDasharray="2 2">
-              <path d="M 28 35 C 28 115, 38 85, 50 85" />
-              <path d="M 72 70 C 72 115, 62 85, 50 85" />
+              <path d="M 28 15 C 4 25, 4 78, 50 50" />
+              <path d="M 72 85 C 96 75, 96 22, 50 50" />
             </g>
           </svg>
 
@@ -114,23 +114,17 @@ export function TwoStatesUnion({ onReveal }: { onReveal?: () => void }) {
             <ChevronDown className="h-5 w-5" />
           </div>
 
-          {/* BIGGER HEART BUTTON */}
-          <button 
-            onClick={onReveal}
+          <div
+            aria-hidden="true"
             className={clsx(
-              "absolute left-1/2 top-[85%] z-30 flex flex-col items-center -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
-              showHeart ? "scale-100 opacity-100" : "scale-0 opacity-0 pointer-events-none"
+              "absolute left-1/2 top-1/2 z-30 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center transition-all duration-700 ease-out",
+              showHeart ? "scale-100 opacity-100" : "scale-0 opacity-0"
             )}
           >
-            {/* Increased dimensions from h-12/w-12 to h-16/w-16 */}
-            <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/40 bg-paper shadow-md animate-gentle-pulse hover:bg-paper-tint transition-colors cursor-pointer">
-              {/* Increased icon from h-6/w-6 to h-8/w-8 */}
+            <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/40 bg-paper shadow-md animate-gentle-pulse">
               <Heart className="h-8 w-8 fill-rose-deep text-rose-deep" />
             </div>
-            <span className="mt-4 font-sans text-xs font-semibold tracking-[0.2em] uppercase text-rose-deep animate-pulse">
-              Tap to reveal
-            </span>
-          </button>
+          </div>
 
         </div>
       </div>
