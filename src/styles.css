@@ -62,15 +62,26 @@
 }
 
 @theme {
-  --font-display:
-    "Cormorant Garamond", "Noto Serif Devanagari", "Noto Serif Gujarati", "Noto Sans Devanagari",
-    "Noto Sans Gujarati", Georgia, serif;
-  --font-sans:
-    "Karla", "Noto Sans Devanagari", "Noto Sans Gujarati", ui-sans-serif, system-ui, sans-serif;
+  --font-emotional:
+    "Beloved", "Seraphine", "Great Vibes", "Noto Serif Devanagari", "Noto Serif Gujarati", cursive;
+  --font-heading:
+    "Saffron", "Cormorant Garamond", "Noto Serif Devanagari", "Noto Serif Gujarati", Georgia, serif;
+  --font-body:
+    "Luxe", "Amour", "Libre Baskerville", "Noto Serif Devanagari", "Noto Serif Gujarati", Georgia, serif;
+  --font-accent:
+    "Everly", "Caveat", "Noto Serif Devanagari", "Noto Serif Gujarati", cursive;
+  --font-numeric:
+    "Maison", "DM Serif Display", "Noto Serif Devanagari", "Noto Serif Gujarati", Georgia, serif;
+  --font-display: var(--font-heading);
+  --font-sans: var(--font-body);
   --color-ink: var(--ink);
   --color-rose: var(--rose);
   --color-rose-deep: var(--rose-deep);
   --color-gold: var(--gold);
+  --color-text-body: var(--text-body);
+  --color-text-heading: var(--text-heading);
+  --color-text-sacred: var(--text-sacred);
+  --color-text-secondary: var(--text-secondary);
 }
 
 :root {
@@ -79,6 +90,10 @@
   --rose: oklch(0.83 0.06 15);
   --rose-deep: oklch(0.55 0.11 15);
   --gold: oklch(0.75 0.1 85);
+  --text-body: oklch(0.48 0.085 18);
+  --text-heading: oklch(0.62 0.105 78);
+  --text-sacred: oklch(0.34 0.13 20);
+  --text-secondary: oklch(0.5 0.045 138);
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
@@ -163,9 +178,44 @@
 
   body {
     background-color: var(--color-background);
-    color: var(--ink);
-    font-family: var(--font-sans);
+    color: var(--text-body);
+    font-family: var(--font-body);
   }
+}
+
+/* Invitation typography roles. Indic copy keeps its script-specific faces. */
+.font-emotional,
+.font-heading,
+.font-body,
+.font-accent,
+.font-numeric {
+  letter-spacing: 0;
+}
+
+:lang(hi).font-emotional,
+:lang(hi).font-heading,
+:lang(hi).font-body,
+:lang(hi).font-accent,
+:lang(hi).font-numeric,
+.formal-invitation:lang(hi) .font-emotional,
+.formal-invitation:lang(hi) .font-heading,
+.formal-invitation:lang(hi) .font-body,
+.formal-invitation:lang(hi) .font-accent,
+.formal-invitation:lang(hi) .font-numeric {
+  font-family: "Noto Serif Devanagari", serif;
+}
+
+:lang(gu).font-emotional,
+:lang(gu).font-heading,
+:lang(gu).font-body,
+:lang(gu).font-accent,
+:lang(gu).font-numeric,
+.formal-invitation:lang(gu) .font-emotional,
+.formal-invitation:lang(gu) .font-heading,
+.formal-invitation:lang(gu) .font-body,
+.formal-invitation:lang(gu) .font-accent,
+.formal-invitation:lang(gu) .font-numeric {
+  font-family: "Noto Serif Gujarati", serif;
 }
 
 @utility bg-velvet {
@@ -255,7 +305,7 @@
 
 .formal-invitation:lang(hi),
 .formal-invitation:lang(gu) {
-  font-family: "Noto Sans Devanagari", "Noto Sans Gujarati", sans-serif;
+  font-family: "Noto Serif Devanagari", "Noto Serif Gujarati", serif;
 }
 
 .formal-invitation:lang(hi) .font-display,
