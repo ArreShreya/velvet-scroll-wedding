@@ -4,7 +4,7 @@ import handLeftImage from "../assets/mehandi_left.png";
 import handRightImage from "../assets/mehandi right.png";
 import ringImage from "../assets/ring.png";
 import ferasImage from "../assets/Feras.png";
-import garlandsImage from "../assets/Garlands.png";
+import garlandsImage from "../assets/garland.png";
 
 type EventIntroProps = {
   eventId: string;

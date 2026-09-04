@@ -92,7 +92,7 @@ export function TimelinePage() {
       <PageOrnaments />
       
       {/* Kicker & Title */}
-      <Reveal as="p" className="text-center font-body text-xs uppercase text-text-secondary sm:text-sm">
+      <Reveal as="p" className="text-center font-body text-xs uppercase text-text-secondary sm:text-2xl">
         {t.timelineKicker}
       </Reveal>
       <Reveal as="h2" delay={120} className="mt-3 text-center font-heading text-4xl font-semibold text-text-heading sm:text-5xl md:text-6xl">
@@ -225,7 +225,7 @@ function MobileArc({
   return (
     <div ref={ref} className={`mx-auto w-full max-w-sm ${className}`}>
       {/* Mobile Day Label (Increased to text-xs) */}
-      <p className="mb-2 text-center font-numeric text-xs font-medium uppercase text-text-secondary">
+      <p className="mb-2 text-center font-numeric text-lg font-medium uppercase text-text-secondary">
         {label}
       </p>
       <div className="relative">

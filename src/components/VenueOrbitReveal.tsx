@@ -23,7 +23,7 @@ export function VenueOrbitReveal() {
         <h3 className="mb-2 font-heading text-3xl font-semibold text-text-heading md:text-4xl">
           Where our story continues...
         </h3>
-        <p className="mb-20 font-accent text-lg text-text-secondary">
+        <p className="mb-20 font-accent text-3xl text-text-secondary">
           Under the golden Goa sun
         </p>
 
