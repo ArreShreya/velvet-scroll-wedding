@@ -50,7 +50,6 @@ function IndexContent() {
   const { lang, t } = useLang();
   const invitation = t.formalInvitation;
   
-  const [isRevealed, setIsRevealed] = useState(false);
   const [showScrollHint, setShowScrollHint] = useState(false);
   const [hasOpenedEnvelope, setHasOpenedEnvelope] = useState(false);
   
@@ -134,13 +133,6 @@ function IndexContent() {
       scrollParent.removeEventListener("scroll", handleScroll);
     };
   }, [hasOpenedEnvelope]);
-
-  const handleReveal = () => {
-    setIsRevealed(true);
-    setTimeout(() => {
-      document.getElementById("venue-reveal")?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  };
 
   return (
     <>
@@ -283,56 +275,52 @@ function IndexContent() {
           </section>
 
           {/* TWO STATES PAGE */}
-          <TwoStatesUnion onReveal={handleReveal} />
+          <TwoStatesUnion />
 
-          {isRevealed && (
-            <>
-              <VenueOrbitReveal />
+          <VenueOrbitReveal />
 
-              {/* Families */}
-              <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
-                <PageOrnaments />
-                <Reveal
-                  as="h2"
-                  className="font-display text-4xl leading-tight text-rose-deep md:text-5xl"
-                >
-                  {t.familiesTitle}
-                </Reveal>
-                <GoldDivider className="mt-6" />
+          {/* Families */}
+          <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center">
+            <PageOrnaments />
+            <Reveal
+              as="h2"
+              className="font-display text-4xl leading-tight text-rose-deep md:text-5xl"
+            >
+              {t.familiesTitle}
+            </Reveal>
+            <GoldDivider className="mt-6" />
 
-                <div className="mt-10 grid w-full max-w-2xl gap-10 md:grid-cols-2">
-                  <Reveal variant="left" delay={120}>
-                    <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
-                      {t.theBride}
-                    </p>
-                    <p className="mt-3 font-display text-3xl text-rose-deep">{t.brideFull}</p>
-                    <p className="mt-2 font-sans text-sm leading-relaxed tracking-[0.1em] text-ink/75 sm:text-base">
-                      {t.brideParents}
-                    </p>
-                  </Reveal>
-                  <Reveal variant="right" delay={120}>
-                    <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
-                      {t.theGroom}
-                    </p>
-                    <p className="mt-3 font-display text-3xl text-rose-deep">{t.groomFull}</p>
-                    <p className="mt-2 font-sans text-sm leading-relaxed tracking-[0.1em] text-ink/75 sm:text-base">
-                      {t.groomParents}
-                    </p>
-                  </Reveal>
-                </div>
-              </section>
+            <div className="mt-10 grid w-full max-w-2xl gap-10 md:grid-cols-2">
+              <Reveal variant="left" delay={120}>
+                <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
+                  {t.theBride}
+                </p>
+                <p className="mt-3 font-display text-3xl text-rose-deep">{t.brideFull}</p>
+                <p className="mt-2 font-sans text-sm leading-relaxed tracking-[0.1em] text-ink/75 sm:text-base">
+                  {t.brideParents}
+                </p>
+              </Reveal>
+              <Reveal variant="right" delay={120}>
+                <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
+                  {t.theGroom}
+                </p>
+                <p className="mt-3 font-display text-3xl text-rose-deep">{t.groomFull}</p>
+                <p className="mt-2 font-sans text-sm leading-relaxed tracking-[0.1em] text-ink/75 sm:text-base">
+                  {t.groomParents}
+                </p>
+              </Reveal>
+            </div>
+          </section>
 
-              <TimelinePage />
+          <TimelinePage />
 
-              {events.map((e) => (
-                <EventPage key={e.id} event={e} />
-              ))}
+          {events.map((e) => (
+            <EventPage key={e.id} event={e} />
+          ))}
 
-              <VenuePage />
-              <CountdownPage />
-              <ClosingPage />
-            </>
-          )}
+          <VenuePage />
+          <CountdownPage />
+          <ClosingPage />
         </div>
       </ScrollShell>
     </>
