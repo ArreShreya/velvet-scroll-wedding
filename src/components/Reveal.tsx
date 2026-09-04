@@ -8,6 +8,7 @@ export type RevealVariant =
   | "right"
   | "zoom"
   | "tick"
+  | "countdown"
   | "fade"
   | "settle";
 
