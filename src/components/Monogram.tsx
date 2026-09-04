@@ -1,4 +1,4 @@
-import monogram from "@/assets/monogram-ps.png.asset.json";
+import monogram from "../assets/monogram-ps.png";
 
 /** P&S monogram, mirroring the language toggle in the opposite corner. */
 export function Monogram() {
@@ -9,7 +9,7 @@ export function Monogram() {
       className="press pointer-events-auto block"
     >
       <img
-        src={monogram.url}
+        src={monogram}
         alt="Prabhav and Shreya monogram"
         width={718}
         height={980}
