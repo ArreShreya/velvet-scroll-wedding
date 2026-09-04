@@ -967,6 +967,38 @@
   transition-duration: 420ms;
   transition-timing-function: cubic-bezier(0.34, 1.5, 0.64, 1);
 }
+.reveal[data-reveal="countdown"] {
+  transform: scale(0.42) translateY(26px);
+  transition-duration: 680ms;
+  transition-timing-function: cubic-bezier(0.18, 1.62, 0.36, 1);
+}
+.reveal[data-reveal="countdown"].is-visible {
+  transform: scale(1) translateY(0);
+}
+
+@keyframes countdown-burst {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+  22% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--spark-x)), calc(-50% + var(--spark-y))) scale(1.15) rotate(var(--spark-r)); }
+}
+.countdown-spark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: var(--text-heading);
+  font-size: 0.75rem;
+  opacity: 0;
+}
+.countdown-spark:nth-child(even) { color: var(--text-secondary); }
+.countdown-dial.is-visible .countdown-spark {
+  animation: countdown-burst 760ms 470ms ease-out both;
+}
+.countdown-spark-1 { --spark-x: -58px; --spark-y: -42px; --spark-r: -24deg; }
+.countdown-spark-2 { --spark-x: 54px; --spark-y: -46px; --spark-r: 32deg; }
+.countdown-spark-3 { --spark-x: 66px; --spark-y: 12px; --spark-r: 18deg; }
+.countdown-spark-4 { --spark-x: 38px; --spark-y: 54px; --spark-r: -18deg; }
+.countdown-spark-5 { --spark-x: -50px; --spark-y: 48px; --spark-r: 28deg; }
+.countdown-spark-6 { --spark-x: -66px; --spark-y: 6px; --spark-r: -36deg; }
 .reveal[data-reveal="fade"] {
   transform: none;
   transition-duration: 1600ms;

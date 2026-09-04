@@ -25,16 +25,21 @@ function diff(now: number): Parts {
 }
 
 function Dial({ value, label, delay }: { value: number | null; label: string; delay: number }) {
+  const particles = ["✦", "•", "❀", "✧", "•", "✦"];
   return (
     <Reveal
-      variant="tick"
+      variant="countdown"
       delay={delay}
-      className="press relative flex h-24 w-24 flex-col items-center justify-center rounded-full border border-rose/60 bg-[oklch(0.99_0.012_40_/_0.75)] shadow-[0_10px_28px_-20px_rgba(120,60,60,0.6)] sm:h-28 sm:w-28">
-      <span className="pointer-events-none absolute -left-2 -top-1 text-lg opacity-70">❀</span>
-      <span className="font-display text-3xl leading-none text-rose-deep sm:text-4xl">
+      className="countdown-dial press relative flex h-24 w-24 flex-col items-center justify-center rounded-full border border-gold/60 bg-[oklch(0.99_0.012_40_/_0.78)] shadow-[0_10px_28px_-20px_rgba(120,60,60,0.6)] sm:h-28 sm:w-28">
+      <span aria-hidden="true" className="pointer-events-none absolute inset-0">
+        {particles.map((particle, index) => (
+          <span key={index} className={`countdown-spark countdown-spark-${index + 1}`}>{particle}</span>
+        ))}
+      </span>
+      <span className="font-numeric text-3xl leading-none text-text-heading sm:text-4xl">
         {value === null ? "--" : String(value).padStart(2, "0")}
       </span>
-      <span className="mt-1 font-sans text-[0.6rem] uppercase tracking-[0.25em] text-ink/60">
+      <span className="mt-1 font-body text-[0.6rem] uppercase text-text-secondary">
         {label}
       </span>
     </Reveal>
@@ -54,10 +59,10 @@ export function CountdownPage() {
   return (
     <section className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-5 py-16 text-center">
       <PageOrnaments />
-      <span className="font-sans text-[0.8rem] uppercase tracking-[0.5em] text-ink/65">
+      <span className="font-body text-[0.8rem] uppercase text-text-secondary">
         {t.countdownKicker}
       </span>
-      <Reveal as="h2" className="mt-4 font-display text-3xl text-rose-deep md:text-4xl">
+      <Reveal as="h2" className="mt-4 font-heading text-3xl font-semibold text-text-heading md:text-4xl">
         {t.countdownTitle}
       </Reveal>
       <GoldDivider className="mt-4" />
@@ -73,7 +78,7 @@ export function CountdownPage() {
         <div className="relative flex aspect-[3/4] items-center justify-center rounded-t-[999px] border border-rose/60 bg-[oklch(0.98_0.015_40_/_0.6)] p-6">
           <span className="pointer-events-none absolute -left-3 bottom-2 text-2xl opacity-60">❀</span>
           <span className="pointer-events-none absolute -right-3 top-6 text-2xl opacity-50">❀</span>
-          <p className="font-sans text-xs leading-relaxed tracking-[0.18em] text-ink/50">
+          <p className="font-accent text-base leading-relaxed text-text-secondary">
             {t.photoPlaceholder}
           </p>
         </div>
