@@ -143,11 +143,11 @@ function IndexContent() {
           showScrollHint ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         )}
       >
-        <span className="mb-2 font-sans text-[0.75rem] font-bold uppercase tracking-[0.25em] text-rose-deep animate-pulse drop-shadow-md">
+        <span className="mb-2 font-body text-[0.75rem] font-bold uppercase text-text-secondary animate-pulse drop-shadow-md">
           Scroll
         </span>
         <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-paper/95 backdrop-blur-md shadow-lg animate-bounce">
-          <ChevronDown className="h-6 w-6 text-rose-deep" />
+          <ChevronDown className="h-6 w-6 text-text-secondary" />
         </div>
       </div>
 
@@ -160,7 +160,7 @@ function IndexContent() {
             <ShlokaText
               lines={[t.ganeshInvocation]}
               step={70}
-              className="mb-5 font-display text-2xl tracking-[0.12em] text-rose-deep md:text-3xl"
+              className="mb-5 font-accent text-2xl text-text-sacred md:text-3xl"
             />
             <Reveal delay={120}>
               <img
@@ -174,7 +174,7 @@ function IndexContent() {
             <ShlokaText lines={[t.shloka1, t.shloka2]} />
             <Reveal delay={240}>
               <GoldDivider className="mt-5" />
-              <p className="mt-4 max-w-md font-sans text-sm leading-relaxed tracking-[0.12em] text-ink/70">
+              <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-text-body/80">
                 {t.translitLine}
               </p>
             </Reveal>
@@ -191,14 +191,14 @@ function IndexContent() {
             <Reveal
               as="p"
               delay={80}
-              className="mt-7 w-full max-w-3xl text-left font-display text-xl font-semibold leading-relaxed text-ink/85 sm:text-2xl"
+              className="mt-7 w-full max-w-3xl text-left font-heading text-xl font-semibold leading-relaxed text-text-heading sm:text-2xl"
             >
               {invitation.salutation}
             </Reveal>
             <Reveal
               as="div"
               delay={120}
-              className="mt-4 max-w-3xl space-y-1 font-sans text-base leading-[1.85] text-ink/80 sm:text-lg"
+              className="mt-4 max-w-3xl space-y-1 font-body text-base leading-[1.85] text-text-body sm:text-lg"
             >
               {invitation.prelude.map((line) => (
                 <p key={line}>{line}</p>
@@ -208,7 +208,7 @@ function IndexContent() {
               <Reveal
                 as="p"
                 delay={160}
-                className="mt-3 font-sans text-base leading-relaxed text-ink/80 sm:text-lg"
+                className="mt-3 font-body text-base leading-relaxed text-text-body sm:text-lg"
               >
                 {invitation.groomLead}
               </Reveal>
@@ -218,14 +218,14 @@ function IndexContent() {
               variant="scale"
               as="h1"
               delay={200}
-              className="mt-4 font-display text-4xl font-semibold leading-tight text-rose-deep sm:text-5xl"
+              className="mt-4 font-emotional text-4xl leading-tight text-text-heading sm:text-5xl"
             >
               {invitation.groomName}
             </Reveal>
             <Reveal
               as="div"
               delay={240}
-              className="mt-3 max-w-3xl space-y-2 font-sans text-sm leading-relaxed text-ink/70 sm:text-base"
+              className="mt-3 max-w-3xl space-y-2 font-body text-sm leading-relaxed text-text-secondary sm:text-base"
             >
               <p>{invitation.groomGrandparents}</p>
               <p>{invitation.groomParents}</p>
@@ -235,7 +235,7 @@ function IndexContent() {
               variant="scale"
               as="p"
               delay={280}
-              className="my-4 font-display text-2xl italic text-gold sm:text-3xl"
+              className="my-4 font-accent text-2xl text-text-secondary sm:text-3xl"
             >
               {invitation.conjunction}
             </Reveal>
@@ -243,14 +243,14 @@ function IndexContent() {
               variant="scale"
               as="h2"
               delay={320}
-              className="font-display text-4xl font-semibold leading-tight text-rose-deep sm:text-5xl"
+              className="font-emotional text-4xl leading-tight text-text-heading sm:text-5xl"
             >
               {invitation.brideName}
             </Reveal>
             <Reveal
               as="p"
               delay={360}
-              className="mt-3 max-w-3xl font-sans text-sm leading-relaxed text-ink/70 sm:text-base"
+              className="mt-3 max-w-3xl font-body text-sm leading-relaxed text-text-secondary sm:text-base"
             >
               {invitation.brideParents}
             </Reveal>
@@ -258,7 +258,7 @@ function IndexContent() {
               <Reveal
                 as="p"
                 delay={400}
-                className="mt-3 font-sans text-base leading-relaxed text-ink/80 sm:text-lg"
+                className="mt-3 font-body text-base leading-relaxed text-text-body sm:text-lg"
               >
                 {invitation.announcement}
               </Reveal>
@@ -268,7 +268,7 @@ function IndexContent() {
             <Reveal
               as="p"
               delay={440}
-              className="mt-6 max-w-3xl font-sans text-base leading-[1.85] text-ink/80 sm:text-lg"
+              className="mt-6 max-w-3xl font-body text-base leading-[1.85] text-text-body sm:text-lg"
             >
               {invitation.invitation}
             </Reveal>
@@ -284,7 +284,7 @@ function IndexContent() {
             <PageOrnaments />
             <Reveal
               as="h2"
-              className="font-display text-4xl leading-tight text-rose-deep md:text-5xl"
+              className="font-heading text-4xl font-semibold leading-tight text-text-heading md:text-5xl"
             >
               {t.familiesTitle}
             </Reveal>
@@ -292,20 +292,20 @@ function IndexContent() {
 
             <div className="mt-10 grid w-full max-w-2xl gap-10 md:grid-cols-2">
               <Reveal variant="left" delay={120}>
-                <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
+                <p className="font-body text-sm uppercase text-text-secondary sm:text-base">
                   {t.theBride}
                 </p>
-                <p className="mt-3 font-display text-3xl text-rose-deep">{t.brideFull}</p>
-                <p className="mt-2 font-sans text-sm leading-relaxed tracking-[0.1em] text-ink/75 sm:text-base">
+                <p className="mt-3 font-emotional text-3xl text-text-heading">{t.brideFull}</p>
+                <p className="mt-2 font-body text-sm leading-relaxed text-text-body sm:text-base">
                   {t.brideParents}
                 </p>
               </Reveal>
               <Reveal variant="right" delay={120}>
-                <p className="font-sans text-sm uppercase tracking-[0.4em] text-ink/65 sm:text-base">
+                <p className="font-body text-sm uppercase text-text-secondary sm:text-base">
                   {t.theGroom}
                 </p>
-                <p className="mt-3 font-display text-3xl text-rose-deep">{t.groomFull}</p>
-                <p className="mt-2 font-sans text-sm leading-relaxed tracking-[0.1em] text-ink/75 sm:text-base">
+                <p className="mt-3 font-emotional text-3xl text-text-heading">{t.groomFull}</p>
+                <p className="mt-2 font-body text-sm leading-relaxed text-text-body sm:text-base">
                   {t.groomParents}
                 </p>
               </Reveal>

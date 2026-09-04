@@ -92,10 +92,10 @@ export function TimelinePage() {
       <PageOrnaments />
       
       {/* Kicker & Title */}
-      <Reveal as="p" className="text-center font-sans text-xs uppercase tracking-[0.35em] text-rose-deep/70 sm:text-sm sm:tracking-[0.45em]">
+      <Reveal as="p" className="text-center font-body text-xs uppercase text-text-secondary sm:text-sm">
         {t.timelineKicker}
       </Reveal>
-      <Reveal as="h2" delay={120} className="mt-3 text-center font-display text-4xl text-rose-deep sm:text-5xl md:text-6xl">
+      <Reveal as="h2" delay={120} className="mt-3 text-center font-heading text-4xl font-semibold text-text-heading sm:text-5xl md:text-6xl">
         {t.timelineTitle}
       </Reveal>
 
@@ -161,15 +161,15 @@ export function TimelinePage() {
                 className={`block ${inView ? "pop-in" : "pop-out"}`}
                 style={{ animationDelay: `${i * 1000}ms` }}
               >
-                <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep md:h-14 md:w-14">
+                <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-gold/60 bg-paper-tint text-text-heading md:h-14 md:w-14">
                   <EventIcon id={e.id} className="h-6 w-6 md:h-8 md:w-8" />
                 </span>
                 {/* Desktop Event Name (Increased to text-lg) */}
-                <span className="mt-2 block font-display text-lg leading-tight text-ink md:text-xl">
+                <span className="mt-2 block font-heading text-lg leading-tight text-text-heading md:text-xl">
                   {c.name}
                 </span>
                 {/* Desktop Event Time (Increased to text-xs) */}
-                <span className="mt-0.5 block font-sans text-xs tracking-[0.18em] text-rose-deep/80 md:text-sm">
+                <span className="mt-0.5 block font-numeric text-xs text-text-secondary md:text-sm">
                   {c.time}
                 </span>
               </span>
@@ -178,9 +178,9 @@ export function TimelinePage() {
         })}
 
         {/* Desktop Day 1 / Day 2 labels (Increased to text-sm) */}
-        <div className="absolute inset-x-0 bottom-1 flex justify-center gap-10 font-sans text-sm uppercase tracking-[0.3em] text-ink/70 md:text-base">
+        <div className="absolute inset-x-0 bottom-1 flex justify-center gap-10 font-numeric text-sm uppercase text-text-secondary md:text-base">
           <span>{t.day1}</span>
-          <span className="text-rose-deep">·</span>
+          <span className="text-text-heading">❖</span>
           <span>{t.day2}</span>
         </div>
       </div>
@@ -225,7 +225,7 @@ function MobileArc({
   return (
     <div ref={ref} className={`mx-auto w-full max-w-sm ${className}`}>
       {/* Mobile Day Label (Increased to text-xs) */}
-      <p className="mb-2 text-center font-sans text-xs font-medium uppercase tracking-[0.35em] text-rose-deep/80">
+      <p className="mb-2 text-center font-numeric text-xs font-medium uppercase text-text-secondary">
         {label}
       </p>
       <div className="relative">
@@ -280,16 +280,16 @@ function MobileArc({
                 flexDirection: facing === "left" ? "row-reverse" : "row",
               }}
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-rose/60 bg-paper-tint text-rose-deep">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/60 bg-paper-tint text-text-heading">
                 <EventIcon id={id} className="h-5 w-5" />
               </span>
               <span className="min-w-0 flex-1">
                 {/* Mobile Event Name (Increased to text-base) */}
-                <span className="block font-display text-base font-semibold leading-tight text-ink">
+                <span className="block font-heading text-base font-semibold leading-tight text-text-heading">
                   {c.name}
                 </span>
                 {/* Mobile Event Time (Increased to text-xs) */}
-                <span className="mt-0.5 block font-sans text-xs tracking-[0.16em] text-rose-deep/85">
+                <span className="mt-0.5 block font-numeric text-xs text-text-secondary">
                   {c.time}
                 </span>
               </span>

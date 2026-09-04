@@ -106,7 +106,7 @@ export function CinematicEntry({ onDone }: { onDone: () => void }) {
                   <span className="flex h-28 w-28 items-center justify-center rounded-full border border-gold/50 bg-[radial-gradient(circle_at_35%_30%,#e8a9a3,#b9635c)] shadow-[0_18px_40px_-18px_rgba(120,60,50,0.8)]">
                     <img src={monogram.url} alt="" width={718} height={980} className="h-16 w-auto" />
                   </span>
-                  <p className="mt-10 animate-pulse font-sans text-[0.75rem] uppercase tracking-[0.42em] text-rose-deep/80">
+                  <p className="mt-10 animate-pulse font-accent text-lg text-text-secondary">
                     {t.tapTheSeal}
                   </p>
                 </motion.button>

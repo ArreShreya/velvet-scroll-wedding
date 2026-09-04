@@ -51,7 +51,7 @@ export function TwoStatesUnion() {
       <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden px-6">
         <PageOrnaments />
         
-        <h2 className="absolute top-20 font-display text-4xl leading-tight text-rose-deep md:text-5xl">
+        <h2 className="absolute top-20 font-heading text-4xl font-semibold leading-tight text-text-heading md:text-5xl">
           Two States, One Union
         </h2>
 
@@ -61,7 +61,7 @@ export function TwoStatesUnion() {
           <div className="absolute left-0 top-0 z-10 flex w-[55%] flex-col items-center md:w-[45%]">
             {/* The text slides in from the left */}
             <Reveal variant="left">
-              <p className="mb-2 font-display text-2xl text-rose-deep md:text-3xl">Gujarat</p>
+              <p className="mb-2 font-heading text-2xl text-text-heading md:text-3xl">Gujarat</p>
             </Reveal>
             
             {/* The image waits a split second, then triggers our vertical fade up */}
@@ -78,7 +78,7 @@ export function TwoStatesUnion() {
           <div className="absolute bottom-0 right-0 z-10 flex w-[55%] flex-col items-center md:w-[45%]">
             {/* The text slides in from the right */}
             <Reveal variant="right">
-              <p className="mb-2 font-display text-2xl text-rose-deep md:text-3xl">Uttar Pradesh</p>
+              <p className="mb-2 font-heading text-2xl text-text-heading md:text-3xl">Uttar Pradesh</p>
             </Reveal>
             
             {/* The image waits a split second, then triggers our vertical fade up */}
@@ -107,10 +107,10 @@ export function TwoStatesUnion() {
           {/* INTUITIVE CUE: Shows only while the user is actively scrolling the lines */}
           <div className={clsx(
             /* CHANGED: bottom-[5%] is now bottom-[15%] on mobile and bottom-[20%] on desktop */
-            "absolute left-1/2 bottom-[15%] md:bottom-[20%] z-10 flex -translate-x-1/2 flex-col items-center text-rose-deep/60 transition-opacity duration-500",
+            "absolute left-1/2 bottom-[15%] md:bottom-[20%] z-10 flex -translate-x-1/2 flex-col items-center text-text-secondary transition-opacity duration-500",
             showHeart ? "opacity-0" : "opacity-100 animate-pulse"
           )}>
-            <span className="mb-1 font-sans text-[0.75rem] uppercase tracking-[0.2em]">Keep Scrolling</span>
+            <span className="mb-1 font-body text-[0.75rem] uppercase">Keep Scrolling</span>
             <ChevronDown className="h-5 w-5" />
           </div>
 
@@ -122,7 +122,7 @@ export function TwoStatesUnion() {
             )}
           >
             <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/40 bg-paper shadow-md animate-gentle-pulse">
-              <Heart className="h-8 w-8 fill-rose-deep text-rose-deep" />
+              <Heart className="h-8 w-8 fill-gold text-gold" />
             </div>
           </div>
 
