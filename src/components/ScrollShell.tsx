@@ -1,12 +1,19 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import { LanguageToggle } from "./LanguageToggle";
 import { Monogram } from "./Monogram";
 import { ShlokaAudio } from "./ShlokaAudio";
 import { ShellOpenContext } from "./ShellOpen";
-import { SealGate } from "./SealGate";
+
+// WebGL entry is client-only: never import/render the Canvas during SSR.
+const CinematicEntry = lazy(() =>
+  import("./entry/CinematicEntry").then((m) => ({ default: m.CinematicEntry })),
+);
 
 export function ScrollShell({ children }: { children: ReactNode }) {
   const [opened, setOpened] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
 
   const [shower, setShower] = useState(false);
   useEffect(() => {
@@ -29,7 +36,12 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           ["--header-h" as string]: "3.25rem",
         }}
       >
-        {!opened && <SealGate onDone={() => setOpened(true)} />}
+        {!opened && mounted && (
+          <Suspense fallback={<div className="fixed inset-0 z-[90] bg-paper" />}>
+            <CinematicEntry onDone={() => setOpened(true)} />
+          </Suspense>
+        )}
+        {!opened && !mounted && <div className="fixed inset-0 z-[90] bg-paper" />}
 
         {/* ---------- Header strip: monogram + language toggle ---------- */}
         <header
