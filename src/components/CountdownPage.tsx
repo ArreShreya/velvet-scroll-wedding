@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
 import { PageOrnaments, GoldDivider } from "./Ornaments";
 import { Reveal } from "./Reveal";
+import frame2 from "../assets/frame2.png"
 
 const TARGET = new Date("2026-12-11T00:00:00+05:30").getTime();
 
@@ -89,7 +90,7 @@ export function CountdownPage() {
 
           {/* 2. The Ornate Gold Frame (Sits ON TOP) */}
           <img 
-            src="/src/assets/frame2.png" 
+            src={frame2} 
             alt="Ornate Gold Frame" 
             className="relative z-10 w-full h-auto drop-shadow-xl pointer-events-none"
             style={{ 
