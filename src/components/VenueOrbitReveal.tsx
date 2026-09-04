@@ -20,10 +20,10 @@ export function VenueOrbitReveal() {
       <PageOrnaments />
       
       <Reveal variant="fade" className="flex flex-col items-center">
-        <h3 className="font-display text-3xl italic text-gold md:text-4xl mb-2">
+        <h3 className="mb-2 font-heading text-3xl font-semibold text-text-heading md:text-4xl">
           Where our story continues...
         </h3>
-        <p className="font-sans text-sm tracking-[0.2em] uppercase text-ink/70 mb-20">
+        <p className="mb-20 font-accent text-lg text-text-secondary">
           Under the golden Goa sun
         </p>
 

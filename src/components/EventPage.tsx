@@ -124,20 +124,20 @@ export function EventPage({ event }: { event: WeddingEvent }) {
                 "radial-gradient(ellipse at center, oklch(0.99 0.012 40 / 0.9) 35%, oklch(0.99 0.012 40 / 0.5) 65%, transparent 85%)",
             }}
           >
-            <p className="font-sans text-sm uppercase tracking-[0.35em] text-ink/80 sm:text-base">
+            <p className="font-numeric text-sm uppercase text-text-secondary sm:text-base">
               {copy.date}
             </p>
             <h2
-              className="mt-2 font-display text-4xl leading-tight text-rose-deep sm:text-5xl md:text-6xl"
+              className={`mt-2 font-heading text-4xl font-semibold leading-tight sm:text-5xl md:text-6xl ${event.id === "fera" ? "text-text-sacred" : "text-text-heading"}`}
               style={{ textShadow: "0 2px 12px oklch(0.99 0.01 40 / 0.85)" }}
             >
               {copy.name}
             </h2>
-            <p className="mt-2 font-sans text-base tracking-[0.28em] text-ink/85 sm:text-lg">
+            <p className="mt-2 font-numeric text-base text-text-secondary sm:text-lg">
               {copy.time}
             </p>
             {copy.thought ? (
-              <p className="mx-auto mt-3 max-w-xs font-display text-base italic leading-snug text-ink/75 sm:max-w-sm sm:text-lg">
+              <p className={`mx-auto mt-3 max-w-xs font-accent text-base leading-snug sm:max-w-sm sm:text-lg ${event.id === "fera" ? "text-text-sacred" : "text-text-secondary"}`}>
                 {copy.thought}
               </p>
             ) : null}

@@ -41,7 +41,7 @@ function clusters(text: string): string[] {
 /** Renders lines cluster-by-cluster, as if written by hand. */
 export function ShlokaText({
   lines,
-  className = "mt-6 font-display text-xl leading-relaxed text-rose-deep md:text-2xl",
+  className = "mt-6 font-accent text-xl leading-relaxed text-text-sacred md:text-2xl",
   step = 55,
   startDelay = 0,
 }: {
