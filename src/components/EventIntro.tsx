@@ -11,10 +11,18 @@ type EventIntroProps = {
   active: boolean;
 };
 
+// 14 petals across 7 columns (two "waves") so the shower reads as
+// gradually increasing in number rather than all petals falling at once.
 const Petals = () => (
   <div className="event-intro-petals" aria-hidden="true">
-    {Array.from({ length: 8 }).map((_, index) => (
-      <span key={index} style={{ ["--petal-index" as string]: index }} />
+    {Array.from({ length: 14 }).map((_, index) => (
+      <span
+        key={index}
+        style={{
+          ["--petal-index" as string]: index,
+          ["--petal-col" as string]: index % 7,
+        }}
+      />
     ))}
   </div>
 );
@@ -43,7 +51,12 @@ function IntroGraphic({ eventId }: { eventId: string }) {
     case "varmala":
       return <img className="event-intro-art event-intro-garlands" src={garlandsImage} alt="" aria-hidden="true" />;
     case "fera":
-      return <img className="event-intro-art event-intro-feras" src={ferasImage} alt="" aria-hidden="true" />;
+      return (
+        <div className="event-intro-flame" aria-hidden="true">
+          <span className="event-intro-flame-glow" />
+          <img className="event-intro-art event-intro-flame-art" src={ferasImage} alt="" />
+        </div>
+      );
     default:
       return null;
   }

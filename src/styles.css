@@ -1073,6 +1073,12 @@
 }
 
 /* ---------- One-shot event illustration intros ---------- */
+/* Every intro below shares one timing budget (--intro-dur) so the Ken Burns
+   loop and masked-region animations always hand off at the same instant,
+   however different the per-event motif animation itself is. */
+:root {
+  --intro-dur: 3.4s;
+}
 .event-scene {
   opacity: 0;
   filter: blur(0);
@@ -1080,13 +1086,16 @@
   will-change: opacity, filter, transform;
 }
 .event-page-mehandi .event-scene {
-  filter: blur(18px);
+  filter: blur(30px);
 }
 .event-page.is-intro-active .event-scene {
-  animation: event-scene-reveal 2.1s var(--ease-elegant) forwards;
+  animation: event-scene-reveal var(--intro-dur) var(--ease-elegant) forwards;
 }
 .event-page-mehandi.is-intro-active .event-scene {
   animation-name: event-scene-reveal-blur;
+}
+.event-page-baarat.is-intro-active .event-scene {
+  animation-name: event-scene-reveal-slide;
 }
 .event-page .ken-burns,
 .event-page .region-glow,
@@ -1107,14 +1116,14 @@
 .event-page.is-intro-active .particle-sparkle,
 .event-page.is-intro-active .particle-petal {
   animation-play-state: running;
-  animation-delay: 2.1s;
+  animation-delay: var(--intro-dur);
 }
 .event-copy {
   opacity: 0;
   transform: translateY(12px);
 }
 .event-page.is-intro-active .event-copy {
-  animation: event-copy-arrive 700ms var(--ease-elegant) 1.75s forwards;
+  animation: event-copy-arrive 700ms var(--ease-elegant) 2.75s forwards;
 }
 .event-intro {
   pointer-events: none;
@@ -1128,7 +1137,7 @@
 }
 .event-intro.is-active {
   opacity: 1;
-  animation: event-intro-away 300ms ease 2.1s forwards;
+  animation: event-intro-away 350ms ease calc(var(--intro-dur) - .1s) forwards;
 }
 .event-intro-art { object-fit: contain; filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.24)); }
 .event-intro svg {
@@ -1141,48 +1150,147 @@
   filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.28));
 }
 @keyframes event-scene-reveal {
-  0%, 18% { opacity: 0; transform: scale(1.025); }
+  0%, 55% { opacity: 0; transform: scale(1.025); }
   100% { opacity: 1; transform: scale(1); }
 }
 @keyframes event-scene-reveal-blur {
-  0%, 16% { opacity: .22; filter: blur(18px); transform: scale(1.035); }
+  /* Stays almost fully blurred through the clapping, then sharpens once the
+     hands are on their way out (60% ≈ 2.0s in, hands fade 70–100%). */
+  0%, 60% { opacity: .16; filter: blur(30px); transform: scale(1.045); }
   100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+@keyframes event-scene-reveal-slide {
+  /* Baarat: illustration arrives from the side, matching the procession. */
+  0%, 55% { opacity: 0; transform: translate3d(14%, 0, 0) scale(1.03); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
 }
 @keyframes event-copy-arrive { to { opacity: 1; transform: translateY(0); } }
 @keyframes event-intro-away { to { opacity: 0; visibility: hidden; } }
 
-/* Mehandi: paired hands reaching in from either side */
-.event-intro-hands { display: flex; align-items: center; justify-content: center; width: min(110vw, 72rem); }
-.event-intro-hand { width: 52%; object-fit: contain; filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.24)); }
-.event-intro-mehandi.is-active .event-intro-hand,
-.event-intro-engagement-sangeet.is-active .event-intro-ring,
-.event-intro-masquerade.is-active .event-intro-art,
-.event-intro-baarat.is-active .event-intro-art { animation: intro-art-flow 2.1s var(--ease-elegant) forwards; }
-
-/* Sangeet: a quiet reveal and dissolve */
-.event-intro-ring { width: min(86vw, 42rem); object-fit: contain; filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.24)); }
-
-/* Masquerade and baarat: smooth artwork arrival, then a quiet dissolve into the scene. */
-.event-intro-mask { width: min(82vw, 42rem); }
-.event-intro-dhol { width: min(82vw, 42rem); }
-@keyframes intro-art-flow {
-  0% { opacity: 0; transform: translateY(2rem) scale(.94); }
-  32% { opacity: 1; transform: translateY(0) scale(1); }
-  70% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-.35rem) scale(1.015); }
+/* Mehandi: two hands slide in and clap together rhythmically, then fade
+   as the blurred illustration behind them sharpens into focus. */
+.event-intro-hands { display: flex; align-items: center; justify-content: center; width: min(96vw, 60rem); }
+.event-intro-hand { width: 42%; object-fit: contain; filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.24)); }
+.event-intro-mehandi.is-active .event-intro-hand-left { animation: intro-clap-left var(--intro-dur) var(--ease-elegant) forwards; }
+.event-intro-mehandi.is-active .event-intro-hand-right { animation: intro-clap-right var(--intro-dur) var(--ease-elegant) forwards; }
+@keyframes intro-clap-left {
+  0%   { opacity: 0; transform: translateX(-60%) rotate(-8deg); }
+  14%  { opacity: 1; transform: translateX(-8%)  rotate(-4deg); }
+  22%  { transform: translateX(0%)  rotate(0deg); }   /* clap 1 */
+  28%  { transform: translateX(-8%) rotate(-4deg); }
+  36%  { transform: translateX(0%)  rotate(0deg); }   /* clap 2 */
+  44%  { transform: translateX(-8%) rotate(-4deg); }
+  52%  { transform: translateX(0%)  rotate(0deg); }   /* clap 3 */
+  70%  { opacity: 1; transform: translateX(0%) rotate(0deg); }
+  100% { opacity: 0; transform: translateX(-4%) rotate(0deg); }
+}
+@keyframes intro-clap-right {
+  0%   { opacity: 0; transform: translateX(60%) rotate(8deg); }
+  14%  { opacity: 1; transform: translateX(8%)  rotate(4deg); }
+  22%  { transform: translateX(0%) rotate(0deg); }
+  28%  { transform: translateX(8%) rotate(4deg); }
+  36%  { transform: translateX(0%) rotate(0deg); }
+  44%  { transform: translateX(8%) rotate(4deg); }
+  52%  { transform: translateX(0%) rotate(0deg); }
+  70%  { opacity: 1; transform: translateX(0%) rotate(0deg); }
+  100% { opacity: 0; transform: translateX(4%) rotate(0deg); }
 }
 
-/* Haldi: individually staggered marigold petals */
-.event-intro-petals { position: absolute; inset: 0; }
-.event-intro-petals span { position: absolute; top: -8%; left: calc(8% + var(--petal-index) * 12%); width: clamp(13px, 4vw, 25px); aspect-ratio: .7; border-radius: 70% 30% 65% 35%; background: color-mix(in oklab, var(--gold) 66%, oklch(0.72 0.17 55)); box-shadow: 0 5px 12px oklch(0.45 0.1 55 / .24); }
-.event-intro-haldi.is-active .event-intro-petals span { animation: intro-petal-fall calc(1.35s + var(--petal-index) * 70ms) ease-in calc(var(--petal-index) * 90ms) forwards; }
-@keyframes intro-petal-fall { 0% { opacity: 0; transform: translate3d(0, -8vh, 0) rotate(0); } 12% { opacity: 1; } 82% { opacity: .8; } 100% { opacity: 0; transform: translate3d(calc((var(--petal-index) - 4) * 9px), 105vh, 0) rotate(330deg); } }
+/* Engagement & Sangeet: ring zooms in oversized, then continuously shrinks
+   to a point as the illustration settles in behind it. */
+.event-intro-ring { width: min(70vw, 34rem); object-fit: contain; transform-origin: 50% 50%; filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.24)); }
+.event-intro-engagement-sangeet.is-active .event-intro-ring { animation: intro-ring-zoom var(--intro-dur) var(--ease-elegant) forwards; }
+@keyframes intro-ring-zoom {
+  0%   { opacity: 0; transform: scale(.5); }
+  10%  { opacity: 1; transform: scale(3.2); }   /* oversized, fills the frame */
+  55%  { opacity: 1; transform: scale(1); }
+  85%  { opacity: 1; transform: scale(.05); }    /* shrunk to a small dot */
+  100% { opacity: 0; transform: scale(.01); }
+}
 
-/* Varmala and fera: supplied artwork dissolves into the scene. */
-.event-intro-garlands,
-.event-intro-feras { width: min(88vw, 50rem); }
-.event-intro-varmala.is-active .event-intro-garlands,
-.event-intro-fera.is-active .event-intro-feras { animation: intro-art-flow 2.1s var(--ease-elegant) forwards; }
+/* Masquerade: mask unfolds open from one side, holds, then slides away. */
+.event-intro-mask { width: min(68vw, 32rem); transform-origin: 30% 50%; }
+.event-intro-masquerade.is-active .event-intro-mask { animation: intro-mask-unfold var(--intro-dur) var(--ease-elegant) forwards; }
+@keyframes intro-mask-unfold {
+  0%   { opacity: 0; transform: translateX(-55%) rotate(-18deg) scale(.85); }
+  30%  { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
+  68%  { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
+  100% { opacity: 0; transform: translateX(30%) rotate(10deg) scale(1.08); }
+}
+
+/* Haldi: marigold petals drift down, gradually increasing in number. */
+.event-intro-petals { position: absolute; inset: 0; }
+.event-intro-petals span { position: absolute; top: -8%; left: calc(6% + var(--petal-col) * 13%); width: clamp(13px, 4vw, 25px); aspect-ratio: .7; border-radius: 70% 30% 65% 35%; background: color-mix(in oklab, var(--gold) 66%, oklch(0.72 0.17 55)); box-shadow: 0 5px 12px oklch(0.45 0.1 55 / .24); }
+.event-intro-haldi.is-active .event-intro-petals span { animation: intro-petal-fall calc(1.4s + var(--petal-index) * 60ms) ease-in calc(var(--petal-index) * 100ms) forwards; }
+@keyframes intro-petal-fall { 0% { opacity: 0; transform: translate3d(0, -8vh, 0) rotate(0); } 12% { opacity: 1; } 82% { opacity: .8; } 100% { opacity: 0; transform: translate3d(calc((var(--petal-col) - 3) * 9px), 105vh, 0) rotate(330deg); } }
+
+/* Baarat: small dhol pulses with a rhythmic beat, then fades as the scene
+   (see event-scene-reveal-slide above) slides in from the side. */
+.event-intro-dhol { width: min(34vw, 15rem); }
+.event-intro-baarat.is-active .event-intro-dhol { animation: intro-dhol-beat var(--intro-dur) var(--ease-elegant) forwards; }
+@keyframes intro-dhol-beat {
+  0%   { opacity: 0; transform: scale(.7); }
+  10%  { opacity: 1; transform: scale(1); }
+  22%  { transform: scale(1.14); }  /* beat 1 */
+  32%  { transform: scale(1); }
+  44%  { transform: scale(1.14); }  /* beat 2 */
+  54%  { transform: scale(1); }
+  66%  { transform: scale(1.1); }   /* beat 3 */
+  76%  { transform: scale(1); }
+  90%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(.92); }
+}
+
+/* Varmala: garland swings like a pendulum, as if being placed, then fades. */
+.event-intro-garlands { width: min(52vw, 24rem); transform-origin: 50% 4%; }
+.event-intro-varmala.is-active .event-intro-garlands { animation: intro-garland-swing var(--intro-dur) var(--ease-elegant) forwards; }
+@keyframes intro-garland-swing {
+  0%   { opacity: 0; transform: rotate(0deg) translateY(-8%); }
+  8%   { opacity: 1; }
+  20%  { transform: rotate(16deg) translateY(0); }
+  36%  { transform: rotate(-11deg); }
+  50%  { transform: rotate(7deg); }
+  62%  { transform: rotate(-4deg); }
+  74%  { transform: rotate(0deg); }
+  90%  { opacity: 1; transform: rotate(0deg) translateY(0); }
+  100% { opacity: 0; transform: rotate(0deg) translateY(6%) scale(.96); }
+}
+
+/* Fera: a small flame flickers, grows brighter, and an expanding glow
+   illuminates outward until the scene is fully revealed in the light. */
+.event-intro-flame { position: relative; display: grid; place-items: center; width: min(70vw, 30rem); }
+.event-intro-flame-glow {
+  position: absolute;
+  width: 12vw;
+  min-width: 5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--gold) 70%, oklch(0.85 0.14 60)) 0%, transparent 72%);
+  filter: blur(2px);
+  animation: intro-flame-glow var(--intro-dur) var(--ease-elegant) forwards;
+}
+.event-intro-flame-art {
+  position: relative;
+  width: min(40vw, 18rem);
+  transform-origin: 50% 85%;
+  animation: intro-flame-grow var(--intro-dur) var(--ease-elegant) forwards;
+}
+@keyframes intro-flame-grow {
+  0%   { opacity: 0;  transform: scale(.2)  translateY(4%); filter: brightness(.65); }
+  10%  { opacity: .85; }
+  18%  { opacity: .55; transform: scale(.24) translateY(4%); }  /* flicker */
+  26%  { opacity: .95; transform: scale(.3)  translateY(3%); }
+  34%  { opacity: .5;  transform: scale(.26) translateY(4%); }  /* flicker */
+  46%  { opacity: 1;   transform: scale(.42) translateY(2%); filter: brightness(1.1); }
+  70%  { opacity: 1;   transform: scale(.9)  translateY(0);  filter: brightness(1.25); }
+  100% { opacity: 0;   transform: scale(1.3) translateY(0);  filter: brightness(1.3); }
+}
+@keyframes intro-flame-glow {
+  0%   { opacity: 0;   transform: scale(1); }
+  40%  { opacity: .5;  transform: scale(2.4); }
+  70%  { opacity: .85; transform: scale(6); }
+  100% { opacity: 0;   transform: scale(11); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .event-scene, .event-page-mehandi .event-scene, .event-copy { opacity: 1; filter: none; transform: none; }
