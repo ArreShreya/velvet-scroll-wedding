@@ -977,8 +977,9 @@
 }
 
 @keyframes countdown-burst {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
-  22% { opacity: 1; }
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+  14%  { opacity: 1; }
+  38%  { opacity: 0; transform: translate(calc(-50% + var(--spark-x)), calc(-50% + var(--spark-y))) scale(1.15) rotate(var(--spark-r)); }
   100% { opacity: 0; transform: translate(calc(-50% + var(--spark-x)), calc(-50% + var(--spark-y))) scale(1.15) rotate(var(--spark-r)); }
 }
 .countdown-spark {
@@ -990,15 +991,17 @@
   opacity: 0;
 }
 .countdown-spark:nth-child(even) { color: var(--text-secondary); }
+/* Repeats every 3.2s so the sparks keep bursting for as long as the
+   countdown is visible, instead of firing once and going still. */
 .countdown-dial.is-visible .countdown-spark {
-  animation: countdown-burst 760ms 470ms ease-out both;
+  animation: countdown-burst 3.2s ease-out infinite;
 }
-.countdown-spark-1 { --spark-x: -58px; --spark-y: -42px; --spark-r: -24deg; }
-.countdown-spark-2 { --spark-x: 54px; --spark-y: -46px; --spark-r: 32deg; }
-.countdown-spark-3 { --spark-x: 66px; --spark-y: 12px; --spark-r: 18deg; }
-.countdown-spark-4 { --spark-x: 38px; --spark-y: 54px; --spark-r: -18deg; }
-.countdown-spark-5 { --spark-x: -50px; --spark-y: 48px; --spark-r: 28deg; }
-.countdown-spark-6 { --spark-x: -66px; --spark-y: 6px; --spark-r: -36deg; }
+.countdown-dial.is-visible .countdown-spark-1 { --spark-x: -58px; --spark-y: -42px; --spark-r: -24deg; animation-delay: 470ms; }
+.countdown-dial.is-visible .countdown-spark-2 { --spark-x: 54px;  --spark-y: -46px; --spark-r: 32deg;  animation-delay: 540ms; }
+.countdown-dial.is-visible .countdown-spark-3 { --spark-x: 66px;  --spark-y: 12px;  --spark-r: 18deg;  animation-delay: 610ms; }
+.countdown-dial.is-visible .countdown-spark-4 { --spark-x: 38px;  --spark-y: 54px;  --spark-r: -18deg; animation-delay: 680ms; }
+.countdown-dial.is-visible .countdown-spark-5 { --spark-x: -50px; --spark-y: 48px;  --spark-r: 28deg;  animation-delay: 750ms; }
+.countdown-dial.is-visible .countdown-spark-6 { --spark-x: -66px; --spark-y: 6px;   --spark-r: -36deg; animation-delay: 820ms; }
 .reveal[data-reveal="fade"] {
   transform: none;
   transition-duration: 1600ms;
@@ -1169,8 +1172,8 @@
 
 /* Mehandi: two hands slide in and clap together rhythmically, then fade
    as the blurred illustration behind them sharpens into focus. */
-.event-intro-hands { display: flex; align-items: center; justify-content: center; width: min(96vw, 60rem); }
-.event-intro-hand { width: 42%; object-fit: contain; filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.24)); }
+.event-intro-hands { display: flex; align-items: center; justify-content: center; width: min(112vw, 74rem); }
+.event-intro-hand { width: 54%; object-fit: contain; filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.24)); }
 .event-intro-mehandi.is-active .event-intro-hand-left { animation: intro-clap-left var(--intro-dur) var(--ease-elegant) forwards; }
 .event-intro-mehandi.is-active .event-intro-hand-right { animation: intro-clap-right var(--intro-dur) var(--ease-elegant) forwards; }
 @keyframes intro-clap-left {
@@ -1198,7 +1201,7 @@
 
 /* Engagement & Sangeet: ring zooms in oversized, then continuously shrinks
    to a point as the illustration settles in behind it. */
-.event-intro-ring { width: min(70vw, 34rem); object-fit: contain; transform-origin: 50% 50%; filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.24)); }
+.event-intro-ring { width: min(88vw, 44rem); object-fit: contain; transform-origin: 50% 50%; filter: drop-shadow(0 12px 18px oklch(0.28 0.04 25 / 0.24)); }
 .event-intro-engagement-sangeet.is-active .event-intro-ring { animation: intro-ring-zoom var(--intro-dur) var(--ease-elegant) forwards; }
 @keyframes intro-ring-zoom {
   0%   { opacity: 0; transform: scale(.5); }
@@ -1209,7 +1212,7 @@
 }
 
 /* Masquerade: mask unfolds open from one side, holds, then slides away. */
-.event-intro-mask { width: min(68vw, 32rem); transform-origin: 30% 50%; }
+.event-intro-mask { width: min(86vw, 40rem); transform-origin: 30% 50%; }
 .event-intro-masquerade.is-active .event-intro-mask { animation: intro-mask-unfold var(--intro-dur) var(--ease-elegant) forwards; }
 @keyframes intro-mask-unfold {
   0%   { opacity: 0; transform: translateX(-55%) rotate(-18deg) scale(.85); }
@@ -1226,7 +1229,7 @@
 
 /* Baarat: small dhol pulses with a rhythmic beat, then fades as the scene
    (see event-scene-reveal-slide above) slides in from the side. */
-.event-intro-dhol { width: min(34vw, 15rem); }
+.event-intro-dhol { width: min(52vw, 23rem); }
 .event-intro-baarat.is-active .event-intro-dhol { animation: intro-dhol-beat var(--intro-dur) var(--ease-elegant) forwards; }
 @keyframes intro-dhol-beat {
   0%   { opacity: 0; transform: scale(.7); }
@@ -1242,7 +1245,7 @@
 }
 
 /* Varmala: garland swings like a pendulum, as if being placed, then fades. */
-.event-intro-garlands { width: min(52vw, 24rem); transform-origin: 50% 4%; }
+.event-intro-garlands { width: min(68vw, 30rem); transform-origin: 50% 4%; }
 .event-intro-varmala.is-active .event-intro-garlands { animation: intro-garland-swing var(--intro-dur) var(--ease-elegant) forwards; }
 @keyframes intro-garland-swing {
   0%   { opacity: 0; transform: rotate(0deg) translateY(-8%); }
@@ -1258,23 +1261,28 @@
 
 /* Fera: a small flame flickers, grows brighter, and an expanding glow
    illuminates outward until the scene is fully revealed in the light. */
-.event-intro-flame { position: relative; display: grid; place-items: center; width: min(70vw, 30rem); }
+.event-intro-flame { position: relative; display: grid; place-items: center; width: min(86vw, 36rem); }
 .event-intro-flame-glow {
   position: absolute;
-  width: 12vw;
-  min-width: 5rem;
+  width: 16vw;
+  min-width: 6rem;
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle, color-mix(in oklab, var(--gold) 70%, oklch(0.85 0.14 60)) 0%, transparent 72%);
   filter: blur(2px);
-  animation: intro-flame-glow var(--intro-dur) var(--ease-elegant) forwards;
+  opacity: 0;
 }
 .event-intro-flame-art {
   position: relative;
-  width: min(40vw, 18rem);
+  width: min(52vw, 24rem);
   transform-origin: 50% 85%;
-  animation: intro-flame-grow var(--intro-dur) var(--ease-elegant) forwards;
+  opacity: 0;
 }
+/* Both layers are gated behind .is-active - like every other event's motif -
+   so they only start animating once the section actually scrolls into view,
+   instead of running (and finishing) the moment the page mounts. */
+.event-intro-fera.is-active .event-intro-flame-glow { animation: intro-flame-glow var(--intro-dur) var(--ease-elegant) forwards; }
+.event-intro-fera.is-active .event-intro-flame-art { animation: intro-flame-grow var(--intro-dur) var(--ease-elegant) forwards; }
 @keyframes intro-flame-grow {
   0%   { opacity: 0;  transform: scale(.2)  translateY(4%); filter: brightness(.65); }
   10%  { opacity: .85; }

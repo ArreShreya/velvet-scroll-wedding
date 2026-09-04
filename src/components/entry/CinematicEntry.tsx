@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import monogram from "@/assets/monogram-ps.png.asset.json";
 import { useLang } from "@/i18n/LanguageContext";
 import { STAGE } from "./entryConfig";
-import entryRevealVideo from "../../assets/cinematic-video1.mp4"
+import entryRevealVideo from "../../assets/entry_video.mp4";
 
 type Stage = "sealed" | "flap" | "flying" | "open";
 
