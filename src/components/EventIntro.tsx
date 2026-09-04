@@ -3,7 +3,7 @@ import baraatImage from "../assets/Baraat.png";
 import handLeftImage from "../assets/mehandi_left.png";
 import handRightImage from "../assets/mehandi right.png";
 import ringImage from "../assets/ring.png";
-import ferasImage from "../assets/Feras.png";
+import ferasImage from "../assets/fera.png";
 import garlandsImage from "../assets/garland.png";
 
 type EventIntroProps = {
