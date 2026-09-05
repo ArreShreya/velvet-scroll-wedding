@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
 import { PageOrnaments, GoldDivider } from "./Ornaments";
 import { Reveal } from "./Reveal";
-import frame2 from "../assets/frame2.png"
+import frame2 from "../assets/frame2.png";
 import { ScratchReveal } from "./ScratchReveal";
 import couplePhoto from "../assets/couplePhoto.jpeg";
-
 
 const TARGET = new Date("2026-12-11T00:00:00+05:30").getTime();
 
@@ -53,6 +52,9 @@ function Dial({ value, label, delay }: { value: number | null; label: string; de
 export function CountdownPage() {
   const { t } = useLang();
   const [parts, setParts] = useState<Parts | null>(null);
+  
+  // 1. Add this state to track when the user starts scratching
+  const [hasScratched, setHasScratched] = useState(false);
 
   useEffect(() => {
     setParts(diff(Date.now()));
@@ -82,13 +84,33 @@ export function CountdownPage() {
       <Reveal delay={200} className="mt-12 w-full max-w-sm">
         <div className="relative flex items-center justify-center">
           
-          {/* 1. The Photo / Placeholder (Sits BEHIND the frame), covered by the scratch foil */}
-          <ScratchReveal className="absolute top-[8%] bottom-[32%] left-[12%] right-[12%] rounded-[50%] shadow-inner z-0">
-            <div className="flex h-full w-full items-center justify-center bg-[oklch(0.98_0.015_40_/_0.8)]">
-              <img src={couplePhoto} className="h-full w-full object-cover" />
+          {/* 
+            We moved the positioning classes to this wrapper. 
+            We listen to pointer events to hide the text on first interaction.
+          */}
+          <div 
+            className="absolute top-[8%] bottom-[32%] left-[12%] right-[12%] z-0 rounded-[50%] shadow-inner overflow-hidden"
+            onPointerDown={() => setHasScratched(true)}
+            onTouchStart={() => setHasScratched(true)}
+          >
+            {/* The Text Overlay */}
+            <div 
+              className={`pointer-events-none absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-500 ${
+                hasScratched ? "opacity-0" : "opacity-100"
+              }`}
+            >
+              <span className="text-2xl font-accent text-white drop-shadow-md sm:text-2xl">
+                Scratch to reveal
+              </span>
             </div>
-          </ScratchReveal>
 
+            {/* 1. The Photo / Placeholder covered by the scratch foil */}
+            <ScratchReveal className="h-full w-full">
+              <div className="flex h-full w-full items-center justify-center bg-[oklch(0.98_0.015_40_/_0.8)]">
+                <img src={couplePhoto} className="h-full w-full object-cover" />
+              </div>
+            </ScratchReveal>
+          </div>
 
           {/* 2. The Ornate Gold Frame (Sits ON TOP) */}
           <img 
@@ -96,11 +118,9 @@ export function CountdownPage() {
             alt="Ornate Gold Frame" 
             className="relative z-10 w-full h-auto drop-shadow-xl pointer-events-none"
             style={{ 
-              // CSS filter to color-match the frame with your existing GoldDivider/Ornaments
               filter: 'sepia(0.3) saturate(1.2) hue-rotate(-10deg) brightness(1.05)' 
             }} 
           />
-
         </div>
       </Reveal>
       {/* ----------------------------------- */}
