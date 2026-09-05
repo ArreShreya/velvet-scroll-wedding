@@ -3,6 +3,8 @@ import { useLang } from "@/i18n/LanguageContext";
 import { PageOrnaments, GoldDivider } from "./Ornaments";
 import { Reveal } from "./Reveal";
 import frame2 from "../assets/frame2.png"
+import { ScratchReveal } from "./ScratchReveal";
+
 
 const TARGET = new Date("2026-12-11T00:00:00+05:30").getTime();
 
@@ -79,14 +81,16 @@ export function CountdownPage() {
       <Reveal delay={200} className="mt-12 w-full max-w-sm">
         <div className="relative flex items-center justify-center">
           
-          {/* 1. The Photo / Placeholder (Sits BEHIND the frame) */}
-          {/* The inset percentages shape it to the frame's oval opening. The bottom is larger to account for the bow. */}
-          <div className="absolute top-[12%] bottom-[32%] left-[15%] right-[15%] bg-[oklch(0.98_0.015_40_/_0.8)] rounded-[50%] flex items-center justify-center overflow-hidden shadow-inner z-0">
-            {/* When ready, replace the <p> below with: <img src={couplePhoto} className="h-full w-full object-cover" /> */}
-            <p className="font-accent text-sm leading-relaxed text-text-secondary px-4 text-center opacity-70">
-              {t.photoPlaceholder}
-            </p>
-          </div>
+          {/* 1. The Photo / Placeholder (Sits BEHIND the frame), covered by the scratch foil */}
+          <ScratchReveal className="absolute top-[12%] bottom-[32%] left-[15%] right-[15%] rounded-[50%] shadow-inner z-0">
+            <div className="flex h-full w-full items-center justify-center bg-[oklch(0.98_0.015_40_/_0.8)]">
+              {/* When ready, replace the <p> below with: <img src={couplePhoto} className="h-full w-full object-cover" /> */}
+              <p className="font-accent text-sm leading-relaxed text-text-secondary px-4 text-center opacity-70">
+                {t.photoPlaceholder}
+              </p>
+            </div>
+          </ScratchReveal>
+
 
           {/* 2. The Ornate Gold Frame (Sits ON TOP) */}
           <img 
