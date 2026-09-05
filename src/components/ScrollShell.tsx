@@ -1,7 +1,7 @@
-import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 import { LanguageToggle } from "./LanguageToggle";
 import { Monogram } from "./Monogram";
-import { ShlokaAudio } from "./ShlokaAudio";
+import { BackgroundAudio, type BackgroundAudioHandle } from "./BackgroundAudio";
 import { ShellOpenContext } from "./ShellOpen";
 
 // WebGL entry is client-only: never import/render the Canvas during SSR.
@@ -14,6 +14,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
+  const audioRef = useRef<BackgroundAudioHandle>(null);
 
   const [shower, setShower] = useState(false);
   useEffect(() => {
@@ -36,9 +37,18 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           ["--header-h" as string]: "3.25rem",
         }}
       >
+        {/* Background audio: mounted immediately, starts the moment the
+            entry reveal video begins playing (see CinematicEntry's
+            onVideoStart callback below). Plays the shloka once, then
+            loops the BGM track forever. */}
+        <BackgroundAudio ref={audioRef} />
+
         {!opened && mounted && (
           <Suspense fallback={<div className="fixed inset-0 z-[90] bg-paper" />}>
-            <CinematicEntry onDone={() => setOpened(true)} />
+            <CinematicEntry
+              onDone={() => setOpened(true)}
+              onVideoStart={() => audioRef.current?.start()}
+            />
           </Suspense>
         )}
         {!opened && !mounted && <div className="fixed inset-0 z-[90] bg-paper" />}
@@ -54,9 +64,6 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           </div>
           <LanguageToggle />
         </header>
-
-        {/* Shloka audio — starts once the scroll is open */}
-        {opened && <ShlokaAudio />}
 
         {/* Kumkum & rice shower — plays once on open */}
         {shower && (

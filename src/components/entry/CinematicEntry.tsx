@@ -7,11 +7,17 @@ import entryRevealVideo from "../../assets/entry_video.mp4";
 
 type Stage = "sealed" | "flap" | "flying" | "open";
 
-export function CinematicEntry({ onDone }: { onDone: () => void }) {
+export function CinematicEntry({
+  onDone,
+  onVideoStart,
+}: {
+  onDone: () => void;
+  onVideoStart?: () => void;
+}) {
   const { t } = useLang();
   const [stage, setStage] = useState<Stage>("sealed");
   const [reduced, setReduced] = useState(false);
-  
+
   // Reference to the video element so we can command it to play
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -22,17 +28,20 @@ export function CinematicEntry({ onDone }: { onDone: () => void }) {
   // Stage 1 -> Stage 2: only after the flap has finished opening.
   useEffect(() => {
     if (stage !== "flap") return;
-    
+
     const id = window.setTimeout(() => {
       setStage("flying");
-      // Play the video as soon as the envelope is fully open
+      // Play the video as soon as the envelope is fully open, and kick
+      // off the background audio (shloka -> looping BGM) at the same
+      // moment, since the entry video's own audio is muted.
       if (videoRef.current) {
         videoRef.current.play().catch((err) => console.warn("Video play failed:", err));
       }
+      onVideoStart?.();
     }, STAGE.flapOpen * 1000);
-    
+
     return () => window.clearTimeout(id);
-  }, [stage]);
+  }, [stage, onVideoStart]);
 
   // Triggered automatically when the video reaches its end
   const handleArrive = () => {
@@ -53,17 +62,14 @@ export function CinematicEntry({ onDone }: { onDone: () => void }) {
 
   return (
     <div className="fixed inset-0 z-[90] overflow-hidden bg-paper">
-      
-      {/* ---------- VIDEO LAYER (Replaces 3D Canvas) ---------- */}
-      {/* It sits at z-0, behind the envelope. It only becomes visible as the envelope opens. */}
+      {/* ---------- VIDEO LAYER ---------- */}
       <div className="absolute inset-0 z-0 bg-black">
         <video
           ref={videoRef}
-          // IMPORTANT: Place your video file in the public/assets/ folder!
           src={entryRevealVideo}
           playsInline
-          // We can leave 'muted' off if your video has music, because the user 
-          // already interacted with the page by tapping the wax seal!
+          // Muted so it never competes with the shloka/BGM background audio.
+          muted
           onEnded={handleArrive}
           className="h-full w-full object-cover"
         />
@@ -79,7 +85,6 @@ export function CinematicEntry({ onDone }: { onDone: () => void }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {/* left / right halves swing open like double doors */}
             <motion.div
               className="absolute inset-y-0 left-0 w-1/2 origin-left border-r border-rose/30 bg-[linear-gradient(115deg,#fdf3ec,#f0cdc4)]"
               animate={{ x: flapOpen ? "-100%" : "0%", rotateY: flapOpen ? -32 : 0 }}
@@ -93,7 +98,6 @@ export function CinematicEntry({ onDone }: { onDone: () => void }) {
               style={{ transformPerspective: 1400 }}
             />
 
-            {/* wax seal */}
             <AnimatePresence>
               {stage === "sealed" && (
                 <motion.button

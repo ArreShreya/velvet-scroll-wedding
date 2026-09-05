@@ -4,6 +4,7 @@ import { PageOrnaments, GoldDivider } from "./Ornaments";
 import { Reveal } from "./Reveal";
 import frame2 from "../assets/frame2.png"
 import { ScratchReveal } from "./ScratchReveal";
+import couplePhoto from "../assets/couplePhoto.jpeg";
 
 
 const TARGET = new Date("2026-12-11T00:00:00+05:30").getTime();
@@ -82,12 +83,9 @@ export function CountdownPage() {
         <div className="relative flex items-center justify-center">
           
           {/* 1. The Photo / Placeholder (Sits BEHIND the frame), covered by the scratch foil */}
-          <ScratchReveal className="absolute top-[12%] bottom-[32%] left-[15%] right-[15%] rounded-[50%] shadow-inner z-0">
+          <ScratchReveal className="absolute top-[8%] bottom-[32%] left-[12%] right-[12%] rounded-[50%] shadow-inner z-0">
             <div className="flex h-full w-full items-center justify-center bg-[oklch(0.98_0.015_40_/_0.8)]">
-              {/* When ready, replace the <p> below with: <img src={couplePhoto} className="h-full w-full object-cover" /> */}
-              <p className="font-accent text-sm leading-relaxed text-text-secondary px-4 text-center opacity-70">
-                {t.photoPlaceholder}
-              </p>
+              <img src={couplePhoto} className="h-full w-full object-cover" />
             </div>
           </ScratchReveal>
 

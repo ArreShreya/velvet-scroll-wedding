@@ -1173,15 +1173,15 @@
   100% { opacity: 0; transform: translateX(-4%) rotate(0deg); }
 }
 @keyframes intro-clap-right {
-  0%   { opacity: 0; transform: translateX(60%) rotate(8deg); }
-  14%  { opacity: 1; transform: translateX(8%)  rotate(4deg); }
-  22%  { transform: translateX(0%) rotate(0deg); }
-  28%  { transform: translateX(8%) rotate(4deg); }
-  36%  { transform: translateX(0%) rotate(0deg); }
-  44%  { transform: translateX(8%) rotate(4deg); }
-  52%  { transform: translateX(0%) rotate(0deg); }
-  70%  { opacity: 1; transform: translateX(0%) rotate(0deg); }
-  100% { opacity: 0; transform: translateX(4%) rotate(0deg); }
+  0%   { opacity: 0; transform: translateX(54%) rotate(8deg); }
+  14%  { opacity: 1; transform: translateX(2%)  rotate(4deg); }
+  22%  { transform: translateX(-6%) rotate(0deg); }
+  28%  { transform: translateX(2%) rotate(4deg); }
+  36%  { transform: translateX(-6%) rotate(0deg); }
+  44%  { transform: translateX(2%) rotate(4deg); }
+  52%  { transform: translateX(-6%) rotate(0deg); }
+  70%  { opacity: 1; transform: translateX(-6%) rotate(0deg); }
+  100% { opacity: 0; transform: translateX(-2%) rotate(0deg); }
 }
 
 /* Engagement & Sangeet: ring zooms in oversized, then continuously shrinks
