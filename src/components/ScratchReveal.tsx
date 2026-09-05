@@ -37,7 +37,7 @@ export function ScratchReveal({
     const grad = ctx.createLinearGradient(0, 0, w, h);
     grad.addColorStop(0, "#e9c877");
     grad.addColorStop(0.28, "#f6e2ad");
-    grad.addColorStop(0.5, "#cфa04f".replace("ф", "9"));
+    grad.addColorStop(0.5, "#c9a04f");
     grad.addColorStop(0.72, "#f3dda4");
     grad.addColorStop(1, "#d8b467");
     ctx.fillStyle = grad;
@@ -94,7 +94,7 @@ export function ScratchReveal({
       let total = 0;
       for (let i = 3; i < data.length; i += 4 * step) {
         total++;
-        if (data[i] < 40) clear++;
+        if ((data[i] ?? 255) < 40) clear++;
       }
       if (total && clear / total >= threshold) {
         setCleared(true);
@@ -142,10 +142,6 @@ export function ScratchReveal({
     }
     last.current = p;
   };
-
-  if (cleared) {
-    // keep DOM simple once fully revealed
-  }
 
   return (
     <div ref={wrapRef} className={`relative overflow-hidden ${className}`}>
