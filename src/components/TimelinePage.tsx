@@ -68,7 +68,7 @@ const POINTS: Point[] = [
   { x: 65.0, y: 300.0, left: 10.83, top: 88.24 },
   { x: 96.48, y: 182.5, left: 16.08, top: 53.68 },
   { x: 182.5, y: 96.48, left: 30.42, top: 28.38 },
-  { x: 300.0, y: 65.0, left: 50.0, top: 19.12 },
+  { x: 300.0, y: 65.0, left: 50.0, top: 25.12 },
   { x: 417.5, y: 96.48, left: 69.58, top: 28.38 },
   { x: 503.52, y: 182.5, left: 83.92, top: 53.68 },
   { x: 535.0, y: 300.0, left: 89.17, top: 88.24 },
@@ -164,12 +164,10 @@ export function TimelinePage() {
                 <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-gold/60 bg-paper-tint text-text-heading md:h-14 md:w-14">
                   <EventIcon id={e.id} className="h-6 w-6 md:h-8 md:w-8" />
                 </span>
-                {/* Desktop Event Name (Increased to text-lg) */}
-                <span className="mt-2 block font-heading text-lg leading-tight text-text-heading md:text-xl">
+                <span className="mt-2 block font-heading text-xl leading-tight text-text-heading md:text-2xl">
                   {c.name}
                 </span>
-                {/* Desktop Event Time (Increased to text-xs) */}
-                <span className="mt-0.5 block font-numeric text-xs text-text-secondary md:text-sm">
+                <span className="mt-0.5 block font-numeric text-sm text-text-secondary md:text-base">
                   {c.time}
                 </span>
               </span>
@@ -284,12 +282,10 @@ function MobileArc({
                 <EventIcon id={id} className="h-5 w-5" />
               </span>
               <span className="min-w-0 flex-1">
-                {/* Mobile Event Name (Increased to text-base) */}
-                <span className="block font-heading text-base font-semibold leading-tight text-text-heading">
+                <span className="block font-heading text-lg font-semibold leading-tight text-text-heading">
                   {c.name}
                 </span>
-                {/* Mobile Event Time (Increased to text-xs) */}
-                <span className="mt-0.5 block font-numeric text-xs text-text-secondary">
+                <span className="mt-0.5 block font-numeric text-sm text-text-secondary">
                   {c.time}
                 </span>
               </span>

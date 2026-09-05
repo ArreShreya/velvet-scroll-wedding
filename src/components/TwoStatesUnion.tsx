@@ -70,7 +70,7 @@ export function TwoStatesUnion() {
 
         <div className="relative flex h-[65vh] w-full flex-col sm:h-[65vh] md:h-[65h]">
           {/* GUJARAT */}
-          <div className="absolute left-0 top-0 z-10 flex w-[66%] flex-col items-center md:w-[30%]">
+          <div className="absolute left-0 top-0 z-20 flex w-[66%] flex-col items-center md:w-[30%]">
             {/* Text slides in from the left, in lockstep with Uttar Pradesh below */}
             <p
               className={clsx(
@@ -96,7 +96,7 @@ export function TwoStatesUnion() {
           {/* Anchored with real clearance above the box's bottom edge (was bottom-0,
               which is what let the image run flush to - and get clipped by - the
               true screen edge). Also leaves room for "Keep Scrolling" below it. */}
-          <div className="absolute bottom-0 right-0 z-10 flex w-[66%] flex-col items-center md:w-[30%]">
+          <div className="absolute bottom-0 right-0 z-20 flex w-[66%] flex-col items-center md:w-[30%]">
             {/* Image fades/rises in a beat after the text, same trigger as Gujarat's image */}
             <img
               src={upImg}
@@ -152,7 +152,7 @@ export function TwoStatesUnion() {
                 />
                 <path
                   className="md:hidden"
-                  d="M 85 92 C 98 78, 94 60, 50 50"
+                  d="M 82 76 C 96 68, 96 38, 50 50"
                   fill="transparent"
                   stroke="white"
                   strokeWidth="4"
@@ -162,7 +162,7 @@ export function TwoStatesUnion() {
                 />
                 <path
                   className="hidden md:block"
-                  d="M 85 85 C 98 74, 94 58, 50 50"
+                  d="M 82 72 C 96 66, 96 42, 50 50"
                   fill="transparent"
                   stroke="white"
                   strokeWidth="4"
@@ -181,8 +181,8 @@ export function TwoStatesUnion() {
             >
               <path className="md:hidden" d="M 18 24 C 4 32, 4 62, 50 50" />
               <path className="hidden md:block" d="M 18 28 C 4 34, 4 64, 50 50" />
-              <path className="md:hidden" d="M 85 92 C 98 78, 94 60, 50 50" />
-              <path className="hidden md:block" d="M 85 85 C 98 74, 94 58, 50 50" />
+              <path className="md:hidden" d="M 82 76 C 96 68, 96 38, 50 50" />
+              <path className="hidden md:block" d="M 82 72 C 96 66, 96 42, 50 50" />
             </g>
           </svg>
 
