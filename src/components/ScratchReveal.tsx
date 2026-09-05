@@ -144,7 +144,7 @@ export function ScratchReveal({
   };
 
   return (
-    <div ref={wrapRef} className={`relative overflow-hidden ${className}`}>
+    <div ref={wrapRef} className={`overflow-hidden ${className.includes("absolute") ? "" : "relative"} ${className}`}>
       {children}
       <canvas
         ref={canvasRef}
