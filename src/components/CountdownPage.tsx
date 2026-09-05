@@ -3,6 +3,8 @@ import { useLang } from "@/i18n/LanguageContext";
 import { PageOrnaments, GoldDivider } from "./Ornaments";
 import { Reveal } from "./Reveal";
 import frame2 from "../assets/frame2.png"
+import { ScratchReveal } from "./ScratchReveal";
+
 
 const TARGET = new Date("2026-12-11T00:00:00+05:30").getTime();
 
