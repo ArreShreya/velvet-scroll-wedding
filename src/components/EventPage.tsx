@@ -137,7 +137,7 @@ export function EventPage({ event }: { event: WeddingEvent }) {
               {copy.time}
             </p>
             {copy.thought ? (
-              <p className={`mx-auto mt-3 max-w-xs font-accent text-base leading-snug sm:max-w-sm sm:text-lg ${event.id === "fera" ? "text-text-sacred" : "text-text-secondary"}`}>
+              <p className={`mx-auto mt-3 max-w-xs font-accent text-lg leading-snug sm:max-w-sm sm:text-xl ${event.id === "fera" ? "text-text-sacred" : "text-text-secondary"}`}>
                 {copy.thought}
               </p>
             ) : null}
