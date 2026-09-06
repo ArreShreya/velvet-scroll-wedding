@@ -181,7 +181,7 @@ export const translations: Record<Lang, Dict> = {
         name: "Varmala",
         time: "5:30 PM",
         date: "12th December",
-        thought: "Two hearts, two families, one garland.",
+        thought: "Two hearts, two families, two garlands.",
       },
       fera: {
         name: "Fera",

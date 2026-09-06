@@ -107,7 +107,11 @@ export function CountdownPage() {
             {/* 1. The Photo / Placeholder covered by the scratch foil */}
             <ScratchReveal className="h-full w-full">
               <div className="flex h-full w-full items-center justify-center bg-[oklch(0.98_0.015_40_/_0.8)]">
-                <img src={couplePhoto} className="h-full w-full object-cover" />
+                <img src={couplePhoto} className="h-full w-full object-cover" style={{
+    objectPosition: "center 35%", // shift which part of the photo shows
+    transform: "scale(1.25)",     // zoom in further than object-fit alone allows
+    transformOrigin: "center",
+  }} />
               </div>
             </ScratchReveal>
           </div>
