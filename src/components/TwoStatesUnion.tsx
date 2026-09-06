@@ -58,6 +58,46 @@ export function TwoStatesUnion() {
 
   const showHeart = scrollProgress > 0.95;
 
+  // The dotted connectors are drawn in REAL pixel space (viewBox matches the
+  // measured container box), so the arc curvature and the dash pattern look
+  // identical at every width instead of being stretched by a 100x100 grid.
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
+
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      const r = entry.contentRect;
+      setSize({ w: r.width, h: r.height });
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const paths = React.useMemo(() => {
+    const { w, h } = size;
+    if (w < 2 || h < 2) return [] as string[];
+    const cx = w / 2;
+    const cy = h / 2;
+    const bow = Math.min(w, h) * 0.32;
+
+    const arc = (x0: number, y0: number, dir: 1 | -1) => {
+      const mx = (x0 + cx) / 2;
+      const my = (y0 + cy) / 2;
+      // perpendicular offset from the straight chord => a consistent bow
+      const dx = cx - x0;
+      const dy = cy - y0;
+      const len = Math.hypot(dx, dy) || 1;
+      const px = (-dy / len) * bow * dir;
+      const py = (dx / len) * bow * dir;
+      return `M ${x0} ${y0} Q ${mx + px} ${my + py}, ${cx} ${cy}`;
+    };
+
+    return [arc(w * 0.2, h * 0.24, 1), arc(w * 0.8, h * 0.76, 1)];
+  }, [size]);
+
+
   return (
     <section ref={containerRef} className="relative h-[250dvh] w-full snap-start bg-paper">
       {/* h-dvh (not h-screen/100vh) so this matches the browser's real, currently
@@ -125,104 +165,38 @@ export function TwoStatesUnion() {
 
           <svg
             className="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-visible"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
+            viewBox={`0 0 ${Math.max(size.w, 1)} ${Math.max(size.h, 1)}`}
           >
             <defs>
               <mask id="path-mask">
-                <path
-                  className="md:hidden"
-                  d="M 18 24 C 4 32, 4 62, 50 50"
-                  fill="transparent"
-                  stroke="white"
-                  strokeWidth="4"
-                  pathLength="100"
-                  strokeDasharray="100"
-                  strokeDashoffset={100 - scrollProgress * 100}
-                />
-                <path
-                  className="hidden md:block xl:hidden"
-                  d="M 18 28 C 4 34, 4 64, 50 50"
-                  fill="transparent"
-                  stroke="white"
-                  strokeWidth="4"
-                  pathLength="100"
-                  strokeDasharray="100"
-                  strokeDashoffset={100 - scrollProgress * 100}
-                />
-                <path
-                  className="hidden xl:block"
-                  d="M 18 18 C 1 22, 1 82, 50 50"
-                  fill="transparent"
-                  stroke="white"
-                  strokeWidth="4"
-                  pathLength="100"
-                  strokeDasharray="100"
-                  strokeDashoffset={100 - scrollProgress * 100}
-                />
-                <path
-                  className="md:hidden"
-                  d="M 82 76 C 96 68, 96 38, 50 50"
-                  fill="transparent"
-                  stroke="white"
-                  strokeWidth="4"
-                  pathLength="100"
-                  strokeDasharray="100"
-                  strokeDashoffset={100 - scrollProgress * 100}
-                />
-                <path
-                  className="hidden md:block xl:hidden"
-                  d="M 82 72 C 96 66, 96 42, 50 50"
-                  fill="transparent"
-                  stroke="white"
-                  strokeWidth="4"
-                  pathLength="100"
-                  strokeDasharray="100"
-                  strokeDashoffset={100 - scrollProgress * 100}
-                />
-                <path
-                  className="hidden xl:block"
-                  d="M 82 82 C 99 78, 99 18, 50 50"
-                  fill="transparent"
-                  stroke="white"
-                  strokeWidth="4"
-                  pathLength="100"
-                  strokeDasharray="100"
-                  strokeDashoffset={100 - scrollProgress * 100}
-                />
+                {paths.map((d, i) => (
+                  <path
+                    key={i}
+                    d={d}
+                    fill="transparent"
+                    stroke="white"
+                    strokeWidth={Math.max(size.w, size.h) * 0.06}
+                    pathLength="100"
+                    strokeDasharray="100"
+                    strokeDashoffset={100 - scrollProgress * 100}
+                  />
+                ))}
               </mask>
             </defs>
             <g
               mask="url(#path-mask)"
               fill="transparent"
               stroke="var(--gold)"
-              strokeWidth="0.8"
-              strokeDasharray="2 2"
+              strokeWidth="2"
+              strokeDasharray="5 7"
+              strokeLinecap="round"
             >
-              <path className="md:hidden" d="M 18 24 C 4 32, 4 62, 50 50" />
-              <path
-                className="hidden md:block xl:hidden"
-                d="M 18 28 C 4 34, 4 64, 50 50"
-                vectorEffect="non-scaling-stroke"
-              />
-              <path
-                className="hidden xl:block"
-                d="M 18 18 C 1 22, 1 82, 50 50"
-                vectorEffect="non-scaling-stroke"
-              />
-              <path className="md:hidden" d="M 82 76 C 96 68, 96 38, 50 50" />
-              <path
-                className="hidden md:block xl:hidden"
-                d="M 82 72 C 96 66, 96 42, 50 50"
-                vectorEffect="non-scaling-stroke"
-              />
-              <path
-                className="hidden xl:block"
-                d="M 82 82 C 99 78, 99 18, 50 50"
-                vectorEffect="non-scaling-stroke"
-              />
+              {paths.map((d, i) => (
+                <path key={i} d={d} />
+              ))}
             </g>
           </svg>
+
 
           <div
             aria-hidden="true"
