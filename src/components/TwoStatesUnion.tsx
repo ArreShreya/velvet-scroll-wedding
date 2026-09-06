@@ -67,9 +67,10 @@ export function TwoStatesUnion() {
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(([entry]) => {
-      const r = entry.contentRect;
-      setSize({ w: r.width, h: r.height });
+    const ro = new ResizeObserver((entries) => {
+      const r = entries[0]?.contentRect;
+      if (r) setSize({ w: r.width, h: r.height });
+
     });
     ro.observe(el);
     return () => ro.disconnect();
@@ -108,7 +109,7 @@ export function TwoStatesUnion() {
       <div className="sticky top-0 flex h-dvh w-full flex-col items-center justify-center overflow-hidden px-6">
         <PageOrnaments />
 
-        <div className="relative flex h-[65vh] w-full flex-col sm:h-[65vh] md:h-[65h]">
+        <div ref={stageRef} className="relative flex h-[65vh] w-full flex-col sm:h-[65vh] md:h-[65h]">
           {/* GUJARAT */}
           <div className="absolute left-0 top-0 z-20 flex w-[clamp(13.5rem,66vw,17rem)] flex-col items-center sm:w-[clamp(17rem,44vw,20rem)] md:w-[clamp(19rem,36vw,28rem)] xl:w-[clamp(25rem,34vw,34rem)]">
             {/* Text slides in from the left, in lockstep with Uttar Pradesh below */}
