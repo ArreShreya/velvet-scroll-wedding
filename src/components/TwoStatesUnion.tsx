@@ -70,7 +70,7 @@ export function TwoStatesUnion() {
 
         <div className="relative flex h-[65vh] w-full flex-col sm:h-[65vh] md:h-[65h]">
           {/* GUJARAT */}
-          <div className="absolute left-0 top-0 z-20 flex w-[66%] flex-col items-center md:w-[30%]">
+          <div className="absolute left-0 top-0 z-20 flex w-[clamp(13.5rem,66vw,17rem)] flex-col items-center sm:w-[clamp(17rem,44vw,20rem)] md:w-[clamp(19rem,36vw,28rem)] xl:w-[clamp(25rem,34vw,34rem)]">
             {/* Text slides in from the left, in lockstep with Uttar Pradesh below */}
             <p
               className={clsx(
@@ -96,7 +96,7 @@ export function TwoStatesUnion() {
           {/* Anchored with real clearance above the box's bottom edge (was bottom-0,
               which is what let the image run flush to - and get clipped by - the
               true screen edge). Also leaves room for "Keep Scrolling" below it. */}
-          <div className="absolute bottom-0 right-0 z-20 flex w-[66%] flex-col items-center md:w-[30%]">
+          <div className="absolute bottom-0 right-0 z-20 flex w-[clamp(13.5rem,66vw,17rem)] flex-col items-center sm:w-[clamp(17rem,44vw,20rem)] md:w-[clamp(19rem,36vw,28rem)] xl:w-[clamp(25rem,34vw,34rem)]">
             {/* Image fades/rises in a beat after the text, same trigger as Gujarat's image */}
             <img
               src={upImg}
@@ -141,8 +141,18 @@ export function TwoStatesUnion() {
                   strokeDashoffset={100 - scrollProgress * 100}
                 />
                 <path
-                  className="hidden md:block"
+                  className="hidden md:block xl:hidden"
                   d="M 18 28 C 4 34, 4 64, 50 50"
+                  fill="transparent"
+                  stroke="white"
+                  strokeWidth="4"
+                  pathLength="100"
+                  strokeDasharray="100"
+                  strokeDashoffset={100 - scrollProgress * 100}
+                />
+                <path
+                  className="hidden xl:block"
+                  d="M 18 18 C 1 22, 1 82, 50 50"
                   fill="transparent"
                   stroke="white"
                   strokeWidth="4"
@@ -161,8 +171,18 @@ export function TwoStatesUnion() {
                   strokeDashoffset={100 - scrollProgress * 100}
                 />
                 <path
-                  className="hidden md:block"
+                  className="hidden md:block xl:hidden"
                   d="M 82 72 C 96 66, 96 42, 50 50"
+                  fill="transparent"
+                  stroke="white"
+                  strokeWidth="4"
+                  pathLength="100"
+                  strokeDasharray="100"
+                  strokeDashoffset={100 - scrollProgress * 100}
+                />
+                <path
+                  className="hidden xl:block"
+                  d="M 82 82 C 99 78, 99 18, 50 50"
                   fill="transparent"
                   stroke="white"
                   strokeWidth="4"
@@ -180,9 +200,27 @@ export function TwoStatesUnion() {
               strokeDasharray="2 2"
             >
               <path className="md:hidden" d="M 18 24 C 4 32, 4 62, 50 50" />
-              <path className="hidden md:block" d="M 18 28 C 4 34, 4 64, 50 50" />
+              <path
+                className="hidden md:block xl:hidden"
+                d="M 18 28 C 4 34, 4 64, 50 50"
+                vectorEffect="non-scaling-stroke"
+              />
+              <path
+                className="hidden xl:block"
+                d="M 18 18 C 1 22, 1 82, 50 50"
+                vectorEffect="non-scaling-stroke"
+              />
               <path className="md:hidden" d="M 82 76 C 96 68, 96 38, 50 50" />
-              <path className="hidden md:block" d="M 82 72 C 96 66, 96 42, 50 50" />
+              <path
+                className="hidden md:block xl:hidden"
+                d="M 82 72 C 96 66, 96 42, 50 50"
+                vectorEffect="non-scaling-stroke"
+              />
+              <path
+                className="hidden xl:block"
+                d="M 82 82 C 99 78, 99 18, 50 50"
+                vectorEffect="non-scaling-stroke"
+              />
             </g>
           </svg>
 
