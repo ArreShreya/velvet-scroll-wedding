@@ -8,5 +8,5 @@
 - [x] Replace the seal gate with a 3D fly-through entry (R3F curtains + framer-motion seal).
 - [x] Apply the sitewide invitation typography and semantic text-color roles.
 - [x] Add a staggered spring-and-petal entrance to the countdown units.
-- [ ] Keep both state illustrations large and legible while fluidly preventing overlap at every viewport width.
-- [ ] Preserve strong connector arcs on phone, mid-width, tablet, and full desktop layouts.
+- [x] Keep both state illustrations large and legible while fluidly preventing overlap at every viewport width.
+- [x] Preserve strong connector arcs on phone, mid-width, tablet, and full desktop layouts.
