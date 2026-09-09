@@ -34,6 +34,9 @@ export type Dict = {
   tapToUnfurl: string;
   tapTheSeal: string;
   openInvitation: string;
+  scratchToReveal: string;
+  ornateGoldFrameAlt: string;
+  couplePhotoAlt: string;
   shloka1: string;
   shloka2: string;
   translitLine: string;
@@ -59,6 +62,24 @@ export type Dict = {
   venueKicker: string;
   venueName: string;
   venueCta: string;
+  venueStoryTitle: string;
+  venueStorySubtitle: string;
+  beachSunsetAlt: string;
+  gujarat: string;
+  uttarPradesh: string;
+  keepScrolling: string;
+  scrollHint: string;
+  ganeshaAlt: string;
+  ornamentalOvalFrameAlt: string;
+  monogramLabel: string;
+  monogramAlt: string;
+  shlokaAudioTitle: string;
+  notFoundTitle: string;
+  notFoundMessage: string;
+  errorTitle: string;
+  errorMessage: string;
+  tryAgain: string;
+  goHome: string;
   countdownKicker: string;
   countdownTitle: string;
   months: string;
@@ -82,6 +103,9 @@ export const translations: Record<Lang, Dict> = {
     tapToUnfurl: "tap to unfurl",
     tapTheSeal: "tap the seal to open",
     openInvitation: "Open the invitation",
+    scratchToReveal: "Scratch to reveal",
+    ornateGoldFrameAlt: "Ornate gold frame",
+    couplePhotoAlt: "A photograph of Shreya and Prabhav",
     shloka1: "Vakratunda Mahakaya Suryakoti Samaprabha,",
     shloka2: "Nirvighnam Kuru Me Deva Sarvakaryeshu Sarvada.",
     translitLine:
@@ -109,6 +133,24 @@ export const translations: Record<Lang, Dict> = {
     venueKicker: "where we celebrate",
     venueName: "Foxoso La Alphonso Beach Resort & Spa, Goa",
     venueCta: "Open in Google Maps",
+    venueStoryTitle: "Where our story continues...",
+    venueStorySubtitle: "Under the golden Goa sun",
+    beachSunsetAlt: "Beach sunset",
+    gujarat: "Gujarat",
+    uttarPradesh: "Uttar Pradesh",
+    keepScrolling: "Keep scrolling",
+    scrollHint: "Scroll",
+    ganeshaAlt: "Illustration of Lord Ganesha",
+    ornamentalOvalFrameAlt: "Ornamental oval frame",
+    monogramLabel: "Prabhav & Shreya",
+    monogramAlt: "Prabhav and Shreya monogram",
+    shlokaAudioTitle: "Vakratunda Mahakaya shloka",
+    notFoundTitle: "Page not found",
+    notFoundMessage: "The page you're looking for doesn't exist or has been moved.",
+    errorTitle: "This page didn't load",
+    errorMessage: "Something went wrong on our end. You can try refreshing or head back home.",
+    tryAgain: "Try again",
+    goHome: "Go home",
     countdownKicker: "the wait begins",
     countdownTitle: "Counting Down To The Wedding",
     months: "Months",
@@ -129,11 +171,11 @@ export const translations: Record<Lang, Dict> = {
         "we are delighted to announce the wedding ceremony of our beloved son,",
       ],
       groomLead: "",
-      groomName: "Chi. Prabhav",
+      groomName: "Prabhav",
       groomGrandparents: "(Grandson of Late Smt. Kamala & Late Shri Krishna Kumar Srivastava)",
       groomParents: "(Son of Smt. Garima & Shri Subodh Srivastava)",
       conjunction: "with",
-      brideName: "Ayu. Shreya",
+      brideName: "Shreya",
       brideParents: "(Daughter of Smt. Archana & Shri Rajesh Joshi)",
       invitation:
         "On this auspicious occasion, we cordially invite you and your family to grace the ceremony with your esteemed presence and shower the newlywed couple with your love, blessings, and good wishes.",
@@ -148,25 +190,25 @@ export const translations: Record<Lang, Dict> = {
     },
     events: {
       mehandi: {
-        name: "Mehandi",
+        name: "Henna Bolo Bolo",
         time: "2:00 PM",
         date: "11th December",
         thought: "Henna-dark hands, and a love just beginning.",
       },
       "engagement-sangeet": {
-        name: "Engagement & Sangeet",
+        name: "What Thumka",
         time: "6:30 PM",
         date: "11th December",
         thought: "Music, laughter, and a promise set to dance.",
       },
       masquerade: {
-        name: "Masquerade",
+        name: "Masque-Era",
         time: "10:30 PM",
         date: "11th December",
         thought: "Behind every mask, the same happy hearts.",
       },
       haldi: {
-        name: "Haldi",
+        name: "Kesariya Khwaab",
         time: "10:30 AM",
         date: "12th December",
         thought: "Sunshine on her skin, laughter in the air.",
@@ -178,13 +220,13 @@ export const translations: Record<Lang, Dict> = {
         thought: "Dhol, dance, and a groom on his way.",
       },
       varmala: {
-        name: "Varmala",
+        name: "Suraj Hua Maddham",
         time: "5:30 PM",
         date: "12th December",
         thought: "Two hearts, two families, two garlands.",
       },
       fera: {
-        name: "Fera",
+        name: "Taaron ki Chhanv",
         time: "11:00 PM",
         date: "12th December",
         thought: "Seven vows, forever — taaron ki chhaon mein.",
@@ -197,6 +239,9 @@ export const translations: Record<Lang, Dict> = {
     tapToUnfurl: "खोलने के लिए स्पर्श करें",
     tapTheSeal: "खोलने के लिए मुहर स्पर्श करें",
     openInvitation: "निमंत्रण खोलें",
+    scratchToReveal: "देखने के लिए खुरचें",
+    ornateGoldFrameAlt: "सजावटी सुनहरी चौखट",
+    couplePhotoAlt: "श्रेया और प्रभव का चित्र",
     shloka1: "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।",
     shloka2: "निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥",
     translitLine:
@@ -223,6 +268,24 @@ export const translations: Record<Lang, Dict> = {
     venueKicker: "आयोजन स्थल",
     venueName: "फॉक्सोसो ला अल्फांसो बीच रिज़ॉर्ट एंड स्पा, गोवा",
     venueCta: "गूगल मैप्स में देखें",
+    venueStoryTitle: "जहाँ हमारी कहानी आगे बढ़ती है...",
+    venueStorySubtitle: "गोवा की सुनहरी धूप तले",
+    beachSunsetAlt: "समुद्र तट का सूर्यास्त",
+    gujarat: "गुजरात",
+    uttarPradesh: "उत्तर प्रदेश",
+    keepScrolling: "स्क्रॉल करते रहें",
+    scrollHint: "स्क्रॉल",
+    ganeshaAlt: "भगवान गणेश का चित्र",
+    ornamentalOvalFrameAlt: "सजावटी अंडाकार चौखट",
+    monogramLabel: "प्रभव और श्रेया",
+    monogramAlt: "प्रभव और श्रेया का मोनोग्राम",
+    shlokaAudioTitle: "वक्रतुण्ड महाकाय श्लोक",
+    notFoundTitle: "पृष्ठ नहीं मिला",
+    notFoundMessage: "आप जिस पृष्ठ को ढूँढ़ रहे हैं वह मौजूद नहीं है या स्थानांतरित हो गया है।",
+    errorTitle: "यह पृष्ठ लोड नहीं हो सका",
+    errorMessage: "हमारी ओर से कुछ गड़बड़ हो गई। आप फिर से प्रयास कर सकते हैं या मुख्य पृष्ठ पर जा सकते हैं।",
+    tryAgain: "फिर से प्रयास करें",
+    goHome: "मुख्य पृष्ठ पर जाएँ",
     countdownKicker: "प्रतीक्षा",
     countdownTitle: "विवाह में शेष समय",
     months: "माह",
@@ -260,25 +323,25 @@ export const translations: Record<Lang, Dict> = {
     },
     events: {
       mehandi: {
-        name: "मेहंदी",
+        name: "हेन्ना बोलो बोलो",
         time: "दोपहर २:००",
         date: "११ दिसंबर",
         thought: "रचे हाथ, और एक नया-नया प्यार।",
       },
       "engagement-sangeet": {
-        name: "सगाई एवं संगीत",
+        name: "व्हाट ठुमका",
         time: "शाम ६:३०",
         date: "११ दिसंबर",
         thought: "संगीत, हँसी और थिरकते हुए वादे।",
       },
       masquerade: {
-        name: "मास्करेड",
+        name: "मास्क-एरा",
         time: "रात १०:३०",
         date: "११ दिसंबर",
         thought: "हर नक़ाब के पीछे वही ख़ुश दिल।",
       },
       haldi: {
-        name: "हल्दी",
+        name: "केसरिया ख़्वाब",
         time: "सुबह १०:३०",
         date: "१२ दिसंबर",
         thought: "धूप-सी हल्दी, हवा में गूँजती हँसी।",
@@ -290,13 +353,13 @@ export const translations: Record<Lang, Dict> = {
         thought: "ढोल, नाच और आता हुआ दूल्हा।",
       },
       varmala: {
-        name: "वरमाला",
+        name: "सूरज हुआ मद्धम",
         time: "शाम ५:३०",
         date: "१२ दिसंबर",
         thought: "दो दिल, दो परिवार, एक वरमाला।",
       },
       fera: {
-        name: "फेरे",
+        name: "तारों की छाँव",
         time: "रात ११:००",
         date: "१२ दिसंबर",
         thought: "सात वचन, सदा के लिए — तारों की छाँव में।",
@@ -304,11 +367,14 @@ export const translations: Record<Lang, Dict> = {
     },
   },
   gu: {
-    landingTitle: "શ્રેયા અને પ્રભવનાં",
+    landingTitle: "શ્રેયા અને પ્રભવનું",
     landingTitleItalic: "લગ્ન",
     tapToUnfurl: "ખોલવા માટે સ્પર્શ કરો",
     tapTheSeal: "ખોલવા માટે મહોર સ્પર્શ કરો",
     openInvitation: "આમંત્રણ ખોલો",
+    scratchToReveal: "જોવા માટે ખુરચો",
+    ornateGoldFrameAlt: "સુશોભિત સોનેરી ફ્રેમ",
+    couplePhotoAlt: "શ્રેયા અને પ્રભવનો ફોટો",
     shloka1: "વક્રતુણ્ડ મહાકાય સૂર્યકોટિ સમપ્રભ ।",
     shloka2: "નિર્વિઘ્નં કુરુ મે દેવ સર્વકાર્યેષુ સર્વદા ॥",
     translitLine:
@@ -335,6 +401,24 @@ export const translations: Record<Lang, Dict> = {
     venueKicker: "સ્થળ",
     venueName: "ફોક્સોસો લા અલ્ફોન્સો બીચ રિસોર્ટ એન્ડ સ્પા, ગોવા",
     venueCta: "ગૂગલ મેપ્સમાં જુઓ",
+    venueStoryTitle: "જ્યાં આપણી વાર્તા આગળ વધે છે...",
+    venueStorySubtitle: "ગોવાની સોનેરી ધૂપ તળે",
+    beachSunsetAlt: "સમુદ્રકિનારાનો સૂર્યાસ્ત",
+    gujarat: "ગુજરાત",
+    uttarPradesh: "ઉત્તર પ્રદેશ",
+    keepScrolling: "સ્ક્રોલ કરતા રહો",
+    scrollHint: "સ્ક્રોલ",
+    ganeshaAlt: "ભગવાન ગણેશનું ચિત્ર",
+    ornamentalOvalFrameAlt: "સુશોભિત અંડાકાર ફ્રેમ",
+    monogramLabel: "પ્રભવ અને શ્રેયા",
+    monogramAlt: "પ્રભવ અને શ્રેયાનો મોનોગ્રામ",
+    shlokaAudioTitle: "વક્રતુણ્ડ મહાકાય શ્લોક",
+    notFoundTitle: "પૃષ્ઠ મળ્યું નથી",
+    notFoundMessage: "તમે જે પૃષ્ઠ શોધી રહ્યા છો તે અસ્તિત્વમાં નથી અથવા ખસેડવામાં આવ્યું છે.",
+    errorTitle: "આ પૃષ્ઠ લોડ થઈ શક્યું નથી",
+    errorMessage: "અમારી તરફથી કંઈક ખોટું થયું છે. તમે ફરી પ્રયાસ કરી શકો છો અથવા મુખ્ય પૃષ્ઠ પર જઈ શકો છો.",
+    tryAgain: "ફરી પ્રયાસ કરો",
+    goHome: "મુખ્ય પૃષ્ઠ પર જાઓ",
     countdownKicker: "પ્રતીક્ષા",
     countdownTitle: "લગ્નને બાકી સમય",
     months: "માસ",
@@ -358,7 +442,7 @@ export const translations: Record<Lang, Dict> = {
       conjunction: "અને",
       brideName: "આયુ. શ્રેયા",
       brideParents: "(સુપુત્રી – શ્રીમતી અર્ચના અને શ્રી રાજેશ જોષી)",
-      announcement: "નો શુભ લગ્ન પ્રસંગ (પરિણય સંસ્કાર) નિર્ધાર્યો છે.",
+      announcement: "નો શુભ પરિણય સંસ્કાર સંપન્ન થવાનો છે.",
       invitation:
         "આ શુભ અને મંગળમય અવસર પર આપ સહપરિવાર પધારીને નવદંપતીને આપના સ્નેહ, આશીર્વાદ અને શુભકામનાઓથી અભિસિંચિત કરો તથા આપની ગરિમામયી ઉપસ્થિતિથી આ માંગલિક અવસરની શોભા વધારો.",
       blessing: "આપના સ્નેહસભર આશીર્વાદ જ અમારા માટે સૌથી અમૂલ્ય ભેટ છે.",
@@ -372,43 +456,43 @@ export const translations: Record<Lang, Dict> = {
     },
     events: {
       mehandi: {
-        name: "મહેંદી",
+        name: "હેના બોલો બોલો",
         time: "બપોરે ૨:૦૦",
         date: "૧૧ ડિસેમ્બર",
         thought: "મહેંદીભર્યા હાથ, અને નવો-નવો પ્રેમ.",
       },
       "engagement-sangeet": {
-        name: "સગાઈ અને સંગીત",
+        name: "વોટ ઠુમકા",
         time: "સાંજે ૬:૩૦",
         date: "૧૧ ડિસેમ્બર",
         thought: "સંગીત, હાસ્ય અને નાચતું વચન.",
       },
       masquerade: {
-        name: "માસ્કરેડ",
+        name: "માસ્ક-એરા",
         time: "રાત્રે ૧૦:૩૦",
         date: "૧૧ ડિસેમ્બર",
         thought: "દરેક મુખવટા પાછળ એ જ ખુશ હૃદય.",
       },
       haldi: {
-        name: "હળદી",
+        name: "કેસરિયા ખ્વાબ",
         time: "સવારે ૧૦:૩૦",
         date: "૧૨ ડિસેમ્બર",
         thought: "હળદરનો તડકો, હવામાં હાસ્ય.",
       },
       baarat: {
-        name: "જાન",
+        name: "બારાત",
         time: "સાંજે ૪:૦૦",
         date: "૧૨ ડિસેમ્બર",
         thought: "ઢોલ, નાચ અને આવતો વરરાજા.",
       },
       varmala: {
-        name: "વરમાળા",
+        name: "સૂરજ હુઆ મદ્ધમ",
         time: "સાંજે ૫:૩૦",
         date: "૧૨ ડિસેમ્બર",
         thought: "બે હૃદય, બે પરિવાર, એક વરમાળા.",
       },
       fera: {
-        name: "ફેરા",
+        name: "તારોં કી છાંવ",
         time: "રાત્રે ૧૧:૦૦",
         date: "૧૨ ડિસેમ્બર",
         thought: "સાત વચન, સદાય — તારાઓની છાંવમાં.",

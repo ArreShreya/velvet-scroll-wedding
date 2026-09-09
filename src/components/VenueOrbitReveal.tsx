@@ -1,6 +1,7 @@
 import React from "react";
 import { Reveal } from "@/components/Reveal";
 import { PageOrnaments } from "@/components/Ornaments";
+import { useLang } from "@/i18n/LanguageContext";
 
 // Replace these placeholders with your actual generated artwork files
 import goaBeachImg from "../assets/beach_center_img.png";
@@ -15,16 +16,17 @@ import boat from "../assets/shell6.png";
 const orbitItems = [shell1, starfish, wave, shell2, palmLeaf, boat];
 
 export function VenueOrbitReveal() {
+  const { t } = useLang();
   return (
     <section id="venue-reveal" className="relative flex min-h-[calc(100vh-5rem)] snap-start flex-col items-center justify-center px-6 py-16 text-center bg-paper overflow-hidden">
       <PageOrnaments />
       
       <Reveal variant="fade" className="flex flex-col items-center">
         <h3 className="mb-2 font-heading text-3xl font-semibold text-text-heading md:text-4xl">
-          Where our story continues...
+          {t.venueStoryTitle}
         </h3>
         <p className="mb-20 font-accent text-3xl text-text-secondary">
-          Under the golden Goa sun
+          {t.venueStorySubtitle}
         </p>
 
         <div className="relative flex items-center justify-center h-80 w-80 md:h-96 md:w-96">
@@ -32,7 +34,7 @@ export function VenueOrbitReveal() {
           <div className="absolute z-10 flex h-56 w-56 items-center justify-center overflow-hidden rounded-full border-4 border-gold/30 bg-paper-tint p-1 shadow-lg md:h-64 md:w-64">
             <img 
               src={goaBeachImg} 
-              alt="Beach Sunset" 
+              alt={t.beachSunsetAlt}
               className="h-full w-full rounded-full object-cover opacity-95"
             />
           </div>

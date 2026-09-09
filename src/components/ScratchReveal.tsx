@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLang } from "@/i18n/LanguageContext";
 
 /**
  * Canvas scratch-card overlay. Children render underneath; a golden foil layer
@@ -18,6 +19,7 @@ export function ScratchReveal({
   threshold?: number;
   onRevealed?: () => void;
 }) {
+  const { t } = useLang();
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const drawing = useRef(false);
@@ -176,7 +178,7 @@ export function ScratchReveal({
       />
       {!started && !cleared && (
         <span className="pointer-events-none absolute inset-x-0 bottom-[8%] z-10 text-center font-accent text-sm text-text-secondary drop-shadow-sm">
-          Scratch to reveal ✨
+          {t.scratchToReveal} ✨
         </span>
       )}
     </div>
