@@ -124,8 +124,8 @@ export function EventPage({ event }: { event: WeddingEvent }) {
                 "radial-gradient(ellipse at center, oklch(0.99 0.012 40 / 0.9) 35%, oklch(0.99 0.012 40 / 0.5) 65%, transparent 85%)",
             }}
           >
-            <p className="font-numeric text-sm uppercase text-text-secondary sm:text-base">
-              {copy.date}
+            <p className="mt-2 font-numeric text-base text-text-secondary sm:text-lg">
+              {copy.date} - {copy.time}
             </p>
             <h2
               className={`mt-2 font-heading text-4xl font-semibold leading-tight sm:text-5xl md:text-6xl ${event.id === "fera" ? "text-text-sacred" : "text-text-heading"}`}
@@ -134,11 +134,11 @@ export function EventPage({ event }: { event: WeddingEvent }) {
               {copy.name}
             </h2>
             <p className="mt-2 font-numeric text-base text-text-secondary sm:text-lg">
-              {copy.time}
+              details of the event
             </p>
-            {copy.thought ? (
+            {copy.tagline ? (
               <p className={`mx-auto mt-3 max-w-xs font-accent text-lg leading-snug sm:max-w-sm sm:text-xl ${event.id === "fera" ? "text-text-sacred" : "text-text-secondary"}`}>
-                {copy.thought}
+                {copy.tagline}
               </p>
             ) : null}
           </div>

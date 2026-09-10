@@ -306,23 +306,17 @@ function IndexContent() {
 
             <div className="mt-10 grid w-full max-w-2xl gap-10 md:grid-cols-2">
               
-              <Reveal variant="right" delay={120}>
+              <Reveal variant="left" delay={120}>
                 <p className="font-body text-sm uppercase text-text-secondary sm:text-base">
                   {t.theGroom}
                 </p>
                 <p className="mt-3 font-emotional text-3xl text-text-heading">{t.groomFull}</p>
-                {/* <p className="mt-2 font-body text-sm leading-relaxed text-text-body sm:text-base">
-                  {t.groomParents}
-                </p> */}
               </Reveal>
-              <Reveal variant="left" delay={120}>
+              <Reveal variant="right" delay={120}>
                 <p className="font-body text-sm uppercase text-text-secondary sm:text-base">
                   {t.theBride}
                 </p>
                 <p className="mt-3 font-emotional text-3xl text-text-heading">{t.brideFull}</p>
-                {/* <p className="mt-2 font-body text-sm leading-relaxed text-text-body sm:text-base">
-                  {t.brideParents}
-                </p> */}
               </Reveal>
             </div>
 
