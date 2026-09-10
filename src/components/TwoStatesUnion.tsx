@@ -2,11 +2,13 @@ import React, { useRef, useEffect, useState } from "react";
 import { Heart, ChevronDown } from "lucide-react";
 import { clsx } from "clsx";
 import { PageOrnaments } from "@/components/Ornaments";
+import { useLang } from "@/i18n/LanguageContext";
 
 import gujaratImg from "../assets/gujaratImg.png";
 import upImg from "../assets/upImg.png";
 
 export function TwoStatesUnion() {
+  const { t } = useLang();
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   // Gujarat and Uttar Pradesh used to each run their own independent
@@ -119,13 +121,13 @@ export function TwoStatesUnion() {
                 revealed ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0",
               )}
             >
-              Gujarat
+              {t.gujarat}
             </p>
 
             {/* Image fades/rises in a beat after the text, same trigger as UP's image */}
             <img
               src={gujaratImg}
-              alt="Gujarat"
+              alt={t.gujarat}
               className={clsx(
                 "w-full object-contain drop-shadow-md mix-blend-multiply transition-all duration-700 ease-out",
                 revealed ? "translate-y-0 opacity-100 delay-150" : "translate-y-6 opacity-0",
@@ -141,7 +143,7 @@ export function TwoStatesUnion() {
             {/* Image fades/rises in a beat after the text, same trigger as Gujarat's image */}
             <img
               src={upImg}
-              alt="Uttar Pradesh"
+              alt={t.uttarPradesh}
               className={clsx(
                 "w-full object-contain drop-shadow-md mix-blend-multiply transition-all duration-700 ease-out",
                 revealed ? "translate-y-0 opacity-100 delay-150" : "translate-y-6 opacity-0",
@@ -157,7 +159,7 @@ export function TwoStatesUnion() {
                   : "translate-x-8 translate-y-6 opacity-0",
               )}
             >
-              Uttar Pradesh
+              {t.uttarPradesh}
               
             </p>
           </div>
@@ -217,7 +219,7 @@ export function TwoStatesUnion() {
                   "z-10 flex flex-col items-center text-text-secondary transition-opacity duration-500",
                   showHeart ? "opacity-0" : "opacity-100 animate-pulse"
                 )}>
-          <span className="mb-1 font-body text-[0.75rem] uppercase">Keep Scrolling</span>
+          <span className="mb-1 font-body text-[0.75rem] uppercase">{t.keepScrolling}</span>
                   <ChevronDown className="h-5 w-5" />
         </div>
       </div>

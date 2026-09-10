@@ -158,7 +158,7 @@ function IndexContent() {
         )}
       >
         <span className="mb-2 font-body text-[0.75rem] font-bold uppercase text-text-secondary animate-pulse drop-shadow-md">
-          Scroll
+          {t.scrollHint}
         </span>
         <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-paper/95 backdrop-blur-md shadow-lg animate-bounce">
           <ChevronDown className="h-6 w-6 text-text-secondary" />
@@ -179,7 +179,7 @@ function IndexContent() {
             <Reveal delay={120}>
               <img
                 src={ganesha}
-                alt="Illustration of Lord Ganesha"
+                alt={t.ganeshaAlt}
                 width={1024}
                 height={1024}
                 className="w-56 max-w-[60vw] md:w-72"
@@ -382,7 +382,7 @@ function IndexContent() {
                   {/* 2. The Transparent PNG Frame (Overlays on top of the video) */}
                   <img 
                      src={danceFrame4}
-                    alt="Ornamental Oval Frame" 
+                    alt={t.ornamentalOvalFrameAlt}
                     style={{
                       position: 'absolute',
                       top: 0,

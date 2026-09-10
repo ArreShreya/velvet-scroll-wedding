@@ -1,10 +1,12 @@
 const VIDEO_ID = "hzQqfRM-mtA";
+import { useLang } from "@/i18n/LanguageContext";
 
 /** Hidden YouTube player: plays the Vakratunda Mahakaya shloka once on scroll open. */
 export function ShlokaAudio() {
+  const { t } = useLang();
   return (
     <iframe
-      title="Vakratunda Mahakaya shloka"
+      title={t.shlokaAudioTitle}
       src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&start=0&controls=0&loop=0&playsinline=1&rel=0`}
       allow="autoplay"
       className="pointer-events-none fixed bottom-0 left-0 h-px w-px opacity-0"

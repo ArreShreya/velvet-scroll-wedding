@@ -100,14 +100,14 @@ export function CountdownPage() {
               }`}
             >
               <span className="text-2xl font-accent text-white drop-shadow-md sm:text-2xl">
-                Scratch to reveal
+                {t.scratchToReveal}
               </span>
             </div>
 
             {/* 1. The Photo / Placeholder covered by the scratch foil */}
             <ScratchReveal className="h-full w-full">
               <div className="flex h-full w-full items-center justify-center bg-[oklch(0.98_0.015_40_/_0.8)]">
-                <img src={couplePhoto} className="h-full w-full object-cover" style={{
+                <img src={couplePhoto} alt={t.couplePhotoAlt} className="h-full w-full object-cover" style={{
     objectPosition: "center 35%", // shift which part of the photo shows
     transform: "scale(1.25)",     // zoom in further than object-fit alone allows
     transformOrigin: "center",
@@ -119,7 +119,7 @@ export function CountdownPage() {
           {/* 2. The Ornate Gold Frame (Sits ON TOP) */}
           <img 
             src={frame2} 
-            alt="Ornate Gold Frame" 
+            alt={t.ornateGoldFrameAlt}
             className="relative z-10 w-full h-auto drop-shadow-xl pointer-events-none"
             style={{ 
               filter: 'sepia(0.3) saturate(1.2) hue-rotate(-10deg) brightness(1.05)' 
