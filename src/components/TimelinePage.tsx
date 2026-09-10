@@ -239,11 +239,12 @@ function MobileArc({
         />
         {ids.map((id, i) => {
           const p = at(i);
+          const circleTop = facing === "right" && ids.length === 4 ? 20 + i * 20 : (p.y / H) * 100;
           return (
             <circle
               key={id}
               cx={p.x}
-              cy={p.y}
+              cy={Math.round((circleTop / 100) * H)}
               r="5"
               fill="var(--rose-deep)"
               className={`pop-circle ${inView ? "pop-in" : "pop-out"}`}
@@ -257,14 +258,16 @@ function MobileArc({
       {ids.map((id, i) => {
         const p = at(i);
         const c = t.events[id] ?? { name: id, time: "", date: "" };
+        const leftPct = (p.x / W) * 100;
+        const topPct = facing === "right" && ids.length === 4 ? 20 + i * 20 : (p.y / H) * 100;
         return (
           <a
             key={id}
             href={`#${id}`}
             className="press absolute flex w-[48%] items-center gap-3"
             style={{
-              left: `${(p.x / W) * 100}%`,
-              top: `${(p.y / H) * 100}%`,
+              left: `${leftPct}%`,
+              top: `${topPct}%`,
               transform:
                 facing === "left" ? "translate(-104%, -50%)" : "translate(4%, -50%)",
               flexDirection: facing === "left" ? "row-reverse" : "row",
