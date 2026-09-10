@@ -108,10 +108,10 @@ export function CountdownPage() {
             <ScratchReveal className="h-full w-full">
               <div className="flex h-full w-full items-center justify-center bg-[oklch(0.98_0.015_40_/_0.8)]">
                 <img src={couplePhoto} alt={t.couplePhotoAlt} className="h-full w-full object-cover" style={{
-    objectPosition: "center 35%", // shift which part of the photo shows
-    transform: "scale(1.25)",     // zoom in further than object-fit alone allows
-    transformOrigin: "center",
-  }} />
+                     objectPosition: "center 15%", // shift which part of the photo shows
+                    transform: "scale(1.47)",     // zoom in further than object-fit alone allows
+                    transformOrigin: "top",
+                  }} />
               </div>
             </ScratchReveal>
           </div>
