@@ -10,7 +10,7 @@ export function ScratchReveal({
   children,
   className = "",
   brush = 26,
-  threshold = 0.65,
+  threshold = 0.3,
   onRevealed,
 }: {
   children: React.ReactNode;

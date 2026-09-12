@@ -188,7 +188,12 @@ function IndexContent() {
             <ShlokaText lines={[t.shloka1, t.shloka2]} />
             <Reveal delay={240}>
               <GoldDivider className="mt-5" />
-              <p className="mt-4 max-w-md font-body text-sm leading-relaxed text-text-body/80">
+              <p
+                className={clsx(
+                  "mt-4 max-w-md font-body leading-relaxed text-text-body/80",
+                  lang === "en" ? "text-xs" : "text-sm",
+                )}
+              >
                 {t.translitLine}
               </p>
             </Reveal>
@@ -212,7 +217,10 @@ function IndexContent() {
             <Reveal
               as="div"
               delay={120}
-              className="mt-4 max-w-3xl space-y-1 font-body text-base leading-[1.85] text-text-body sm:text-lg"
+              className={clsx(
+                "mt-4 max-w-3xl space-y-1 font-body leading-[1.85] text-text-body sm:text-lg",
+                lang === "en" ? "text-sm" : "text-base",
+              )}
             >
               {invitation.prelude.map((line) => (
                 <p key={line}>{line}</p>
@@ -282,7 +290,10 @@ function IndexContent() {
             <Reveal
               as="p"
               delay={440}
-              className="mt-6 max-w-3xl font-body text-base leading-[1.85] text-text-body sm:text-lg"
+              className={clsx(
+                "mt-6 max-w-3xl font-body leading-[1.85] text-text-body sm:text-lg",
+                lang === "en" ? "text-sm" : "text-base",
+              )}
             >
               {invitation.invitation}
             </Reveal>

@@ -133,9 +133,6 @@ export function EventPage({ event }: { event: WeddingEvent }) {
             >
               {copy.name}
             </h2>
-            <p className="mt-2 font-numeric text-base text-text-secondary sm:text-lg">
-              details of the event
-            </p>
             {copy.tagline ? (
               <p className={`mx-auto mt-3 max-w-xs font-accent text-lg leading-snug sm:max-w-sm sm:text-xl ${event.id === "fera" ? "text-text-sacred" : "text-text-secondary"}`}>
                 {copy.tagline}

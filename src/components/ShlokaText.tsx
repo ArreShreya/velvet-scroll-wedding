@@ -1,4 +1,6 @@
+import { useEffect, useRef } from "react";
 import { useInView } from "@/hooks/useInView";
+import { useLang } from "@/i18n/LanguageContext";
 
 const VIRAMA = /[\u094D\u09CD\u0ACD\u0B4D\u0BCD\u0C4D\u0CCD\u0D4D]/;
 const MARK = /\p{M}/u;
@@ -51,11 +53,17 @@ export function ShlokaText({
   startDelay?: number;
 }) {
   const { ref, inView } = useInView<HTMLParagraphElement>(0.3);
+  const { lang } = useLang();
+  const animationStarted = useRef(false);
+
+  useEffect(() => {
+    if (inView) animationStarted.current = true;
+  }, [inView]);
 
   let index = 0;
 
   return (
-    <p ref={ref} className={className}>
+    <p ref={ref} className={`${className} shloka-text lang-${lang}`}>
       {lines.map((line, li) => (
         <span key={li} className="block [overflow-wrap:anywhere]">
           {clusters(line).map((ch, ci) => {
@@ -63,8 +71,18 @@ export function ShlokaText({
             return (
               <span
                 key={ci}
-                className={inView ? "shloka-letter whitespace-pre-wrap" : "whitespace-pre-wrap"}
-                style={inView ? { animationDelay: `${delay}ms` } : { opacity: 0 }}
+                className={
+                  inView && !animationStarted.current
+                    ? "shloka-letter whitespace-pre-wrap"
+                    : "whitespace-pre-wrap"
+                }
+                style={
+                  inView && !animationStarted.current
+                    ? { animationDelay: `${delay}ms` }
+                    : inView
+                      ? undefined
+                      : { opacity: 0 }
+                }
               >
                 {ch}
               </span>
