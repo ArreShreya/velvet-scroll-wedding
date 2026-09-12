@@ -127,7 +127,7 @@ export const translations: Record<Lang, Dict> = {
     theBride: "The Bride",
     theGroom: "The Groom",
     brideFull: "Shreya Joshi",
-    brideParents: "daughter of Dr. Rajesh Joshi & Archana Joshi",
+    brideParents: "daughter of Smt. Archana & Dr. Rajesh Joshi",
     groomFull: "Prabhav Srivastava",
     groomParents: "son of Subodh Srivastava & Garmia Srivastava",
     venueKicker: "where we celebrate",
@@ -176,7 +176,7 @@ export const translations: Record<Lang, Dict> = {
       groomParents: "(Son of Smt. Garima & Shri Subodh Srivastava)",
       conjunction: "with",
       brideName: "Shreya",
-      brideParents: "(Daughter of Smt. Archana & Shri Rajesh Joshi)",
+      brideParents: "(Daughter of Smt. Archana & Dr. Rajesh Joshi)",
       invitation:
         "On this auspicious occasion, we cordially invite you and your family to grace the ceremony with your esteemed presence and shower the newlywed couple with your love, blessings, and good wishes.",
       blessing: "Your affectionate presence and blessings are the most precious gifts for us.",
@@ -308,7 +308,7 @@ export const translations: Record<Lang, Dict> = {
       groomParents: "(सुपुत्र – श्रीमती गरिमा एवं श्री सुबोध श्रीवास्तव)",
       conjunction: "एवं",
       brideName: "आयु. श्रेया",
-      brideParents: "(सुपुत्री – श्रीमती अर्चना एवं श्री राजेश जोशी)",
+      brideParents: "(सुपुत्री - श्रीमती अर्चना एवं डॉ. राजेश जोशी)",
       announcement: "का शुभ परिणय संस्कार संपन्न होने जा रहा है।",
       invitation:
         "इस शुभ एवं मंगलमय अवसर पर आप सपरिवार पधारकर नवयुगल को अपने स्नेह, आशीर्वाद एवं शुभकामनाओं से अभिसिंचित करें तथा अपनी गरिमामयी उपस्थिति से इस मांगलिक अवसर की शोभा बढ़ाएँ।",
@@ -441,7 +441,7 @@ export const translations: Record<Lang, Dict> = {
       groomParents: "(સુપુત્ર – શ્રીમતી ગરિમા અને શ્રી સુબોધ શ્રીવાસ્તવ)",
       conjunction: "અને",
       brideName: "આયુ. શ્રેયા",
-      brideParents: "(સુપુત્રી – શ્રીમતી અર્ચના અને શ્રી રાજેશ જોષી)",
+      brideParents: "(સુપુત્રી – શ્રીમતી અર્ચના અને ડૉ. રાજેશ જોષી)",
       announcement: "નો શુભ પરિણય સંસ્કાર સંપન્ન થવાનો છે.",
       invitation:
         "આ શુભ અને મંગળમય અવસર પર આપ સહપરિવાર પધારીને નવદંપતીને આપના સ્નેહ, આશીર્વાદ અને શુભકામનાઓથી અભિસિંચિત કરો તથા આપની ગરિમામયી ઉપસ્થિતિથી આ માંગલિક અવસરની શોભા વધારો.",
