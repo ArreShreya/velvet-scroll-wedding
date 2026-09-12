@@ -164,7 +164,7 @@ export function TimelinePage() {
                 <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-gold/60 bg-paper-tint text-text-heading md:h-14 md:w-14">
                   <EventIcon id={e.id} className="h-6 w-6 md:h-8 md:w-8" />
                 </span>
-                <span className="mt-2 block font-heading text-xl leading-tight text-text-heading md:text-2xl">
+                <span className="mt-2 block whitespace-nowrap font-heading text-xl leading-tight text-text-heading md:text-[22px]">
                   {c.name}
                 </span>
                 <span className="mt-0.5 block font-numeric text-sm text-text-secondary md:text-base">
@@ -211,7 +211,11 @@ function MobileArc({
   const cx = facing === "left" ? 240 : 60;
 
   const at = (i: number) => {
-    const f = ids.length === 1 ? 0.5 : i / (ids.length - 1);
+    const isDayTwoArc = facing === "right" && ids.length === 4;
+    const fractions = [0, 0.38, 0.6583, 1];
+    let f = i / (ids.length - 1);
+    if (ids.length === 1) f = 0.5;
+    if (isDayTwoArc) f = fractions[i] ?? f;
     const deg = facing === "left" ? -90 - 180 * f : -90 + 180 * f;
     const rad = (deg * Math.PI) / 180;
     return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad) };
@@ -239,12 +243,11 @@ function MobileArc({
         />
         {ids.map((id, i) => {
           const p = at(i);
-          const circleTop = facing === "right" && ids.length === 4 ? 20 + i * 20 : (p.y / H) * 100;
           return (
             <circle
               key={id}
               cx={p.x}
-              cy={Math.round((circleTop / 100) * H)}
+              cy={p.y}
               r="5"
               fill="var(--rose-deep)"
               className={`pop-circle ${inView ? "pop-in" : "pop-out"}`}
@@ -259,7 +262,7 @@ function MobileArc({
         const p = at(i);
         const c = t.events[id] ?? { name: id, time: "", date: "" };
         const leftPct = (p.x / W) * 100;
-        const topPct = facing === "right" && ids.length === 4 ? 20 + i * 20 : (p.y / H) * 100;
+        const topPct = (p.y / H) * 100;
         return (
           <a
             key={id}
@@ -285,7 +288,7 @@ function MobileArc({
                 <EventIcon id={id} className="h-5 w-5" />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block font-heading text-lg font-semibold leading-tight text-text-heading">
+                <span className="block font-heading text-base font-semibold leading-tight text-text-heading">
                   {c.name}
                 </span>
                 <span className="mt-0.5 block font-numeric text-sm text-text-secondary">

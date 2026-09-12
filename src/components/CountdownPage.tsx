@@ -33,7 +33,7 @@ function Dial({ value, label, delay }: { value: number | null; label: string; de
     <Reveal
       variant="countdown"
       delay={delay}
-      className="countdown-dial press relative flex h-24 w-24 flex-col items-center justify-center rounded-full border border-gold/60 bg-[oklch(0.99_0.012_40_/_0.78)] shadow-[0_10px_28px_-20px_rgba(120,60,60,0.6)] sm:h-28 sm:w-28">
+      className="countdown-dial press relative flex aspect-square w-full max-w-24 flex-col items-center justify-center justify-self-center rounded-full border border-gold/60 bg-[oklch(0.99_0.012_40_/_0.78)] shadow-[0_10px_28px_-20px_rgba(120,60,60,0.6)] sm:max-w-28">
       <span aria-hidden="true" className="pointer-events-none absolute inset-0">
         {particles.map((particle, index) => (
           <span key={index} className={`countdown-spark countdown-spark-${index + 1}`}>{particle}</span>
@@ -73,7 +73,7 @@ export function CountdownPage() {
       </Reveal>
       <GoldDivider className="mt-4" />
 
-      <div className="mt-9 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+      <div className="mt-9 grid w-full max-w-md grid-cols-2 items-center justify-items-center gap-3 min-[360px]:grid-cols-4 sm:gap-6">
         <Dial value={parts?.days ?? null} label={t.days} delay={0} />
         <Dial value={parts?.hours ?? null} label={t.hours} delay={120} />
         <Dial value={parts?.minutes ?? null} label={t.minutes} delay={240} />
