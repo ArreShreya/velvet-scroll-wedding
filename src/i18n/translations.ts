@@ -2,7 +2,6 @@ export type Lang = "en" | "hi" | "gu";
 
 export const LANGS: { code: Lang; label: string; short: string }[] = [
   { code: "en", label: "English", short: "EN" },
-  { code: "hi", label: "हिन्दी", short: "हि" },
   { code: "gu", label: "ગુજરાતી", short: "ગુ" },
 ];
 
@@ -123,7 +122,7 @@ export const translations: Record<Lang, Dict> = {
     invitationLine: "Request the honour of your presence at the celebrations",
     coupleBlessing:
       "Two families, one thread of gold — bound by seven vows and a lifetime of light.",
-    familiesTitle: "Together With Our Families",
+    familiesTitle: "Together with the families",
     theBride: "The Bride",
     theGroom: "The Groom",
     brideFull: "Shreya Joshi",
@@ -133,7 +132,7 @@ export const translations: Record<Lang, Dict> = {
     venueKicker: "where we celebrate",
     venueName: "Foxoso La Alphonso Beach Resort & Spa, Goa",
     venueCta: "Open in Google Maps",
-    venueStoryTitle: "Where our story continues...",
+    venueStoryTitle: "Where the story continues...",
     venueStorySubtitle: "Under the golden Goa sun",
     beachSunsetAlt: "Beach sunset",
     gujarat: "Gujarat",
@@ -199,19 +198,19 @@ export const translations: Record<Lang, Dict> = {
         name: "What Thumka!",
         time: "6:30 PM",
         date: "11th December",
-        tagline: "Rings exchanged, dance battles and a whole lot of glamour",
+        tagline: "Rings exchanged, dance performances and a whole lot of glamour",
       },
       masquerade: {
-        name: "Masque-Era",
-        time: "10:30 PM",
+        name: "Mask-erade",
+        time: "11:00 PM",
         date: "11th December",
-        tagline: "Afterparty with maskaras hidden, masks on & dance shoes ready",
+        tagline: "Afterparty with masks on, maskaras hidden, & dance shoes ready for the masquerade",
       },
       haldi: {
         name: "Kesariya Khwaab",
         time: "10:30 AM",
         date: "12th December",
-        tagline: "Poolside haldi, raindance disco and ecstatic rituals",
+        tagline: "Poolside haldi, raindance & disco",
       },
       baarat: {
         name: "Sehra on the Shore",
@@ -223,7 +222,7 @@ export const translations: Record<Lang, Dict> = {
         name: "Suraj Hua Maddham",
         time: "5:30 PM",
         date: "12th December",
-        tagline: "Sundowner jaimaal, two hearts, two families, a grand union",
+        tagline: "Sundowner Jaimaal on the beach",
       },
       fera: {
         name: "Taaron ki Chhanv",

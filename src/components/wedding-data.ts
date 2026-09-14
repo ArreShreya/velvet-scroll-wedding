@@ -30,7 +30,7 @@ export const events: WeddingEvent[] = [
   {
     id: "masquerade",
     name: "Masquerade",
-    time: "10:30 PM",
+    time: "11:00 PM",
     date: "11th December",
     theme: "Black & magenta decor",
     venue: "Indoor hall with a disco ball",
