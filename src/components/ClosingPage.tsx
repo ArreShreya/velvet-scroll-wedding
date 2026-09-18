@@ -20,14 +20,6 @@ export function ClosingPage() {
         ❖
       </Reveal>
 
-      <Reveal
-            as="p"
-            delay={480}
-            className="mt-5 max-w-2xl font-body text-xl italic leading-relaxed text-text-body sm:text-2xl"
-          >
-            {invitation.blessing}
-          </Reveal>
-
           <Reveal variant="left" as="div" delay={520} className="mt-9 max-w-3xl">
             <p className="font-heading text-xl font-semibold text-text-heading sm:text-2xl">
               {invitation.awaitingLabel}

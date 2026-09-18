@@ -20,7 +20,6 @@ export type FormalInvitation = {
   brideParents: string;
   announcement?: string;
   invitation: string;
-  blessing: string;
   awaitingLabel: string;
   awaitingNames: string[];
   complimentsLabel: string;
@@ -159,7 +158,7 @@ export const translations: Record<Lang, Dict> = {
     seconds: "Secs",
     photoPlaceholder: "A photograph of the couple, coming soon",
     ganeshInvocation: "॥ Shree Ganeshay Namah ॥",
-    closingBlessing: "May this union be blessed with light, laughter and long years.",
+    closingBlessing: "May this union be blessed with light & laughter.",
     closingWith: "With love,",
     closingNames: "Shreya & Prabhav",
     formalInvitation: {
@@ -178,7 +177,6 @@ export const translations: Record<Lang, Dict> = {
       brideParents: "(Daughter of Smt. Archana & Dr. Rajesh Joshi)",
       invitation:
         "On this auspicious occasion, we cordially invite you and your family to grace the ceremony with your esteemed presence and shower the newlywed couple with your love, blessings, and good wishes.",
-      blessing: "Your affectionate presence and blessings are the most precious gifts for us.",
       awaitingLabel: "Eagerly Awaiting Your Presence:",
       awaitingNames: [
         "Smt. Seema & Shri Sandeep Srivastava",
@@ -311,7 +309,6 @@ export const translations: Record<Lang, Dict> = {
       announcement: "का शुभ परिणय संस्कार संपन्न होने जा रहा है।",
       invitation:
         "इस शुभ एवं मंगलमय अवसर पर आप सपरिवार पधारकर नवयुगल को अपने स्नेह, आशीर्वाद एवं शुभकामनाओं से अभिसिंचित करें तथा अपनी गरिमामयी उपस्थिति से इस मांगलिक अवसर की शोभा बढ़ाएँ।",
-      blessing: "आपका स्नेहिल आशीर्वाद ही हमारे लिए सबसे अमूल्य उपहार है।",
       awaitingLabel: "दर्शनाकांक्षी",
       awaitingNames: [
         "श्रीमती सीमा एवं श्री संदीप श्रीवास्तव",
@@ -444,7 +441,6 @@ export const translations: Record<Lang, Dict> = {
       announcement: "નો શુભ પરિણય સંસ્કાર સંપન્ન થવાનો છે.",
       invitation:
         "આ શુભ અને મંગળમય અવસર પર આપ સહપરિવાર પધારીને નવદંપતીને આપના સ્નેહ, આશીર્વાદ અને શુભકામનાઓથી અભિસિંચિત કરો તથા આપની ગરિમામયી ઉપસ્થિતિથી આ માંગલિક અવસરની શોભા વધારો.",
-      blessing: "આપના સ્નેહસભર આશીર્વાદ જ અમારા માટે સૌથી અમૂલ્ય ભેટ છે.",
       awaitingLabel: "દર્શનાભિલાષી",
       awaitingNames: [
         "શ્રીમતી સીમા અને શ્રી સંદીપ શ્રીવાસ્તવ",
