@@ -4,6 +4,7 @@ import monogram from "@/assets/monogram-ps.png.asset.json";
 import { useLang } from "@/i18n/LanguageContext";
 import { STAGE } from "./entryConfig";
 import entryRevealVideo from "../../assets/entry_video.mp4";
+import entryRevealMobileVideo from "../../assets/entry_video_mobile view.mp4";
 
 type Stage = "sealed" | "flap" | "flying" | "open";
 
@@ -66,13 +67,15 @@ export function CinematicEntry({
       <div className="absolute inset-0 z-0 bg-black">
         <video
           ref={videoRef}
-          src={entryRevealVideo}
           playsInline
           // Muted so it never competes with the shloka/BGM background audio.
           muted
           onEnded={handleArrive}
           className="h-full w-full object-cover"
-        />
+        >
+          <source src={entryRevealMobileVideo} media="(max-width: 767px)" />
+          <source src={entryRevealVideo} />
+        </video>
       </div>
 
       {/* ---------- Stage 1: envelope + wax seal ---------- */}

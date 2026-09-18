@@ -1,7 +1,6 @@
 import {
   createContext,
   useContext,
-  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -12,19 +11,8 @@ type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: Dict };
 
 const LanguageContext = createContext<Ctx | null>(null);
 
-const STORAGE_KEY = "wedding-lang";
-
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>("en");
-
-  useEffect(() => {
-    const saved = window.localStorage.getItem(STORAGE_KEY) as Lang | null;
-    if (saved && saved in translations) setLang(saved);
-  }, []);
-
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY, lang);
-  }, [lang]);
 
   const value = useMemo<Ctx>(
     () => ({ lang, setLang, t: translations[lang] }),
