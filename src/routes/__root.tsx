@@ -84,8 +84,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Shreya weds Prabhav" },
-      { name: "description", content: "The wedding of Shreya & Prabhav — 11 & 12 December." },
+      { title: "Milan" },
+      { name: "description", content: "A beginning of forever..." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
