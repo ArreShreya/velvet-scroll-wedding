@@ -4,7 +4,7 @@ import monogram from "@/assets/monogram-ps.png.asset.json";
 import { useLang } from "@/i18n/LanguageContext";
 import { STAGE } from "./entryConfig";
 import entryRevealVideo from "../../assets/entry_video.mp4";
-import entryRevealMobileVideo from "../../assets/entry_video_mobile view.mp4";
+import entryRevealMobileVideo from "../../assets/entry_video_mobile_cropped.mp4";
 
 type Stage = "sealed" | "flap" | "flying" | "open";
 
