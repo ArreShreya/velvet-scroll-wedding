@@ -4,7 +4,6 @@ import monogram from "@/assets/monogram-ps.png.asset.json";
 import { useLang } from "@/i18n/LanguageContext";
 import { STAGE } from "./entryConfig";
 import entryRevealVideo from "../../assets/entry_video.mp4";
-import entryRevealMobileVideo from "../../assets/entry_video_mobile_cropped.mp4";
 
 type Stage = "sealed" | "flap" | "flying" | "open";
 
@@ -18,19 +17,12 @@ export function CinematicEntry({
   const { t } = useLang();
   const [stage, setStage] = useState<Stage>("sealed");
   const [reduced, setReduced] = useState(false);
-  // Chrome ignores `media` on <video><source>, so pick the file ourselves.
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   // Reference to the video element so we can command it to play
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-    const mq = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
   }, []);
 
   // Stage 1 -> Stage 2: only after the flap has finished opening.
@@ -72,18 +64,15 @@ export function CinematicEntry({
     <div className="fixed inset-0 z-[90] overflow-hidden bg-paper">
       {/* ---------- VIDEO LAYER ---------- */}
       <div className="absolute inset-0 z-0 bg-black">
-        {isMobile !== null && (
-          <video
-            ref={videoRef}
-            key={isMobile ? "mobile" : "desktop"}
-            src={isMobile ? entryRevealMobileVideo : entryRevealVideo}
-            playsInline
-            // Muted so it never competes with the shloka/BGM background audio.
-            muted
-            onEnded={handleArrive}
-            className="h-full w-full object-cover"
-          />
-        )}
+        <video
+          ref={videoRef}
+          src={entryRevealVideo}
+          playsInline
+          // Muted so it never competes with the shloka/BGM background audio.
+          muted
+          onEnded={handleArrive}
+          className="h-full w-full object-cover"
+        />
       </div>
 
       {/* ---------- Stage 1: envelope + wax seal ---------- */}
