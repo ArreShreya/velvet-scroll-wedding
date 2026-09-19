@@ -22,16 +22,15 @@ import danceFrame4 from "../assets/dance_frame4.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Shreya weds Prabhav — 11 & 12 December" },
+      { title: "Milan" },
       {
         name: "description",
-        content:
-          "An unfurling scroll invitation for the wedding of Shreya & Prabhav — Mehandi, Sangeet, Masquerade, Haldi, Baarat, Varmala and Fera.",
+        content: "A beginning of forever...",
       },
-      { property: "og:title", content: "Shreya weds Prabhav" },
+      { property: "og:title", content: "Milan" },
       {
         property: "og:description",
-        content: "Join us for two days of celebration — 11th & 12th December.",
+        content: "A beginning of forever...",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
