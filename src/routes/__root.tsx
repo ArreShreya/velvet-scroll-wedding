@@ -11,12 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { translations, type Lang } from "../i18n/translations";
+import { translations } from "../i18n/translations";
 
 function getRootTranslations() {
-  if (typeof window === "undefined") return translations.en;
-  const saved = window.localStorage.getItem("wedding-lang") as Lang | null;
-  return saved && saved in translations ? translations[saved] : translations.en;
+  return translations.en;
 }
 
 function NotFoundComponent() {

@@ -1,5 +1,4 @@
 import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
-import { LanguageToggle } from "./LanguageToggle";
 import { Monogram } from "./Monogram";
 import { BackgroundAudio, type BackgroundAudioHandle } from "./BackgroundAudio";
 import { ShellOpenContext } from "./ShellOpen";
@@ -15,8 +14,14 @@ export function ScrollShell({ children }: { children: ReactNode }) {
   useEffect(() => setMounted(true), []);
 
   const audioRef = useRef<BackgroundAudioHandle>(null);
+  const mainRef = useRef<HTMLElement>(null);
 
   const [shower, setShower] = useState(false);
+  useEffect(() => {
+    if (!opened) return;
+    mainRef.current?.focus({ preventScroll: true });
+  }, [opened]);
+
   useEffect(() => {
     if (!opened) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -53,7 +58,7 @@ export function ScrollShell({ children }: { children: ReactNode }) {
         )}
         {!opened && !mounted && <div className="fixed inset-0 z-[90] bg-paper" />}
 
-        {/* ---------- Header strip: monogram + language toggle ---------- */}
+        {/* ---------- Header strip: monogram ---------- */}
         <header
           className={`invitation-header fixed inset-x-0 top-0 z-[70] flex h-[var(--header-h)] items-center justify-between border-b border-rose/30 px-3 transition-opacity duration-700 md:px-5 ${
             opened ? "opacity-100" : "pointer-events-none opacity-0"
@@ -62,7 +67,6 @@ export function ScrollShell({ children }: { children: ReactNode }) {
           <div className="pointer-events-auto rounded-full border border-rose/50 bg-paper-tint px-2 py-0.5 shadow-[0_6px_18px_-12px_rgba(90,50,40,0.6)] backdrop-blur-sm">
             <Monogram />
           </div>
-          <LanguageToggle />
         </header>
 
         {/* Kumkum & rice shower — plays once on open */}
@@ -94,7 +98,9 @@ export function ScrollShell({ children }: { children: ReactNode }) {
 
         {/* Full-screen invitation content */}
         <main
-          className={`fixed inset-x-0 z-10 overflow-x-hidden overflow-y-auto overscroll-contain transition-opacity duration-700 ${
+          ref={mainRef}
+          tabIndex={-1}
+          className={`fixed inset-x-0 z-10 overflow-x-hidden overflow-y-auto overscroll-contain outline-none transition-opacity duration-700 ${
             opened ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
           style={{

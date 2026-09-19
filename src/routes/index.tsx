@@ -379,10 +379,9 @@ function IndexContent() {
                       width: '76%',      // Shrinks the video bounds to roughly fit inside the inner oval
                       height: '76%',
                       objectFit: 'cover',
-                      // Mask the video into an ellipse so its corners do not bleed past the frame
-                      clipPath: 'ellipse(42% 45% at 50% 50%)', 
                       zIndex: 1
                     }}
+                    className="couple-dance-video"
                   />
 
                   {/* 2. The Transparent PNG Frame (Overlays on top of the video) */}

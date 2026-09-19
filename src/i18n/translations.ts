@@ -2,7 +2,6 @@ export type Lang = "en" | "hi" | "gu";
 
 export const LANGS: { code: Lang; label: string; short: string }[] = [
   { code: "en", label: "English", short: "EN" },
-  { code: "hi", label: "हिन्दी", short: "हि" },
   { code: "gu", label: "ગુજરાતી", short: "ગુ" },
 ];
 
@@ -21,7 +20,6 @@ export type FormalInvitation = {
   brideParents: string;
   announcement?: string;
   invitation: string;
-  blessing: string;
   awaitingLabel: string;
   awaitingNames: string[];
   complimentsLabel: string;
@@ -123,7 +121,7 @@ export const translations: Record<Lang, Dict> = {
     invitationLine: "Request the honour of your presence at the celebrations",
     coupleBlessing:
       "Two families, one thread of gold — bound by seven vows and a lifetime of light.",
-    familiesTitle: "Together With Our Families",
+    familiesTitle: "Together with the families",
     theBride: "The Bride",
     theGroom: "The Groom",
     brideFull: "Shreya Joshi",
@@ -133,7 +131,7 @@ export const translations: Record<Lang, Dict> = {
     venueKicker: "where we celebrate",
     venueName: "Foxoso La Alphonso Beach Resort & Spa, Goa",
     venueCta: "Open in Google Maps",
-    venueStoryTitle: "Where our story continues...",
+    venueStoryTitle: "Where the story continues...",
     venueStorySubtitle: "Under the golden Goa sun",
     beachSunsetAlt: "Beach sunset",
     gujarat: "Gujarat",
@@ -160,7 +158,7 @@ export const translations: Record<Lang, Dict> = {
     seconds: "Secs",
     photoPlaceholder: "A photograph of the couple, coming soon",
     ganeshInvocation: "॥ Shree Ganeshay Namah ॥",
-    closingBlessing: "May this union be blessed with light, laughter and long years.",
+    closingBlessing: "May this union be blessed with light & laughter.",
     closingWith: "With love,",
     closingNames: "Shreya & Prabhav",
     formalInvitation: {
@@ -179,7 +177,6 @@ export const translations: Record<Lang, Dict> = {
       brideParents: "(Daughter of Smt. Archana & Dr. Rajesh Joshi)",
       invitation:
         "On this auspicious occasion, we cordially invite you and your family to grace the ceremony with your esteemed presence and shower the newlywed couple with your love, blessings, and good wishes.",
-      blessing: "Your affectionate presence and blessings are the most precious gifts for us.",
       awaitingLabel: "Eagerly Awaiting Your Presence:",
       awaitingNames: [
         "Smt. Seema & Shri Sandeep Srivastava",
@@ -199,19 +196,19 @@ export const translations: Record<Lang, Dict> = {
         name: "What Thumka!",
         time: "6:30 PM",
         date: "11th December",
-        tagline: "Rings exchanged, dance battles and a whole lot of glamour",
+        tagline: "Rings exchanged, dance performances and a whole lot of glamour",
       },
       masquerade: {
-        name: "Masque-Era",
-        time: "10:30 PM",
+        name: "Mask-erade",
+        time: "11:00 PM",
         date: "11th December",
-        tagline: "Afterparty with maskaras hidden, masks on & dance shoes ready",
+        tagline: "Afterparty with masks on, maskaras hidden, & dance shoes ready for the masquerade",
       },
       haldi: {
         name: "Kesariya Khwaab",
         time: "10:30 AM",
         date: "12th December",
-        tagline: "Poolside haldi, raindance disco and ecstatic rituals",
+        tagline: "Poolside haldi, raindance & disco",
       },
       baarat: {
         name: "Sehra on the Shore",
@@ -223,7 +220,7 @@ export const translations: Record<Lang, Dict> = {
         name: "Suraj Hua Maddham",
         time: "5:30 PM",
         date: "12th December",
-        tagline: "Sundowner jaimaal, two hearts, two families, a grand union",
+        tagline: "Sundowner Jaimaal on the beach",
       },
       fera: {
         name: "Taaron ki Chhanv",
@@ -312,7 +309,6 @@ export const translations: Record<Lang, Dict> = {
       announcement: "का शुभ परिणय संस्कार संपन्न होने जा रहा है।",
       invitation:
         "इस शुभ एवं मंगलमय अवसर पर आप सपरिवार पधारकर नवयुगल को अपने स्नेह, आशीर्वाद एवं शुभकामनाओं से अभिसिंचित करें तथा अपनी गरिमामयी उपस्थिति से इस मांगलिक अवसर की शोभा बढ़ाएँ।",
-      blessing: "आपका स्नेहिल आशीर्वाद ही हमारे लिए सबसे अमूल्य उपहार है।",
       awaitingLabel: "दर्शनाकांक्षी",
       awaitingNames: [
         "श्रीमती सीमा एवं श्री संदीप श्रीवास्तव",
@@ -445,7 +441,6 @@ export const translations: Record<Lang, Dict> = {
       announcement: "નો શુભ પરિણય સંસ્કાર સંપન્ન થવાનો છે.",
       invitation:
         "આ શુભ અને મંગળમય અવસર પર આપ સહપરિવાર પધારીને નવદંપતીને આપના સ્નેહ, આશીર્વાદ અને શુભકામનાઓથી અભિસિંચિત કરો તથા આપની ગરિમામયી ઉપસ્થિતિથી આ માંગલિક અવસરની શોભા વધારો.",
-      blessing: "આપના સ્નેહસભર આશીર્વાદ જ અમારા માટે સૌથી અમૂલ્ય ભેટ છે.",
       awaitingLabel: "દર્શનાભિલાષી",
       awaitingNames: [
         "શ્રીમતી સીમા અને શ્રી સંદીપ શ્રીવાસ્તવ",
