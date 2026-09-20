@@ -247,9 +247,10 @@ function IndexContent() {
             <Reveal
               as="div"
               delay={240}
-              className="mt-3 max-w-3xl space-y-2 font-body text-sm leading-relaxed text-text-secondary sm:text-base"
+              className="mt-3 max-w-3xl space-y-2 text-center font-body text-sm leading-relaxed text-text-secondary sm:text-base"
             >
               <p>{invitation.groomGrandparents}</p>
+              <p>{invitation.groomFamilyLine}</p>
               <p>{invitation.groomParents}</p>
             </Reveal>
 
@@ -272,7 +273,7 @@ function IndexContent() {
             <Reveal
               as="p"
               delay={360}
-              className="mt-3 max-w-3xl font-body text-sm leading-relaxed text-text-secondary sm:text-base"
+              className="mt-3 max-w-3xl text-center font-body text-sm leading-relaxed text-text-secondary sm:text-base"
             >
               {invitation.brideParents}
             </Reveal>

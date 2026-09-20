@@ -14,6 +14,7 @@ export type FormalInvitation = {
   groomLead: string;
   groomName: string;
   groomGrandparents: string;
+  groomFamilyLine: string;
   groomParents: string;
   conjunction: string;
   brideName: string;
@@ -171,6 +172,7 @@ export const translations: Record<Lang, Dict> = {
       groomLead: "",
       groomName: "Prabhav",
       groomGrandparents: "(Grandson of Late Smt. Kammo & Late Shri Krishna Kumar Srivastava)",
+      groomFamilyLine: "(Grandson of Shri Ashok Srivastava & Brother of Parv Srivastava)",
       groomParents: "(Son of Smt. Garima & Shri Subodh Srivastava)",
       conjunction: "with",
       brideName: "Shreya",
@@ -181,9 +183,10 @@ export const translations: Record<Lang, Dict> = {
       awaitingNames: [
         "Smt. Seema & Shri Sandeep Srivastava",
         "Smt. Noori & Shri Saurabh Srivastava",
+        "Smt. Sonal & Shri Panshul Srivastava"
       ],
       complimentsLabel: "Best Compliments From:",
-      complimentsNames: "Smt. Garima Srivastava, Shri Subodh Srivastava & Parv Srivastava",
+      complimentsNames: "Smt. Garima Srivastava, Shri Subodh Srivastava & all cousins",
     },
     events: {
       mehandi: {
@@ -302,6 +305,7 @@ export const translations: Record<Lang, Dict> = {
       groomLead: "हमारे प्रिय सुपुत्र",
       groomName: "चि. प्रभव",
       groomGrandparents: "(सुपौत्र – स्व. श्रीमती कम्मो एवं स्व. श्री कृष्ण कुमार श्रीवास्तव)",
+      groomFamilyLine: "(Grandson of Shri Ashok Srivastava & Brother of Parv Srivastava)",
       groomParents: "(सुपुत्र – श्रीमती गरिमा एवं श्री सुबोध श्रीवास्तव)",
       conjunction: "एवं",
       brideName: "आयु. श्रेया",
@@ -434,6 +438,7 @@ export const translations: Record<Lang, Dict> = {
       groomLead: "અમારા પ્રિય સુપુત્ર",
       groomName: "ચિ. પ્રભવ",
       groomGrandparents: "(સુપૌત્ર – સ્વ. શ્રીમતી કમ્મો અને સ્વ. શ્રી કૃષ્ણ કુમાર શ્રીવાસ્તવ)",
+      groomFamilyLine: "(Grandson of Shri Ashok Srivastava & Brother of Parv Srivastava)",
       groomParents: "(સુપુત્ર – શ્રીમતી ગરિમા અને શ્રી સુબોધ શ્રીવાસ્તવ)",
       conjunction: "અને",
       brideName: "આયુ. શ્રેયા",
