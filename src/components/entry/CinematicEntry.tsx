@@ -55,6 +55,9 @@ export function CinematicEntry({
       onDone();
       return;
     }
+
+    // Start music from the real user interaction itself so browsers allow audio.
+    onVideoStart?.();
     setStage("flap");
   };
 
