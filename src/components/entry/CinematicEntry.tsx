@@ -17,6 +17,7 @@ export function CinematicEntry({
   const { t } = useLang();
   const [stage, setStage] = useState<Stage>("sealed");
   const [reduced, setReduced] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   // Reference to the video element so we can command it to play
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -25,18 +26,46 @@ export function CinematicEntry({
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
 
+  const startVideo = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const beginPlayback = () => {
+      video.currentTime = 0;
+      video
+        .play()
+        .then(() => {
+          setVideoReady(true);
+        })
+        .catch((err) => {
+          console.warn("Video play failed:", err);
+          setVideoReady(true);
+        });
+    };
+
+    if (video.readyState >= 2) {
+      beginPlayback();
+      return;
+    }
+
+    const onReady = () => {
+      video.removeEventListener("loadeddata", onReady);
+      beginPlayback();
+    };
+
+    video.addEventListener("loadeddata", onReady, { once: true });
+  };
+
   // Stage 1 -> Stage 2: only after the flap has finished opening.
   useEffect(() => {
     if (stage !== "flap") return;
 
     const id = window.setTimeout(() => {
       setStage("flying");
-      // Play the video as soon as the envelope is fully open, and kick
-      // off the background audio (shloka -> looping BGM) at the same
-      // moment, since the entry video's own audio is muted.
-      if (videoRef.current) {
-        videoRef.current.play().catch((err) => console.warn("Video play failed:", err));
-      }
+      // Start the video only after the flap animation completes. The video is
+      // already loaded in the background, so playback starts immediately without
+      // a blank flash or a stuck first frame.
+      startVideo();
       onVideoStart?.();
     }, STAGE.flapOpen * 1000);
 
@@ -66,16 +95,27 @@ export function CinematicEntry({
   return (
     <div className="fixed inset-0 z-[90] overflow-hidden bg-paper">
       {/* ---------- VIDEO LAYER ---------- */}
-      <div className="absolute inset-0 z-0 bg-black">
+      <div
+        className="absolute inset-0 z-0 bg-paper transition-opacity duration-300"
+        style={{ opacity: stage === "sealed" ? 0.7 : 1 }}
+      >
         <video
           ref={videoRef}
           src={entryRevealVideo}
           playsInline
-          // Muted so it never competes with the shloka/BGM background audio.
+          preload="auto"
           muted
+          onLoadedData={() => setVideoReady(true)}
+          onCanPlay={() => setVideoReady(true)}
           onEnded={handleArrive}
           className="h-full w-full object-cover"
+          style={{ opacity: videoReady ? 1 : 0.92, transition: "opacity 160ms ease-out" }}
         />
+        {stage === "sealed" && (
+          <div className="absolute inset-0 flex items-center justify-center bg-paper">
+            <img src={monogram.url} alt="" className="h-28 w-auto opacity-80" />
+          </div>
+        )}
       </div>
 
       {/* ---------- Stage 1: envelope + wax seal ---------- */}
